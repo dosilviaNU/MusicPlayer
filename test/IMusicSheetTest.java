@@ -394,6 +394,7 @@ public abstract class IMusicSheetTest {
     assertTrue(sheet2.printSheet().contains(testLine20));
     assertTrue(sheet2.printSheet().contains(testLine41));
     assertTrue(sheet2.printSheet().contains(testLine63));
+    assertEquals(sheet2.printSheet(), "");
   }
 
   @Test
