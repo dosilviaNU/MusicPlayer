@@ -74,4 +74,6 @@ public interface IMusicSheet<N> {
    */
   boolean edit(N oldNote, N newNote);
 
+  public int[] getSpread(Collection<MidiNote> notes)
+
 }
