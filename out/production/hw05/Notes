@@ -1,0 +1,58 @@
+Requirements:
+Create a model for a music editor
+Must represent at least 10 Octaves
+Represent full beats
+0 indexed
+
+Features:
+Must be able to add and remove notes from the sheet
+Must be able to print to a given textual format
+Might be able to "edit" notes on a sheet
+Might be able to combine sheets of music
+    From beat 0
+    One after another
+
+
+Assumptions Made:
+This is a model for a Java (not a big leap) MIDI (mentioned in class) player.
+References: https://docs.oracle.com/javase/tutorial/sound/MIDI-synth.html
+http://docs.oracle.com/javase/8/docs/technotes/guides/sound/programmer_guide/chapter12.html
+
+Interface INote
+Contains mutators for all relevant mutations to a note
+Also contains help enum to represent pitches as enums
+Force a getString() that returns a String representation of the note (for printing)
+
+Class MidiNote
+Assumptions Make:
+MIDI is an already existing, well documented format, with libraries built into Java. These were
+used to model
+ the MidiNote class:
+    Midi contains 128 notes (0-127)
+    Midi contains 10 full octaves (-1 to 8, and part of 9)
+    Middle C (C4) is note 60
+    Contains a range of notes from 0-127 or (notes C-1 to G9)
+
+Can create the note in multiple ways (value, pitch/octave, MidiNote clone)
+Can modify the pitch, start position, or length
+Can toString() with its representation (C#4) for example
+Overwritten equals() and hashCode() to enforce extensional equality (value, start, and length).
+Class intentionally marked as final as there is no need to extend it. All fields can be modified
+through its mutators, which all verify input.
+
+IMusicSheets
+Contains all the hinted at operations in the assignment
+add, remove notes on a MidiSheet (adds a clone)
+editing a note removes the note, and adds a modified copy of it to the sheet
+merges to sheets from beat 0
+arranges two sheets consecutively where the second piece starts at the beat after the first ends
+
+MidiSheet
+Implements the functionality above with IMusicSheets of MidiNote
+Intended to be used to represent a sheet of music for a single instrument.
+  As such someone can add two identical notes to the sheet, but the sheet will only return a
+  single note when asked to get the note.
+Creates clones of all notes given ,to prevent the user having an alias to them.
+Returns clones of all notes output, to prevent access to the originals
+Contains private helpers for add, remove, addAll to prevent subclasses from overriding their
+functionality.
