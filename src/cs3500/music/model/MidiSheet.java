@@ -151,7 +151,6 @@ public class MidiSheet implements IMusicSheet<MidiNote> {
 
   @Override
   public String printSheet() {
-
     Collection<MidiNote> notes = getNotes();
     int[] stats = getStats(notes);
     if (stats[0] == 128 || stats[1] == -1 || stats[2] == 0) {
