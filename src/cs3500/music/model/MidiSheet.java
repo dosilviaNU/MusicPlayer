@@ -109,7 +109,7 @@ public class MidiSheet implements IMusicSheet<MidiNote> {
   @Override
   public void consecutiveSheets(IMusicSheet sheet) {
     Collection<MidiNote> notes = this.getNotes();
-    int[] stats = getStats(notes);
+    int[] stats = getSpread(notes);
     Collection<MidiNote> newNotes = sheet.getNotes();
     for (MidiNote n : newNotes) {
       this._add(new MidiNote(n.getValue(), (n.getStart() + stats[2]), n.getDuration()));
@@ -153,7 +153,7 @@ public class MidiSheet implements IMusicSheet<MidiNote> {
   public String printSheet() {
 
     Collection<MidiNote> notes = getNotes();
-    int[] stats = getStats(notes);
+    int[] stats = getSpread(notes);
     if (stats[0] == 128 || stats[1] == -1 || stats[2] == 0) {
       return "No music in sheet!";
     }
@@ -189,7 +189,7 @@ public class MidiSheet implements IMusicSheet<MidiNote> {
     if (this.getNotes().size() == 0) {
       return 0;
     }
-    return this.getStats(this.getNotes())[2];
+    return this.getSpread(this.getNotes())[2];
   }
 
   @Override
@@ -252,11 +252,12 @@ public class MidiSheet implements IMusicSheet<MidiNote> {
 
   }
 
-  private String printFormattedLine(int size, int line, int[] stats) {
+  private String
+  printFormattedLine(int size, int line, int[] stats) {
     return "";
   }
 
-  private int[] getStats(Collection<MidiNote> notes) {
+  public int[] getSpread(Collection<MidiNote> notes) { //make public
     int minPitch = 128;
     int maxPitch = -1;
     int length = 0;
