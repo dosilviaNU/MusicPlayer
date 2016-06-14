@@ -26,7 +26,7 @@ public class MidiComposition extends MidiSheet implements IComposition<MidiNote>
   }
 
   @Override
-  public void serTempo(int tempo) {
+  public void setTempo(int tempo) {
     this.tempo = validateTemp(tempo);
   }
 

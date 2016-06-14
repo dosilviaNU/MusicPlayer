@@ -10,7 +10,7 @@ import java.util.List;
 public interface IComposition<N> extends IMusicSheet<N> {
 
   int getTempo();
-  void serTempo(int tempo);
+  void setTempo(int tempo);
   void setInstrument(int instrument, int channel);
   int getInstrument(int channel);
 
