@@ -19,13 +19,25 @@ public class GuiView extends JFrame implements IMusicView<JPanel> {
     }
 
     public GuiView(){
-        super();
-        this.displayPanel = new NoteViewPanel(new MidiNote(30, 40, 1000));
+        super("Macaroni");
+        setLayout(new BorderLayout());
+        this.displayPanel = new NotePanel();
         this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        this.getContentPane().add(displayPanel);
-        this.setSize(new Dimension(400, 300));
+        add(displayPanel,BorderLayout.CENTER);
+
+        //add(new TextArea(), BorderLayout.WEST);
+        //add(new TextArea(), BorderLayout.NORTH);
+        this.setSize(new Dimension(1000, 400));
+        System.out.print(getContentPane());
+        setResizable(false);
         //this.pack();
         this.setVisible(true);
+
+
+        //displayPanel.add(new NoteDisplay(200));
+
+        repaint();
+
     }
 
     @Override
