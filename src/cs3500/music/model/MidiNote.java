@@ -8,10 +8,12 @@ import java.util.Objects;
  * mutators will throw Exceptions if they will make the MidiNote invalid.
  * Created by Jake on 6/9/2016.
  */
-public final class MidiNote implements INote, Comparable<MidiNote> {
+public class MidiNote implements INote, Comparable<MidiNote> {
   private int midiNote; //invariant: once set, must be in range 0-127
   private int beatStart; //invariant: once set, must be >=0
   private int length; //invariant: once set, will always be >= 1
+  private int volume; //invariant: once set, will always be >= 1
+  private int channel; //invariant: once set, will always be >= 1
 
   /**
    * Constructor that takes midi value of note
@@ -24,6 +26,25 @@ public final class MidiNote implements INote, Comparable<MidiNote> {
     this.midiNote = validateNote(value);
     this.beatStart = validateStart(beatStart);
     this.length = validateLength(length);
+    this.volume = 60;
+    this.channel = 0;
+  }
+
+  /**
+   * Constructor that takes midi value of note
+   *
+   * @param value     midiNote value
+   * @param beatStart start of note
+   * @param length    length of note
+   * @param volume    volume of note
+   */
+  public MidiNote(int value, int beatStart, int length, int volume, int channel) throws
+          IllegalArgumentException {
+    this.midiNote = validateNote(value);
+    this.beatStart = validateStart(beatStart);
+    this.length = validateLength(length);
+    this.volume = validateVolume(volume);
+    this.channel = validateChannel(channel);
   }
 
   /**
@@ -40,6 +61,7 @@ public final class MidiNote implements INote, Comparable<MidiNote> {
     this.midiNote = validateNote(value);
     this.beatStart = validateStart(beatStart);
     this.length = validateLength(length);
+    this.volume = 60;
   }
 
   /**
@@ -51,6 +73,7 @@ public final class MidiNote implements INote, Comparable<MidiNote> {
     this.midiNote = validateNote(n.midiNote);
     this.beatStart = validateStart(n.beatStart);
     this.length = validateLength(n.length);
+    this.volume = validateVolume(n.volume);
   }
 
   /**
@@ -60,12 +83,21 @@ public final class MidiNote implements INote, Comparable<MidiNote> {
    * @return length of note if valid
    * @throws IllegalArgumentException if note is an invalid length
    */
-  private int validateLength(int length) throws IllegalArgumentException {
+  private static int validateLength(int length) throws IllegalArgumentException {
     if (length >= 1) {
       return length;
     } else {
       throw new IllegalArgumentException("Length of note must be at least 1");
     }
+  }
+
+  private static int validateChannel(int channel) {
+    if (channel >= 0 && channel < 16) {
+      return channel;
+    } else {
+      throw new IllegalArgumentException("Channel must be between 0-15");
+    }
+
   }
 
   /**
@@ -75,7 +107,7 @@ public final class MidiNote implements INote, Comparable<MidiNote> {
    * @return beat start position if valid
    * @throws IllegalArgumentException if beat position is invalid
    */
-  private int validateStart(int beatStart) throws IllegalArgumentException {
+  private static int validateStart(int beatStart) throws IllegalArgumentException {
     if (beatStart >= 0) {
       return beatStart;
     } else {
@@ -86,11 +118,22 @@ public final class MidiNote implements INote, Comparable<MidiNote> {
   /**
    * Validiates the note is within midiNote range (0-127)
    */
-  private int validateNote(int value) throws IllegalArgumentException {
+  private static int validateNote(int value) throws IllegalArgumentException {
     if (value >= 0 && value <= 127) {
       return value;
     } else {
       throw new IllegalArgumentException("Invalid value (0 to 127)");
+    }
+  }
+
+  /**
+   * Validiates the note is within midiNote volume (0-127)
+   */
+  private static int validateVolume(int value) throws IllegalArgumentException {
+    if (value >= 0 && value <= 127) {
+      return value;
+    } else {
+      throw new IllegalArgumentException("Invalid volume");
     }
   }
 
@@ -151,6 +194,12 @@ public final class MidiNote implements INote, Comparable<MidiNote> {
   public int getValue() {
     return this.midiNote;
   }
+
+  @Override
+  public int getVolume() { return this.volume; }
+
+  @Override
+  public int getChannel() { return this.channel; }
 
   @Override
   public int compareTo(MidiNote o) {

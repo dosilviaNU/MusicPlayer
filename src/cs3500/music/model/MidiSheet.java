@@ -25,7 +25,7 @@ import java.util.Set;
  * Created by Jake on 6/9/2016.
  */
 public class MidiSheet implements IMusicSheet<MidiNote> {
-  private final HashMap<Integer, ArrayList<MidiNote>> sheet;
+  protected final HashMap<Integer, ArrayList<MidiNote>> sheet;
   //invariant: MidiSheets are the collection of all notes added, minus the ones removed.
   // Duplicate notes can exist. Blank MidiSheets can only be obtained by constructing a new
   // MidiSheet, or removing everything from an existing one.
@@ -273,5 +273,15 @@ public class MidiSheet implements IMusicSheet<MidiNote> {
     }
     int[] results = {minPitch, maxPitch, length};
     return results;
+  }
+
+  public MidiSheet clone() {
+    MidiSheet result = new MidiSheet();
+    for (ArrayList<MidiNote> notes: sheet.values()) {
+      for (MidiNote n: notes) {
+        result.addNote(n);
+      }
+    }
+    return result;
   }
 }

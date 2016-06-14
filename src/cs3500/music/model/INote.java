@@ -155,4 +155,14 @@ public interface INote {
    * returns the a number representing a notes sound (irrespective of duration and start).
    */
   int getValue();
+
+  /**
+   * returns the a number the volume of the note.
+   */
+  int getVolume();
+
+  /**
+   * returns the channel the note is to be played on
+   */
+  int getChannel();
 }
