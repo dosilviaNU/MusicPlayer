@@ -17,7 +17,7 @@ public class NoteDisplay extends JButton {
     }
 
     public void paintComponent(Graphics g){
-        g.drawRect(0,0,duration,20);
+
         g.setColor(Color.green);
         g.fillRect(0,0,duration,20);
 
