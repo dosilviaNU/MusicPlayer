@@ -12,7 +12,7 @@ import java.util.Collection;
  * Created by David on 6/14/2016.
  */
 
-public class NotePanel extends JPanel {
+public class NotePanel extends JLabel {
     IMusicSheet sheet;
     int middleNote;
     int[] spread;
@@ -30,7 +30,7 @@ public class NotePanel extends JPanel {
         middleNote = (spread[0] + spread[1]) / 2;
 
 
-        setPreferredSize(new Dimension(gridWidth, gridHeight));
+        setPreferredSize(new Dimension(gridWidth, GuiView.BEAT_HEIGHT*GuiView.NOTE_COUNT));
 
         setLayout(new FlowLayout());
 
@@ -49,7 +49,7 @@ public class NotePanel extends JPanel {
         //Paint notes
         for (INote note : notes) {
 
-            int x = note.getStart() * GuiView.BEAT_WIDTH;
+            int x = note.getStart() * GuiView.BEAT_WIDTH+50;
             int y = calcY(note.getValue());
             int width = note.getDuration() * GuiView.BEAT_WIDTH;
 
@@ -62,21 +62,38 @@ public class NotePanel extends JPanel {
 
         }
 
+        for(int i = spread[1];i >= spread[0];i--){
+            StringBuilder result = new StringBuilder();
+            result.append(" ");
+            result.append(INote.Pitch.fromValue(i % 12).toString());
+            result.append((i / 12) - 1);
+            if (result.length() == 3) {
+                result.insert(0, " ");
+                result.append(" ");
+            } else if (result.length() == 4) {
+                result.append(" ");
+            }
+            String temp = result.toString();
+            int y = calcY(i)+25;
+            g2.drawString(temp,25,y );
+
+        }
+
         //Paint vert gridlines.
         g2.setColor(Color.black);
-        for (int i = 0; i < gridWidth; i += 4 * GuiView.BEAT_WIDTH) {
+        for (int i = 50; i < gridWidth; i += 4 * GuiView.BEAT_WIDTH) {
             g2.setStroke(new BasicStroke(2));
-            g.drawLine(i, 0, i, GuiView.GUI_HEIGHT);
+            g.drawLine(i, 0, i, GuiView.BEAT_HEIGHT*GuiView.NOTE_COUNT);
 
         }
 
         //Paint horizontal gridlines.
-        for (int i = 0; i <= gridHeight; i += GuiView.BEAT_HEIGHT) {
+        for (int i = 0; i <= GuiView.BEAT_HEIGHT*GuiView.NOTE_COUNT; i += GuiView.BEAT_HEIGHT) {
             g2.setStroke(new BasicStroke(2));
             if (i == 4) {
                 g2.setStroke(new BasicStroke(5));
             }
-            g.drawLine(0, i, gridWidth, i);
+            g.drawLine(50, i, gridWidth, i);
         }
 
         System.out.println(this.getHeight());

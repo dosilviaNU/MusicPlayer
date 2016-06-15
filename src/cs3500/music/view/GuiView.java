@@ -14,7 +14,7 @@ import java.awt.event.MouseListener;
  */
 public class GuiView extends JFrame implements IMusicView{
     private static IMusicSheet sheet;
-    private static JPanel displayPanel;
+    private static JLabel displayPanel;
     public static final int GUI_WIDTH = 1350;
     public static int BEAT_HEIGHT;
     public static int NOTE_COUNT;
@@ -69,11 +69,23 @@ public class GuiView extends JFrame implements IMusicView{
 
         setLayout(new BorderLayout());
         this.displayPanel = new NotePanel((MidiSheet)sheet);
+        JScrollPane scrollPane = new JScrollPane(displayPanel);
+        scrollPane.setLayout(new ScrollPaneLayout());
+
+        int gridWidth = GuiView.GUI_WIDTH - 50;
+        int gridHeight = GuiView.GUI_HEIGHT;
+        scrollPane.createHorizontalScrollBar();
+        scrollPane.setPreferredSize(new Dimension(gridWidth, gridHeight));
+
+
         this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        add(displayPanel,BorderLayout.CENTER);
+        add(scrollPane,BorderLayout.CENTER);
+       // add(displayPanel,BorderLayout.CENTER);
 
         BeatCount beatcount = new BeatCount();
         NoteSpread noteSpread = new NoteSpread(sheet.getSpread(sheet.getNotes()));
+
+
         add(noteSpread,BorderLayout.WEST);
         add(beatcount, BorderLayout.NORTH);
 
