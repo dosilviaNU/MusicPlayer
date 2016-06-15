@@ -13,8 +13,16 @@ import java.awt.event.MouseListener;
  * Created by David on 6/12/2016.
  */
 public class GuiView extends JFrame implements IMusicView<JPanel> {
-    IMusicSheet sheet;
-    JPanel displayPanel;
+    private static IMusicSheet sheet;
+    private static JPanel displayPanel;
+    public static final int GUI_WIDTH = 1350;
+    public static int BEAT_HEIGHT;
+    public static int NOTE_COUNT;
+    public static int GUI_HEIGHT;
+    public static final int BEAT_WIDTH = 25;
+
+
+
 
     public static void main(String[] args){
         new GuiView();
@@ -52,21 +60,24 @@ public class GuiView extends JFrame implements IMusicView<JPanel> {
         sheet3.addNote(new MidiNote(INote.Pitch.E, 4, 52, 2));
         sheet3.addNote(new MidiNote(INote.Pitch.D, 4, 54, 2));
         sheet3.addNote(new MidiNote(INote.Pitch.C, 4, 56, 8));
+        sheet3.addNote(new MidiNote(INote.Pitch.C, 5, 8, 8));
         this.sheet = sheet3;
+        BEAT_HEIGHT=determineBeatHeight();
+        NOTE_COUNT = determineNoteCount();
+        GUI_HEIGHT = NOTE_COUNT*BEAT_HEIGHT+50;
+
 
         setLayout(new BorderLayout());
         this.displayPanel = new NotePanel((MidiSheet)sheet);
         this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         add(displayPanel,BorderLayout.CENTER);
 
-        NoteSpread noteSpread = new NoteSpread(new int[0]);
+        BeatCount beatcount = new BeatCount();
+        NoteSpread noteSpread = new NoteSpread(sheet.getSpread(sheet.getNotes()));
         add(noteSpread,BorderLayout.WEST);
+        add(beatcount, BorderLayout.NORTH);
 
-        //add(new TextArea(), BorderLayout.WEST);
-        //add(new TextArea(), BorderLayout.NORTH);
-        int[] spread = sheet.getSpread(sheet.getNotes());
-        int mod = 400/(spread[1] - spread[0]);
-        this.setSize(new Dimension(1000, 7*mod));
+        this.setSize(new Dimension(GuiView.GUI_WIDTH, GuiView.GUI_HEIGHT));
         this.getContentPane().getHeight();
 
         setResizable(false);
@@ -74,12 +85,25 @@ public class GuiView extends JFrame implements IMusicView<JPanel> {
         this.setVisible(true);
 
 
-        //displayPanel.add(new NoteDisplay(200));
+
 
         repaint();
 
     }
 
+
+    private static int determineBeatHeight(){
+        int[] spread = sheet.getSpread(sheet.getNotes());
+        int noteCount = spread[1] - spread[0] +1;
+        int beatHeight = 400/noteCount;
+        return beatHeight;
+    }
+
+    private static int determineNoteCount(){
+        int[] spread = sheet.getSpread(sheet.getNotes());
+        int noteCount = spread[1] - spread[0] +1;
+        return noteCount;
+    }
     @Override
     public JPanel display() {
         return null;

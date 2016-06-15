@@ -16,52 +16,25 @@ public class NotePanel extends JPanel {
     IMusicSheet sheet;
     int middleNote;
     int[] spread;
-    int mod;
+
     int area;
+    private static final int gridWidth = GuiView.GUI_WIDTH - 50;
+    private static final int gridHeight = GuiView.GUI_HEIGHT;
 
 
-
-    public NotePanel(IMusicSheet sheet){
+    public NotePanel(IMusicSheet sheet) {
         this.sheet = sheet;
 
         System.out.print(area);
         this.spread = sheet.getSpread(sheet.getNotes());
         middleNote = (spread[0] + spread[1]) / 2;
 
-        System.out.println(spread[0]);
-        System.out.println(middleNote);
-        System.out.println(spread[1]);
 
-
-
-        this.mod = 400/(spread[1] - spread[0]);
-        setPreferredSize(new Dimension(400,1000));
+        setPreferredSize(new Dimension(gridWidth, gridHeight));
 
         setLayout(new FlowLayout());
 
         GridBagConstraints gc = new GridBagConstraints();
-
-
-        /*JButton note1 = new NoteDisplay(50);
-        JButton note2 = new NoteDisplay(1000);
-        JButton note3 = new NoteDisplay(300);
-        JButton note4 = new NoteDisplay(600);
-        gc.weightx=.5;
-        gc.weighty=.5;
-        gc.gridx=0;
-        gc.gridy=0;
-        add(note1);
-        gc.gridx=1;
-        gc.gridy=0;
-        add(note2);
-        gc.gridx=0;
-        gc.gridy=2;
-        add(note3);
-        gc.gridx=1;
-        gc.gridy=2;
-        add(note4);*/
-
-
 
 
         setVisible(true);
@@ -69,49 +42,52 @@ public class NotePanel extends JPanel {
 
     }
 
-    public void paintComponent(Graphics g){
-        Graphics2D g2 = (Graphics2D)g;
+    public void paintComponent(Graphics g) {
+        Graphics2D g2 = (Graphics2D) g;
 
         Collection<MidiNote> notes = sheet.getNotes();
-        for(INote note:notes){
+        //Paint notes
+        for (INote note : notes) {
 
-            int x = note.getStart()*20;
-            int y = (note.getValue()%12)*mod;
-            int width = note.getDuration()*10;
-
+            int x = note.getStart() * GuiView.BEAT_WIDTH;
+            int y = calcY(note.getValue());
+            int width = note.getDuration() * GuiView.BEAT_WIDTH;
 
 
             g2.setColor(Color.green);
-            g2.fillRect(x,y,width,mod);
+            g2.fillRect(x, y, width, GuiView.BEAT_HEIGHT);
             g2.setColor(Color.black);
-            g2.fillRect(x,y,20,mod);
+            g2.fillRect(x, y, GuiView.BEAT_WIDTH, GuiView.BEAT_HEIGHT);
+
 
         }
 
-
-
+        //Paint vert gridlines.
         g2.setColor(Color.black);
-        for (int i = 40; i < 1000;i+=100)
-        {
+        for (int i = 0; i < gridWidth; i += 4 * GuiView.BEAT_WIDTH) {
             g2.setStroke(new BasicStroke(2));
-            //if(i%80==0){g2.setStroke(new BasicStroke(5));}
-
-            g.drawLine(i, 0,i,400);
+            g.drawLine(i, 0, i, GuiView.GUI_HEIGHT);
 
         }
 
-        for(int i = mod;i<7*mod;i+=mod){
+        //Paint horizontal gridlines.
+        for (int i = 0; i <= gridHeight; i += GuiView.BEAT_HEIGHT) {
             g2.setStroke(new BasicStroke(2));
-            if(i==3*mod){g2.setStroke(new BasicStroke(5));}
-            g.drawLine(0,i, 1000,i);
+            if (i == 4) {
+                g2.setStroke(new BasicStroke(5));
+            }
+            g.drawLine(0, i, gridWidth, i);
         }
 
-
-
-
-
+        System.out.println(this.getHeight());
 
     }
 
 
+    private int calcY(int noteValue) {
+        int reset = noteValue-spread[0];
+        int mod = (reset*2)+1;
+        int y = (reset+GuiView.NOTE_COUNT-mod)*GuiView.BEAT_HEIGHT;
+        return y;
+    }
 }
