@@ -16,9 +16,10 @@ public class NoteSpread extends JPanel {
         JPanel noteSpread = new JPanel();
         setLayout(new GridBagLayout());
         GridBagConstraints gc = new GridBagConstraints();
-        int weight = 1;
+
         gc.gridheight = GuiView.BEAT_HEIGHT;
-        gc.gridwidth = 50;
+
+
 
         for(int i = stats[1];i >= stats[0];i--){
             StringBuilder result = new StringBuilder();
@@ -32,7 +33,7 @@ public class NoteSpread extends JPanel {
                 result.append(" ");
             }
             JLabel temp = new JLabel(result.toString());
-            temp.setFont(new Font("Serif", Font.BOLD, 20));
+            temp.setFont(new Font("Serif", Font.ROMAN_BASELINE, GuiView.BEAT_HEIGHT/2));
             gc.gridx=0;
             gc.gridy=gc.RELATIVE;
             gc.weighty=i;

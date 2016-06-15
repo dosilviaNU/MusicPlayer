@@ -12,7 +12,7 @@ import java.awt.event.MouseListener;
 /**
  * Created by David on 6/12/2016.
  */
-public class GuiView extends JFrame implements IMusicView<JPanel> {
+public class GuiView extends JFrame implements IMusicView{
     private static IMusicSheet sheet;
     private static JPanel displayPanel;
     public static final int GUI_WIDTH = 1350;
@@ -25,7 +25,7 @@ public class GuiView extends JFrame implements IMusicView<JPanel> {
 
 
     public static void main(String[] args){
-        new GuiView();
+        new GuiView().display();
     }
 
     public GuiView(){
@@ -82,7 +82,7 @@ public class GuiView extends JFrame implements IMusicView<JPanel> {
 
         setResizable(false);
         //this.pack();
-        this.setVisible(true);
+
 
 
 
@@ -105,7 +105,7 @@ public class GuiView extends JFrame implements IMusicView<JPanel> {
         return noteCount;
     }
     @Override
-    public JPanel display() {
-        return null;
+    public void display() {
+        this.setVisible(true);
     }
 }
