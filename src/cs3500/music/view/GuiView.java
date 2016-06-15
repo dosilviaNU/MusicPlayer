@@ -60,14 +60,15 @@ public class GuiView extends JFrame implements IMusicView{
         sheet3.addNote(new MidiNote(INote.Pitch.E, 4, 52, 2));
         sheet3.addNote(new MidiNote(INote.Pitch.D, 4, 54, 2));
         sheet3.addNote(new MidiNote(INote.Pitch.C, 4, 56, 8));
-        sheet3.addNote(new MidiNote(INote.Pitch.C, 5, 8, 8));
+        sheet3.addNote(new MidiNote(INote.Pitch.C, 8, 8, 100));
         this.sheet = sheet3;
-        BEAT_HEIGHT=determineBeatHeight();
+        BEAT_HEIGHT=25;
         NOTE_COUNT = determineNoteCount();
         GUI_HEIGHT = NOTE_COUNT*BEAT_HEIGHT+50;
 
 
         setLayout(new BorderLayout());
+
         this.displayPanel = new NotePanel((MidiSheet)sheet);
         JScrollPane scrollPane = new JScrollPane(displayPanel);
         scrollPane.setLayout(new ScrollPaneLayout());
@@ -75,7 +76,7 @@ public class GuiView extends JFrame implements IMusicView{
         int gridWidth = GuiView.GUI_WIDTH - 50;
         int gridHeight = GuiView.GUI_HEIGHT;
         scrollPane.createHorizontalScrollBar();
-        scrollPane.setPreferredSize(new Dimension(gridWidth, gridHeight));
+        scrollPane.setPreferredSize(new Dimension(gridWidth, 600));
 
 
         this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -86,10 +87,10 @@ public class GuiView extends JFrame implements IMusicView{
         NoteSpread noteSpread = new NoteSpread(sheet.getSpread(sheet.getNotes()));
 
 
-        add(noteSpread,BorderLayout.WEST);
-        add(beatcount, BorderLayout.NORTH);
+        //add(noteSpread,BorderLayout.WEST);
+        //add(beatcount, BorderLayout.NORTH);
 
-        this.setSize(new Dimension(GuiView.GUI_WIDTH, GuiView.GUI_HEIGHT));
+        this.setSize(new Dimension(GuiView.GUI_WIDTH, 600));
         this.getContentPane().getHeight();
 
         setResizable(false);
