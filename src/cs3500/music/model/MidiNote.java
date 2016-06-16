@@ -13,7 +13,7 @@ public class MidiNote implements INote, Comparable<MidiNote> {
   private int beatStart; //invariant: once set, must be >=0
   private int length; //invariant: once set, will always be >= 1
   private int volume; //invariant: once set, will always be >= 1
-  private int channel; //invariant: once set, will always be >= 1
+  private int channel; //invariant: once set, will always be >= 0
 
   /**
    * Constructor that takes midi value of note
@@ -62,6 +62,7 @@ public class MidiNote implements INote, Comparable<MidiNote> {
     this.beatStart = validateStart(beatStart);
     this.length = validateLength(length);
     this.volume = 60;
+    this.channel = 0;
   }
 
   /**
@@ -74,6 +75,7 @@ public class MidiNote implements INote, Comparable<MidiNote> {
     this.beatStart = validateStart(n.beatStart);
     this.length = validateLength(n.length);
     this.volume = validateVolume(n.volume);
+    this.channel = validateChannel(n.channel);
   }
 
   /**
@@ -222,6 +224,8 @@ public class MidiNote implements INote, Comparable<MidiNote> {
     MidiNote n = (MidiNote) o;
     return this.midiNote == n.midiNote &&
             this.beatStart == n.beatStart &&
+            this.channel == n.channel &&
+            this.volume == n.volume &&
             this.length == n.length;
   }
 
