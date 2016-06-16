@@ -9,8 +9,6 @@ import cs3500.music.model.MidiNote;
 import cs3500.music.util.MidiCompBuilder;
 import cs3500.music.util.MusicReader;
 import cs3500.music.view.MidiView;
-import cs3500.music.view.MidiViewSeq;
-import cs3500.music.view.MidiViewSeq3;
 
 import static org.junit.Assert.*;
 
