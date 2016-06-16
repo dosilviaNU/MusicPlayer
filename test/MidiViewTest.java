@@ -60,9 +60,15 @@ public class MidiViewTest {
   public void testMidi() {
     initData();
 
-    MidiView player = new MidiView(comp);
+    /*MidiView player = new MidiView(comp);
     new Thread(player).start();
+    player.playComp();*/
+    comp.setTempo(200);
+    MidiViewSeq player = new MidiViewSeq(comp);
     player.playComp();
+    try {
+    Thread.sleep(20000); }
+    catch(Exception e) {}
   }
 
 
