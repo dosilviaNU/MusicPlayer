@@ -12,7 +12,6 @@ import java.awt.*;
  * Created by David on 6/12/2016.
  */
 public class GuiView extends JFrame implements IMusicView{
-    private static IMusicSheet sheet;
     private static JComponent centerPanel;
     public static final int GUI_WIDTH = 1500;
     public static final int GUI_HEIGHT =300;
@@ -56,9 +55,6 @@ public class GuiView extends JFrame implements IMusicView{
         sheet3.addNote(new MidiNote(INote.Pitch.E, 4, 52, 2));
         sheet3.addNote(new MidiNote(INote.Pitch.D, 4, 54, 2));
         sheet3.addNote(new MidiNote(INote.Pitch.C, 4, 56, 8));
-        this.sheet = sheet3;
-
-
 
         //setLayout(new BorderLayout());
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -66,7 +62,7 @@ public class GuiView extends JFrame implements IMusicView{
         setSize(new Dimension(GuiView.GUI_WIDTH, GUI_HEIGHT));
 
         //Set center panel. Add mouselistener,andd scrollpane.
-        centerPanel = new NotePanel(sheet);
+        centerPanel = new NotePanel(sheet3);
         JScrollPane scrollPane = new JScrollPane(centerPanel);
         scrollPane.setLayout(new ScrollPaneLayout());
         add(scrollPane);

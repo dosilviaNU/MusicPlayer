@@ -43,46 +43,21 @@ public class NotePanel extends JLabel {
             addNoteToPitchMap(note);
         }
         setVisible(true);
-        repaint();
-
-
-        addMouseListener(new MouseListener() {
+        addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                List<INote> tempNotes = NotePanel.mouseClickToNotes(e.getX(),e.getY());
-                System.out.println(e.getX()+" "+e.getY());
-                System.out.println(tempNotes.size());
-
-
-                for(INote note:tempNotes){
-                    System.out.println(note);
+                if(e.getX() > leftBorder && (e.getY() >topBorder && e.getY() < windowHeight-2)) {
+                    List<INote> tempNotes = NotePanel.mouseClickToNotes(e.getX(), e.getY());
+                    if (tempNotes.size() > 0) {
+                        openEditMenu(tempNotes, e.getX(), e.getY());
+                    }
+                    else{openEditMenu(new ArrayList<INote>(), e.getX(), e.getY());}
                 }
-                openDialog(tempNotes);
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-
+                else{
+                    openEditMenu(new ArrayList<INote>(), e.getX(), e.getY());
+                }
             }
         });
-
-
-
     }
 
     public void paintComponent(Graphics g) {
@@ -93,11 +68,11 @@ public class NotePanel extends JLabel {
         for (INote note : notes) {
             int x =(note.getStart()+1)*leftBorder;
             int y = calcY(note.getValue());
-            int width=note.getDuration()*GuiView.BEAT_WIDTH;
+            int width=note.getDuration()*leftBorder;
             g2.setColor(Color.green);
-            g2.fillRect(x, y, width, GuiView.BEAT_HEIGHT);
+            g2.fillRect(x, y, width, topBorder);
             g2.setColor(Color.black);
-            g2.fillRect(x, y, GuiView.BEAT_WIDTH, GuiView.BEAT_HEIGHT);
+            g2.fillRect(x, y, leftBorder, topBorder);
         }
 
         //Draw beat counts.
@@ -164,7 +139,7 @@ public class NotePanel extends JLabel {
         return result.toString();
     }
 
-    public static List<INote> mouseClickToNotes(int x, int y){
+    private static List<INote> mouseClickToNotes(int x, int y){
         StringBuilder key = new StringBuilder();
         int temp = ((y-topBorder-1)/topBorder)-1;
         int value = coordToValue(temp);
@@ -180,16 +155,9 @@ public class NotePanel extends JLabel {
         return value;
     }
 
-    private void openDialog(Collection<INote> notes){
-
-        Window win = SwingUtilities.getWindowAncestor(this);
+    private void openEditMenu(Collection<INote> notes, int x, int y) {
         test = new EditorMenu();
-        test.addList(notes);
-
-
-
-
-
+        test.editNotes(notes);
     }
 
 
