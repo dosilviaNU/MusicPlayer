@@ -1,6 +1,5 @@
-package cs3500.music.view;
+package cs3500.music.view.GuiView;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -11,12 +10,16 @@ import cs3500.music.model.INote;
 /**
  * Created by David on 6/15/2016.
  */
-public class EditorMenu extends JDialog{
+
+//Work in progress.
+public class EditorMenu extends JPanel{
   JComponent contents;
 
-  public EditorMenu(){
+  public EditorMenu(int x, int y){
     super();
-    setLocationRelativeTo(getParent());
+    setLocation(x,y);
+    setVisible(true);
+
   }
 
   public  void editNotes(Collection<INote> notes){
@@ -28,6 +31,9 @@ public class EditorMenu extends JDialog{
     for(int i = 0;i<noteMessage.length-1;i++){
       noteMessage[i]=temp.get(i).toString()+" #"+(i+1)+ " @ beat " + temp.get(i).getStart();
     }
+
+
+
     noteMessage[noteMessage.length-1] = "Add Note";
     this.contents = new JOptionPane();
     JOptionPane optionPane =(JOptionPane)this.contents;
@@ -53,7 +59,7 @@ public class EditorMenu extends JDialog{
     this.contents = new NoteEditOptionsPanel();
     NoteEditOptionsPanel editOptions = (NoteEditOptionsPanel) this.contents;
     add(this.contents);
-    this.pack();
+    //this.pack();
     this.setVisible(true);
   }
 
@@ -64,7 +70,7 @@ public class EditorMenu extends JDialog{
     this.contents = new NoteEditOptionsPanel();
     NoteEditOptionsPanel editOptions = (NoteEditOptionsPanel) this.contents;
     add(this.contents);
-    this.pack();
+    //this.pack();
     this.setVisible(true);
   }
 

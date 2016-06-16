@@ -14,7 +14,7 @@ import cs3500.music.model.MidiComposition;
 /**
  * Created by Jake on 6/14/2016.
  */
-public class MidiView implements IMusicView<MidiComposition>, Runnable {
+public class MidiView implements IMusicView, Runnable {
   MidiComposition comp;
   Synthesizer synth;
   MidiChannel[] mc;
@@ -35,8 +35,8 @@ public class MidiView implements IMusicView<MidiComposition>, Runnable {
 
 
   @Override
-  public MidiComposition display() {
-    return null;
+  public void display() {
+
   }
 
   @Override
