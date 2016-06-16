@@ -4,19 +4,23 @@ import java.util.Collection;
 
 import javax.sound.midi.Instrument;
 import javax.sound.midi.MidiChannel;
+import javax.sound.midi.MidiMessage;
 import javax.sound.midi.MidiSystem;
 import javax.sound.midi.MidiUnavailableException;
+import javax.sound.midi.Receiver;
+import javax.sound.midi.Sequencer;
+import javax.sound.midi.ShortMessage;
 import javax.sound.midi.Synthesizer;
 
-import cs3500.music.model.MidiNote;
 import cs3500.music.model.MidiComposition;
+import cs3500.music.model.MidiNote;
+import cs3500.music.view.IMusicView;
 
-/**
- * Created by Jake on 6/14/2016.
- */
 public class MidiView implements IMusicView<MidiComposition>, Runnable {
   MidiComposition comp;
+  Sequencer song;
   Synthesizer synth;
+  Receiver receiver;
   MidiChannel[] mc;
   Instrument[] instr;
 
@@ -24,10 +28,12 @@ public class MidiView implements IMusicView<MidiComposition>, Runnable {
   public MidiView(MidiComposition composition) {
     this.comp = composition;
     try {
-      synth = MidiSystem.getSynthesizer();
-      synth.open();
+      this.synth = MidiSystem.getSynthesizer();
+      this.synth.open();
+      this.receiver = synth.getReceiver();
       mc = synth.getChannels();
       instr = synth.getDefaultSoundbank().getInstruments();
+      song = MidiSystem.getSequencer();
     } catch (MidiUnavailableException e1) {
       e1.printStackTrace();
     }
@@ -62,25 +68,23 @@ public class MidiView implements IMusicView<MidiComposition>, Runnable {
   }
 
   public void playComp() {
+    MidiMessage start;
+    MidiMessage stop;
     int delay = this.comp.getTempo();
     try {
-      for (int beat = 0; beat < comp.size(); beat++) {
-        Collection<MidiNote> notes = comp.getNotes(beat);
-        for (MidiNote n : notes) {
-          if (n.getStart() == beat) {
-            this.play(n.getChannel(), n.getValue(), n.getVolume(), true);
-          }
-        }
-        Thread.sleep(delay);
-        for (MidiNote n : notes) {
-          if (n.getStart() + n.getDuration() == beat) {
-            this.play(n.getChannel(), n.getValue(), n.getVolume(), false);
-          }
+      Collection<MidiNote> notes = comp.getNotes();
+      for (MidiNote n : notes) {
+        try {
+          start = new ShortMessage(ShortMessage.NOTE_ON, n.getChannel(), n.getValue(),
+                  n.getVolume());
+          stop = new ShortMessage(ShortMessage.NOTE_OFF, n.getChannel(), n.getValue(),
+                  n.getVolume());
+          this.receiver.send(start, (1 + n.getStart()) * delay);
+          this.receiver.send(stop, (1 + n.getStart() + n.getDuration()) * delay);
+        } catch (Exception e) {
         }
       }
     } catch (Exception e) {
     }
   }
-
-
 }
