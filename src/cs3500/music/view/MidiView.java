@@ -16,7 +16,7 @@ import cs3500.music.model.MidiComposition;
 import cs3500.music.model.MidiNote;
 import cs3500.music.view.IMusicView;
 
-public class MidiView implements IMusicView<MidiComposition>, Runnable {
+public class MidiView implements IMusicView, Runnable {
   MidiComposition comp;
   Sequencer song;
   Synthesizer synth;
@@ -41,8 +41,8 @@ public class MidiView implements IMusicView<MidiComposition>, Runnable {
 
 
   @Override
-  public MidiComposition display() {
-    return null;
+  public void display() {
+    
   }
 
   @Override
