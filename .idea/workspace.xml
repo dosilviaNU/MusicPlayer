@@ -1,18 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a80aa146-c878-4628-bc90-99326b0b3314" name="Default" comment="//Adding main method.">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/cs3500/music/TestSheet.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/cs3500/music/view/GuiView/NoteEditOptionsPanel.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/cs3500/music/view/EditorMenu.java" afterPath="$PROJECT_DIR$/src/cs3500/music/view/GuiView/EditorMenu.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/cs3500/music/view/GuiView.java" afterPath="$PROJECT_DIR$/src/cs3500/music/view/GuiView/GuiView.java" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/cs3500/music/view/NotePanel.java" afterPath="$PROJECT_DIR$/src/cs3500/music/view/GuiView/NoteDisplay.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/hw05/cs3500/music/model/IMusicSheet.class" afterPath="$PROJECT_DIR$/out/production/hw05/cs3500/music/model/IMusicSheet.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/hw05/cs3500/music/model/INote.class" afterPath="$PROJECT_DIR$/out/production/hw05/cs3500/music/model/INote.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/hw05/cs3500/music/model/MidiNote.class" afterPath="$PROJECT_DIR$/out/production/hw05/cs3500/music/model/MidiNote.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/hw05/cs3500/music/model/MidiSheet.class" afterPath="$PROJECT_DIR$/out/production/hw05/cs3500/music/model/MidiSheet.class" />
+    <list default="true" id="a80aa146-c878-4628-bc90-99326b0b3314" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cs3500/music/view/MidiView.java" afterPath="$PROJECT_DIR$/src/cs3500/music/view/MidiView.java" />
     </list>
     <ignored path="hw05.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,16 +24,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="ConsoleView.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cs3500/music/view/ConsoleView.java">
+      <file leaf-file-name="CompositionBuilder.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cs3500/music/util/CompositionBuilder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" column="26" selection-start-line="14" selection-start-column="26" selection-end-line="14" selection-end-column="26" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#317#318#0" expanded="true" />
-                <element signature="e#348#349#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="153">
+              <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -94,11 +80,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NoteEditOptionsPanel.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cs3500/music/view/GuiView/NoteEditOptionsPanel.java">
+      <file leaf-file-name="MusicEditor.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cs3500/music/MusicEditor.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="153">
-              <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+              <caret line="9" column="5" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MusicReader.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/cs3500/music/util/MusicReader.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -114,7 +110,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TestSheet.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="NoteEditOptionsPanel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cs3500/music/view/GuiView/NoteEditOptionsPanel.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="15" column="19" selection-start-line="15" selection-start-column="19" selection-end-line="15" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TestSheet.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cs3500/music/TestSheet.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="170">
@@ -331,11 +337,29 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="view" />
+              <option name="myItemId" value="util" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MusicEditor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MusicEditor" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="GuiView" />
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="music" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -798,7 +822,14 @@
       <option name="project" value="LOCAL" />
       <updated>1466055500702</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="//Adding main method.">
+      <created>1466090926240</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1466090926240</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -972,8 +1003,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cs3500/music/util/MusicReader.java" />
-    <entry file="file://$PROJECT_DIR$/src/cs3500/music/util/CompositionBuilder.java" />
     <entry file="jar://C:/Program Files/Java/jdk1.8.0_25/src.zip!/java/lang/StringBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="328">
@@ -1054,14 +1083,6 @@
             <element signature="e#5578#5579#0" expanded="true" />
             <element signature="e#5601#5602#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cs3500/music/MusicEditor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="5" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1202,6 +1223,30 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cs3500/music/MusicEditor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="5" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cs3500/music/util/CompositionBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cs3500/music/util/MusicReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
