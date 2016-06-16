@@ -74,6 +74,12 @@ public interface IMusicSheet<N> {
    */
   boolean edit(N oldNote, N newNote);
 
-  public int[] getSpread(Collection<MidiNote> notes);
+  /**
+   * Creates a copy of this music sheet
+   * @return clone of this current music sheet
+   */
+  IMusicSheet<N> clone();
+
+  int[] getSpread(Collection<MidiNote> notes);
 
 }
