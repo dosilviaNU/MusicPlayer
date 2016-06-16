@@ -64,7 +64,7 @@ public class MidiViewTest {
     new Thread(player).start();
     player.playComp();*/
     comp.setTempo(200);
-    MidiViewSeq player = new MidiViewSeq(comp);
+    MidiView player = new MidiView(comp);
     player.playComp();
     try {
     Thread.sleep(20000); }
