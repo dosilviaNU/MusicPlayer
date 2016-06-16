@@ -7,36 +7,32 @@ import cs3500.music.model.MidiSheet;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseListener;
 
 /**
  * Created by David on 6/12/2016.
  */
 public class GuiView extends JFrame implements IMusicView{
     private static IMusicSheet sheet;
-    private static JLabel displayPanel;
-    public static final int GUI_WIDTH = 1350;
-    public static int BEAT_HEIGHT;
-    public static int NOTE_COUNT;
-    public static int GUI_HEIGHT;
-    public static final int BEAT_WIDTH = 25;
-
-
-
+    private static JComponent centerPanel;
+    public static final int GUI_WIDTH = 1500;
+    public static final int GUI_HEIGHT =300;
+    public static final int BEAT_WIDTH = 40;
+    public static final int BEAT_HEIGHT=20;
 
     public static void main(String[] args){
         new GuiView().display();
+
     }
 
     public GuiView(){
-        super("Macaroni");
+        super("Music Editor OOD Summer 1");
+        //Test Bullshit
         IMusicSheet sheet3 = new MidiSheet();
-
-
-
         sheet3.addNote(new MidiNote(INote.Pitch.E, 4, 0, 5));
         sheet3.addNote(new MidiNote(INote.Pitch.D, 4, 2, 2));
         sheet3.addNote(new MidiNote(INote.Pitch.C, 4, 4, 7));
+        sheet3.addNote(new MidiNote(INote.Pitch.C, 4, 5, 7));
+        sheet3.addNote(new MidiNote(INote.Pitch.C, 4, 6, 7));
         sheet3.addNote(new MidiNote(INote.Pitch.D, 4, 6, 2));
         sheet3.addNote(new MidiNote(INote.Pitch.E, 4, 8, 5));
         sheet3.addNote(new MidiNote(INote.Pitch.E, 4, 10, 2));
@@ -60,63 +56,30 @@ public class GuiView extends JFrame implements IMusicView{
         sheet3.addNote(new MidiNote(INote.Pitch.E, 4, 52, 2));
         sheet3.addNote(new MidiNote(INote.Pitch.D, 4, 54, 2));
         sheet3.addNote(new MidiNote(INote.Pitch.C, 4, 56, 8));
-        sheet3.addNote(new MidiNote(INote.Pitch.C, 8, 8, 100));
         this.sheet = sheet3;
-        BEAT_HEIGHT=25;
-        NOTE_COUNT = determineNoteCount();
-        GUI_HEIGHT = NOTE_COUNT*BEAT_HEIGHT+50;
 
 
-        setLayout(new BorderLayout());
 
-        this.displayPanel = new NotePanel((MidiSheet)sheet);
-        JScrollPane scrollPane = new JScrollPane(displayPanel);
-        scrollPane.setLayout(new ScrollPaneLayout());
-
-        int gridWidth = GuiView.GUI_WIDTH - 50;
-        int gridHeight = GuiView.GUI_HEIGHT;
-        scrollPane.createHorizontalScrollBar();
-        scrollPane.setPreferredSize(new Dimension(gridWidth, 600));
-
-
-        this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        add(scrollPane,BorderLayout.CENTER);
-       // add(displayPanel,BorderLayout.CENTER);
-
-        BeatCount beatcount = new BeatCount();
-        NoteSpread noteSpread = new NoteSpread(sheet.getSpread(sheet.getNotes()));
-
-
-        //add(noteSpread,BorderLayout.WEST);
-        //add(beatcount, BorderLayout.NORTH);
-
-        this.setSize(new Dimension(GuiView.GUI_WIDTH, 600));
-        this.getContentPane().getHeight();
-
+        //setLayout(new BorderLayout());
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
-        //this.pack();
+        setSize(new Dimension(GuiView.GUI_WIDTH, GUI_HEIGHT));
 
-
-
+        //Set center panel. Add mouselistener,andd scrollpane.
+        centerPanel = new NotePanel(sheet);
+        JScrollPane scrollPane = new JScrollPane(centerPanel);
+        scrollPane.setLayout(new ScrollPaneLayout());
+        add(scrollPane);
 
 
         repaint();
-
     }
 
 
-    private static int determineBeatHeight(){
-        int[] spread = sheet.getSpread(sheet.getNotes());
-        int noteCount = spread[1] - spread[0] +1;
-        int beatHeight = 400/noteCount;
-        return beatHeight;
-    }
 
-    private static int determineNoteCount(){
-        int[] spread = sheet.getSpread(sheet.getNotes());
-        int noteCount = spread[1] - spread[0] +1;
-        return noteCount;
-    }
+
+
+
     @Override
     public void display() {
         this.setVisible(true);
