@@ -15,7 +15,7 @@ import cs3500.music.view.midi.MidiView;
  * Created by David on 6/16/2016.
  */
 public class MusicEditor {
-  public static void main(String[] args){
+  public static void main(String[] args) throws InterruptedException {
     if(args.length<2){
       System.exit(0);
     }
@@ -40,6 +40,7 @@ public class MusicEditor {
         break;
       case "midi": MidiView midi = new MidiView(comp);
               midi.playComp();
+        Thread.sleep(400000);
         break;
       case "gui": GuiView gui = new GuiView(comp);
         gui.display();
