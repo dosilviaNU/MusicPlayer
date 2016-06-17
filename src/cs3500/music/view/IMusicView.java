@@ -6,6 +6,6 @@ import java.util.jar.JarEntry;
 /**
  * Created by David on 6/12/2016.
  */
-public interface IMusicView<T> {
-    public T display();
+public interface IMusicView{
+    public void display();
 }
