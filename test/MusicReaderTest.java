@@ -25,15 +25,12 @@ public class MusicReaderTest {
   @Test
   public void parseFile() throws Exception {
     MidiCompBuilder mcb = new MidiCompBuilder();
-    File file1 = new File("df-ttfaf.txt");
+    File file1 = new File("zoot-lw.txt");
     File file2 = new File("mystery-2.txt");
     File file3 = new File("mystery-3.txt");
     File file4 = new File("df-ttfaf.txt");
-    FileReader music = new FileReader(file1);
+    FileReader music = new FileReader(file3);
     assertTrue(music instanceof Readable);
-    //FileReader music1 = new FileReader("mystery-1.txt");
-    //FileReader music2 = new FileReader("mystery-2.txt");
-    //FileReader music3 = new FileReader("mystery-3.txt");
 
     MusicReader mr = new MusicReader();
 
@@ -43,7 +40,7 @@ public class MusicReaderTest {
     MidiView player = new MidiView(comp);
     player.playComp();
     try {
-      Thread.sleep(200000); }
+      Thread.sleep(400000); }
     catch(Exception e) {}
 
   }

@@ -67,7 +67,7 @@ public class MidiViewTest {
     MidiView player = new MidiView(comp);
     player.playComp();
     try {
-    Thread.sleep(20000); }
+    Thread.sleep(1000); }
     catch(Exception e) {}
   }
 

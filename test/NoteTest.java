@@ -229,8 +229,64 @@ public abstract class NoteTest {
 
 
   public static final class MidiNoteTest extends NoteTest {
+    INote normalNote;
+    INote lowChan;
+    INote hiChan;
+    INote loVelocity;
+    INote hiVelocity;
     public INote makeNote(INote.Pitch p, int octave, int start, int length) {
       return new MidiNote(p, octave, start, length);
+    }
+
+    public void initData2 () {
+      normalNote = new MidiNote(60, 0, 1, 60, 1);
+      lowChan = new MidiNote(60, 0, 1, 60, 0);
+      hiChan = new MidiNote(60, 0, 1, 60, 15);
+      loVelocity = new MidiNote(60, 0, 1, 0, 1);
+      hiVelocity = new MidiNote(60, 0, 1, 127, 1);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    //test channel getters
+    public void testChannelExcep1() {
+      new MidiNote(60, 0, 1, -1, 60);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    //test channel getters
+    public void testChannelExcep2() {
+
+      new MidiNote(60, 0, 1, 16, 60);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    //test channel getters
+    public void testVelocityExcep() {
+      new MidiNote(60, 0, 1, 1, -1);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    //test channel getters
+    public void testVelocityExcep2() {
+      new MidiNote(60, 0, 1, 1, 128);
+    }
+
+    @Test
+    //test getChannel
+    public void testGetChannel() {
+      initData();
+      initData2();
+      assertEquals(lowChan.getChannel(), 0);
+      assertEquals(hiChan.getChannel(), 15);
+    }
+
+    @Test
+    //test getChannel
+    public void testGetVolume() {
+      initData();
+      initData2();
+      assertEquals(loVelocity.getVolume(), 0);
+      assertEquals(hiVelocity.getVolume(), 127);
     }
 
     @Test
