@@ -24,7 +24,7 @@ public class MusicEditor {
     try {
       music = new FileReader(musicFile);
     } catch (FileNotFoundException e) {
-      e.printStackTrace();
+      throw new IllegalArgumentException("Invalid File.");
     }
     MusicReader mr = new MusicReader();
     MidiCompBuilder mcb = new MidiCompBuilder();
@@ -32,7 +32,7 @@ public class MusicEditor {
     try {
       comp = mr.parseFile(music, mcb);
     }catch (IllegalArgumentException e){
-      e.printStackTrace();
+      e.getMessage();
     }
     switch (args[1]){
       case "console": ConsoleView console = new ConsoleView(comp);
