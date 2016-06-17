@@ -157,7 +157,7 @@ public interface INote {
   int getValue();
 
   /**
-   * returns the a number the volume of the note.
+   * returns the a number the volume (velocity) of the note.
    */
   int getVolume();
 

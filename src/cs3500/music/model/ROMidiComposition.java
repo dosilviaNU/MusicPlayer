@@ -9,7 +9,7 @@ import java.util.Collection;
 public class ROMidiComposition implements IComposition<MidiNote> {
   MidiComposition comp;
 
-  ROMidiComposition(MidiComposition comp) {
+  public ROMidiComposition(MidiComposition comp) {
     this.comp = comp;
   }
 
