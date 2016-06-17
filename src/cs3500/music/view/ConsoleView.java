@@ -1,5 +1,6 @@
 package cs3500.music.view;
 
+import cs3500.music.model.IComposition;
 import cs3500.music.model.IMusicSheet;
 import cs3500.music.model.INote;
 import cs3500.music.model.MidiNote;
@@ -9,9 +10,9 @@ import cs3500.music.model.MidiSheet;
  * Created by David on 6/14/2016.
  */
 public class ConsoleView {
-  private IMusicSheet sheet;
+  private IComposition sheet;
 
-  public ConsoleView(IMusicSheet givenSheet){
+  public ConsoleView(IComposition givenSheet){
     this.sheet=givenSheet;
   }
 

@@ -42,7 +42,7 @@ public class MidiView implements IMusicView, Runnable {
 
   @Override
   public void display() {
-    
+
   }
 
   @Override

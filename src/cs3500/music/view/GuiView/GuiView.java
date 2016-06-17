@@ -1,11 +1,18 @@
 package cs3500.music.view.GuiView;
 
 import cs3500.music.TestSheet;
+import cs3500.music.model.IComposition;
 import cs3500.music.model.IMusicSheet;
+import cs3500.music.model.MidiComposition;
+import cs3500.music.util.MidiCompBuilder;
+import cs3500.music.util.MusicReader;
 import cs3500.music.view.IMusicView;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 
 /**
  * Created by David on 6/12/2016.
@@ -18,21 +25,16 @@ public class GuiView extends JFrame implements IMusicView {
     private static JComponent centerPanel;
 
     public static final int GUI_WIDTH = 1500;
-    public static final int GUI_HEIGHT =300;
+    public static final int GUI_HEIGHT =500;
     public static final int BEAT_WIDTH = 40;
     public static final int BEAT_HEIGHT=20;
-
-    public static void main(String[] args){
-        new GuiView(TestSheet.getSheet()).display();
-
-    }
 
   /**
    * Default constructor for a GuiView
    * Takes in an IMusicSheet to represent.
    * @param sheet IMusicShhet this GuiView will display.
    */
-  public GuiView(IMusicSheet sheet){
+  public GuiView(IComposition sheet){
         super("Music Editor OOD Summer 1");
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);

@@ -29,11 +29,13 @@ public class NoteDisplay extends JComponent {
   private static int windowWidth;
   private static Map<String, List<INote>> pitchBeatMap;
   private static Collection<INote> notes;
-  private EditorMenu test;
 
+  /**
+   * Default constructor for a NoteDisplay panel.
+   * @param givenSheet
+   */
   public NoteDisplay(IMusicSheet givenSheet) {
     super();
-
     //Initialize instance variables.
     sheet = givenSheet;
     spread = sheet.getSpread(sheet.getNotes());
@@ -47,28 +49,12 @@ public class NoteDisplay extends JComponent {
     //Build the pitch/beat->INote map.
     pitchBeatMap = new HashMap<String, List<INote>>();
     notes = sheet.getNotes();
-    buildPitchBeatMap();
-    //Add the notes to the pitchMap.
-    for (INote note : notes) {
-      addNoteToPitchMap(note);
-    }
-    setVisible(true);
-    //Work in progress mouse listener.
-    addMouseListener(new MouseAdapter() {
-      @Override
-      public void mouseClicked(MouseEvent e) {
-        if (e.getX() > leftBorder && (e.getY() > topBorder && e.getY() < windowHeight - 2)) {
-          List<INote> tempNotes = NoteDisplay.mouseClickToNotes(e.getX(), e.getY());
-          if (tempNotes.size() > 0) {
-            openEditMenu(tempNotes, e.getX(), e.getY());
-          } else {
-            openEditMenu(new ArrayList<INote>(), e.getX(), e.getY());
-          }
-        } else {
-          openEditMenu(new ArrayList<INote>(), e.getX(), e.getY());
-        }
-      }
-    });
+    //buildPitchBeatMap();
+
+    //for (INote note : notes) {
+    //  addNoteToPitchMap(note);
+    //}
+   setVisible(true);
   }
 
   /**
@@ -221,12 +207,5 @@ public class NoteDisplay extends JComponent {
     int value = ((x - leftBorder) / leftBorder);
     return value;
   }
-
-  //***WORK IN PROGRESS****
-  private void openEditMenu(Collection<INote> notes, int x, int y) {
-    test = new EditorMenu(x, y);
-    test.editNotes(notes);
-  }
-
 
 }

@@ -1,2 +1,2 @@
-# MusicEditor
+# cs3500.music.MusicEditor
 
