@@ -3,9 +3,7 @@ import org.junit.Test;
 import cs3500.music.model.INote;
 import cs3500.music.model.MidiComposition;
 import cs3500.music.model.MidiNote;
-import cs3500.music.view.MidiView;
-
-import static org.junit.Assert.*;
+import cs3500.music.view.midi.MidiView;
 
 /**
  * Created by Jake on 6/14/2016.

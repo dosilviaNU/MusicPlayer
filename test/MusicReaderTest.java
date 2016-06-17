@@ -3,12 +3,10 @@ import org.junit.Test;
 import java.io.File;
 import java.io.FileReader;
 
-import cs3500.music.model.IComposition;
 import cs3500.music.model.MidiComposition;
-import cs3500.music.model.MidiNote;
 import cs3500.music.util.MidiCompBuilder;
 import cs3500.music.util.MusicReader;
-import cs3500.music.view.MidiView;
+import cs3500.music.view.midi.MidiView;
 
 import static org.junit.Assert.*;
 

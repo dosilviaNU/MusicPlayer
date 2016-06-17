@@ -1,4 +1,4 @@
-package cs3500.music.view;
+package cs3500.music.view.midi;
 
 import java.util.Collection;
 

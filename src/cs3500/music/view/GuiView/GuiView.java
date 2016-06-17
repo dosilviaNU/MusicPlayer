@@ -1,18 +1,10 @@
 package cs3500.music.view.GuiView;
 
-import cs3500.music.TestSheet;
 import cs3500.music.model.IComposition;
-import cs3500.music.model.IMusicSheet;
-import cs3500.music.model.MidiComposition;
-import cs3500.music.util.MidiCompBuilder;
-import cs3500.music.util.MusicReader;
 import cs3500.music.view.IMusicView;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 
 /**
  * Created by David on 6/12/2016.

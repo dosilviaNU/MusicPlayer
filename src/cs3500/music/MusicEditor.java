@@ -3,16 +3,13 @@ package cs3500.music;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.lang.reflect.Field;
 
-import cs3500.music.model.IComposition;
 import cs3500.music.model.MidiComposition;
-import cs3500.music.util.CompositionBuilder;
 import cs3500.music.util.MidiCompBuilder;
 import cs3500.music.util.MusicReader;
-import cs3500.music.view.ConsoleView;
+import cs3500.music.view.console.ConsoleView;
 import cs3500.music.view.GuiView.GuiView;
-import cs3500.music.view.MidiView;
+import cs3500.music.view.midi.MidiView;
 
 /**
  * Created by David on 6/16/2016.

@@ -1,4 +1,4 @@
-package cs3500.music.view;
+package cs3500.music.view.console;
 
 import cs3500.music.model.IComposition;
 import cs3500.music.model.IMusicSheet;
