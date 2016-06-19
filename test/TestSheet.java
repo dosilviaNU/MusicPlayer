@@ -7,8 +7,10 @@ import cs3500.music.model.MidiSheet;
  * Created by David on 6/16/2016.
  */
 public class TestSheet {
-  public TestSheet(){}
-  public static IMusicSheet getSheet(){
+  public TestSheet() {
+  }
+
+  public static IMusicSheet getSheet() {
     IMusicSheet sheet3 = new MidiSheet();
     sheet3.addNote(new MidiNote(INote.Pitch.E, 4, 0, 5));
     sheet3.addNote(new MidiNote(INote.Pitch.D, 4, 2, 2));

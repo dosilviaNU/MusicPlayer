@@ -111,8 +111,10 @@ public abstract class IMusicSheetTest {
     initData();
     assertEquals(sheet1.size(), 0);
     assertEquals(sheet1.printSheet(), "No music in sheet!");
-    try { sheet1.addNote(new MidiNote(128, 2, 5)); }
-    catch(Exception e) {}
+    try {
+      sheet1.addNote(new MidiNote(128, 2, 5));
+    } catch (Exception e) {
+    }
     assertEquals(sheet1.size(), 0);
     assertEquals(sheet1.printSheet(), "No music in sheet!");
 
@@ -127,8 +129,10 @@ public abstract class IMusicSheetTest {
     initData();
     assertEquals(sheet1.size(), 0);
     assertEquals(sheet1.printSheet(), "No music in sheet!");
-    try { sheet1.addNote(new MidiNote(128, 2, 5)); }
-    catch(Exception e) {}
+    try {
+      sheet1.addNote(new MidiNote(128, 2, 5));
+    } catch (Exception e) {
+    }
     assertEquals(sheet1.size(), 0);
     assertEquals(sheet1.printSheet(), "No music in sheet!");
     assertFalse(sheet1.removeNote(new MidiNote(60, 0, 1)));
@@ -519,7 +523,9 @@ public abstract class IMusicSheetTest {
   }
 
   public static final class MidiCompositionTest extends IMusicSheetTest {
-    public IMusicSheet makeSheet() { return new MidiComposition(); }
+    public IMusicSheet makeSheet() {
+      return new MidiComposition();
+    }
 
     //begin Composition specific tests
 
@@ -534,31 +540,31 @@ public abstract class IMusicSheetTest {
       assertEquals(comp1.getTempo(), 1000000000);
     }
 
-    @Test(expected=IllegalArgumentException.class)
-      //Tests get Tempo
+    @Test(expected = IllegalArgumentException.class)
+    //Tests get Tempo
     public void testTempoExcep() {
       initData();
       IComposition comp1 = new MidiComposition();
       comp1.setTempo(0);
     }
 
-    @Test(expected=IllegalArgumentException.class)
-      //Tests get Tempo
+    @Test(expected = IllegalArgumentException.class)
+    //Tests get Tempo
     public void testTempoExcep2() {
       initData();
       IComposition comp1 = new MidiComposition();
       comp1.setTempo(-1);
     }
 
-    @Test(expected=IllegalArgumentException.class)
-      //Tests get Tempo
+    @Test(expected = IllegalArgumentException.class)
+    //Tests get Tempo
     public void testGetInstrumentChannelLow() {
       initData();
       IComposition comp1 = new MidiComposition();
       comp1.getInstrument(-1);
     }
 
-    @Test(expected=IllegalArgumentException.class)
+    @Test(expected = IllegalArgumentException.class)
     //Tests get Tempo
     public void testGetInstrumentChannelHigh() {
       initData();
@@ -587,6 +593,7 @@ public abstract class IMusicSheetTest {
       return new MidiComposition();
 
     }
+
     public void initData() {
       sheet1 = makeSheet();
       sheet2 = makeSheet();
@@ -600,11 +607,11 @@ public abstract class IMusicSheetTest {
 
       sheet5.addNote(new MidiNote(60, 0, 2));
 
-      sheet1 = new ROMidiComposition((MidiComposition)sheet1);
-      sheet2 = new ROMidiComposition((MidiComposition)sheet2);
-      sheet3 = new ROMidiComposition((MidiComposition)sheet3);
-      sheet4 = new ROMidiComposition((MidiComposition)sheet4);
-      sheet5 = new ROMidiComposition((MidiComposition)sheet5);
+      sheet1 = new ROMidiComposition((MidiComposition) sheet1);
+      sheet2 = new ROMidiComposition((MidiComposition) sheet2);
+      sheet3 = new ROMidiComposition((MidiComposition) sheet3);
+      sheet4 = new ROMidiComposition((MidiComposition) sheet4);
+      sheet5 = new ROMidiComposition((MidiComposition) sheet5);
     }
 
     public void buildMaryBeat() {
@@ -933,13 +940,16 @@ public abstract class IMusicSheetTest {
     //basic printSheet() tests with a header containing every note
     public void testPrintSheetLongHeader() {
       String longHeader = "  C-1  C#-1 D-1  D#-1 E-1  F-1  F#-1 G-1  G#-1 A-1  A#-1 B-1   C0  " +
-              "C#0   D0  D#0   E0   F0  F#0   G0  G#0   A0  A#0   B0   C1  C#1   D1  D#1   E1   " +
+              "C#0   D0  D#0   E0   F0  F#0   G0  G#0   A0  A#0   B0   C1  C#1   D1  D#1   E1  " +
+              "  " +
               "F1  F#1   G1  G#1   A1  A#1   B1   C2  C#2   D2  D#2   E2   F2  F#2   G2  G#2   " +
               "A2  A#2   B2   C3  C#3   D3  D#3   E3   F3  F#3   G3  G#3   A3  A#3   B3   C4  " +
-              "C#4   D4  D#4   E4   F4  F#4   G4  G#4   A4  A#4   B4   C5  C#5   D5  D#5   E5   " +
+              "C#4   D4  D#4   E4   F4  F#4   G4  G#4   A4  A#4   B4   C5  C#5   D5  D#5   E5  " +
+              "  " +
               "F5  F#5   G5  G#5   A5  A#5   B5   C6  C#6   D6  D#6   E6   F6  F#6   G6  G#6   " +
               "A6  A#6   B6   C7  C#7   D7  D#7   E7   F7  F#7   G7  G#7   A7  A#7   B7   C8  " +
-              "C#8   D8  D#8   E8   F8  F#8   G8  G#8   A8  A#8   B8   C9  C#9   D9  D#9   E9   " +
+              "C#8   D8  D#8   E8   F8  F#8   G8  G#8   A8  A#8   B8   C9  C#9   D9  D#9   E9  " +
+              " S " +
               "F9  F#9   G9 \n";
       initData();
       assertEquals(sheet5.printSheet(), "   C4 \n0  X  \n1  |  \n");
@@ -952,16 +962,16 @@ public abstract class IMusicSheetTest {
     // builds Mary Had a Little Lamb from examples tests lines to ensure correctness
     public void testMaryHad() {
       initData();
-      String testHeader = "    E3   F3  F#3   G3  G#3   A3  A#3   B3   C4  C#4   D4  D#4   E4   " +
-              "F4  F#4   G4 ";
-      String testLine0 = " 0                 X                                            X     " +
-              "            ";
-      String testLine20 = "20                 |                                  X              " +
-              "             ";
-      String testLine41 = "41                 |                                            |    " +
-              "             ";
-      String testLine63 = "63  |                                       |                        " +
-              "             ";
+      String testHeader = "    E3   F3  F#3   G3  G#3   A3  A#3   B3   C4  C#4   D4  D#4   E4  " +
+              "  F4  F#4   G4 ";
+      String testLine0 = " 0                 X                                            X    " +
+              "              ";
+      String testLine20 = "20                 |                                  X             " +
+              "               ";
+      String testLine41 = "41                 |                                            |   " +
+              "               ";
+      String testLine63 = "63  |                                       |                       " +
+              "               ";
       sheet2.mergeSheets(sheet3);
       assertTrue(sheet2.printSheet().contains(testHeader));
       assertTrue(sheet2.printSheet().contains(testLine0));
@@ -974,27 +984,25 @@ public abstract class IMusicSheetTest {
     // builds Mary Had a Little Lamb then adds it to itself, essentially playing it twice
     public void testMaryHadconsecutive() {
       initData();
-      String testHeader = "     E3   F3  F#3   G3  G#3   A3  A#3   B3   C4  C#4   D4  D#4   E4   " +
+      String testHeader = "     E3   F3  F#3   G3  G#3   A3  A#3   B3   C4  C#4   D4  D#4   E4 " +
+              "   " +
               "F4  F#4   G4 ";
-      String testLine0 = "  0                 X                                            X     " +
-              "            ";
-      String testLine20 = " 20                 |                                  X              " +
-              "             ";
-      String testLine41 = " 41                 |                                            |    " +
-              "             ";
-      String testLine63 = " 63  |                                       |                        " +
-              "             ";
-      String testLine64 = " 64                 X                                            X    " +
-              " " +
-              "            ";
-      String testLine84 = " 84                 |                                  X              " +
-              "             ";
-      String testLine105 = "105                 |                                            |   " +
-              " " +
-              "             ";
-      String testLine127 = "127  |                                       |                       " +
-              " " +
-              "             ";
+      String testLine0 = "  0                 X                                            X   " +
+              "               ";
+      String testLine20 = " 20                 |                                  X            " +
+              "                ";
+      String testLine41 = " 41                 |                                            |  " +
+              "                ";
+      String testLine63 = " 63  |                                       |                      " +
+              "                ";
+      String testLine64 = " 64                 X                                            X  " +
+              "                ";
+      String testLine84 = " 84                 |                                  X            " +
+              "                ";
+      String testLine105 = "105                 |                                            | " +
+              "                 ";
+      String testLine127 = "127  |                                       |                     " +
+              "                 ";
       sheet2.mergeSheets(sheet3);
       sheet2.consecutiveSheets(sheet2);
       assertTrue(sheet2.printSheet().contains(testHeader));

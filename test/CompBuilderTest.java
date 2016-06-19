@@ -12,9 +12,10 @@ import static org.junit.Assert.*;
  */
 public abstract class CompBuilderTest {
   abstract CompositionBuilder makeCompBuilder();
+
   CompositionBuilder compB1;
   CompositionBuilder compB2;
-  
+
   public void initData() {
     compB1 = makeCompBuilder();
     compB2 = makeCompBuilder();
@@ -33,7 +34,7 @@ public abstract class CompBuilderTest {
   //test that build produces a valid composition
   public void testBuild() {
     initData();
-    IComposition test = (IComposition<MidiNote>)compB2.build();
+    IComposition test = (IComposition<MidiNote>) compB2.build();
     assertEquals(test.getTempo(), 250000);
     assertEquals(test.size(), 65);
     assertEquals(test.getSpread(test.getNotes())[0], 52);
@@ -45,10 +46,10 @@ public abstract class CompBuilderTest {
   //test that tempo sets the tempo of piece
   public void setTempo() {
     initData();
-    IComposition test = (IComposition<MidiNote>)compB2.build();
+    IComposition test = (IComposition<MidiNote>) compB2.build();
     assertEquals(test.getTempo(), 250000);
     compB2.setTempo(200000);
-    test = (IComposition<MidiNote>)compB2.build();
+    test = (IComposition<MidiNote>) compB2.build();
     assertEquals(test.getTempo(), 200000);
   }
 
@@ -56,10 +57,10 @@ public abstract class CompBuilderTest {
   //test that tempo sets the tempo of piece exception
   public void setTempoExcept() {
     initData();
-    IComposition test = (IComposition<MidiNote>)compB2.build();
+    IComposition test = (IComposition<MidiNote>) compB2.build();
     assertEquals(test.getTempo(), 250000);
     compB2.setTempo(-1);
-    test = (IComposition<MidiNote>)compB2.build();
+    test = (IComposition<MidiNote>) compB2.build();
     assertEquals(test.getTempo(), 200000);
   }
 
@@ -67,13 +68,15 @@ public abstract class CompBuilderTest {
   //test that tempo sets the tempo of piece
   public void setTempoExceptCatch() {
     initData();
-    IComposition test = (IComposition<MidiNote>)compB2.build();
+    IComposition test = (IComposition<MidiNote>) compB2.build();
     assertEquals(test.getTempo(), 250000);
-    try { compB2.setTempo(-1); }
-    catch (Exception e) { }
+    try {
+      compB2.setTempo(-1);
+    } catch (Exception e) {
+    }
     assertEquals(test.getTempo(), 250000);
     compB2.setTempo(200000);
-    test = (IComposition<MidiNote>)compB2.build();
+    test = (IComposition<MidiNote>) compB2.build();
     assertEquals(test.getTempo(), 200000);
   }
 
@@ -90,8 +93,8 @@ public abstract class CompBuilderTest {
     compB1.addNote(56, 64, 1, 52, 60);
     compB1.addNote(0, 2, 1, 64, 60); //test note
 
-    IComposition test = (IComposition<MidiNote>)compB2.build();
-    IComposition test2 = (IComposition<MidiNote>)compB1.build();
+    IComposition test = (IComposition<MidiNote>) compB2.build();
+    IComposition test2 = (IComposition<MidiNote>) compB1.build();
 
     //to the compositions contain the same notes?
     assertTrue(test2.getNotes().containsAll(test.getNotes()));
@@ -108,8 +111,9 @@ public abstract class CompBuilderTest {
     compB1.addNote(0, 7, 1, 53, 60);
     compB1.addNote(8, 15, 2, 53, 60);
     try {
-      compB1.addNote(8, 15, 2, 53, 604);}
-    catch(Exception e) {}
+      compB1.addNote(8, 15, 2, 53, 604);
+    } catch (Exception e) {
+    }
     //continue adding
     compB1.addNote(16, 24, 3, 53, 60);
     compB1.addNote(24, 31, 4, 53, 60);
@@ -117,8 +121,8 @@ public abstract class CompBuilderTest {
     compB1.addNote(56, 64, 1, 52, 60);
     compB1.addNote(0, 2, 1, 64, 60); //test note
 
-    IComposition test = (IComposition<MidiNote>)compB2.build();
-    IComposition test2 = (IComposition<MidiNote>)compB1.build();
+    IComposition test = (IComposition<MidiNote>) compB2.build();
+    IComposition test2 = (IComposition<MidiNote>) compB1.build();
 
     //to the compositions contain the same notes?
     assertTrue(test2.getNotes().containsAll(test.getNotes()));
@@ -126,7 +130,7 @@ public abstract class CompBuilderTest {
     //does test2 contain a midinote that was added
     assertTrue(test2.getNotes().contains(new MidiNote(64, 0, 3, 60, 0)));
   }
-  
+
   public static final class MidiCompBuilderTest extends CompBuilderTest {
     @Override
     CompositionBuilder makeCompBuilder() {

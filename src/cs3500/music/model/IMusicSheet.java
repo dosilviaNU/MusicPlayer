@@ -11,34 +11,36 @@ import java.util.Collection;
 public interface IMusicSheet<N> {
   /**
    * Adds a note to an IMusicSheet. Dupicate notes should remain on the sheet
+   *
    * @param n INote to be added
    */
   void addNote(N n);
 
   /**
-   * Removes an INote from an IMusicSheet will return
-   * true if the note was successfully removed from the sheet. False if the note does not exits
-   * in the music sheet.
+   * Removes an INote from an IMusicSheet will return true if the note was successfully removed
+   * from the sheet. False if the note does not exits in the music sheet.
+   *
    * @param n INote to be removed
    */
   boolean removeNote(N n);
 
   /**
    * Adds a collection of INotes to the Music Sheet
+   *
    * @param notes Collection of INotes to be added
    */
   void addNotes(Collection<N> notes);
 
   /**
    * Merges two sheets by adding all the notes from one sheet to another
+   *
    * @param sheet IMusicSheet to be added
    */
   void mergeSheets(IMusicSheet<N> sheet);
 
   /**
-   * Adds a second sheet to the end of the first. The second sheet will begin when the tone of
-   * the last note on this sheet ends.
-   * @param sheet
+   * Adds a second sheet to the end of the first. The second sheet will begin when the tone of the
+   * last note on this sheet ends.
    */
   void consecutiveSheets(IMusicSheet<N> sheet);
 
@@ -50,42 +52,43 @@ public interface IMusicSheet<N> {
 
   /**
    * get all the notes at the specified beat
+   *
    * @param beat beat to retreive notes from
    */
   Collection<N> getNotes(int beat);
 
   /**
    * Returns a String containing a textual representation of an IMusicSheet
+   *
    * @return String containing a textual representation of this IMusicSheet
    */
   String printSheet();
 
   /**
    * Returns the length of a music sheet in beats
+   *
    * @return integer for the size of a music sheet
    */
   int size();
 
   /**
-   * Edits the given note on a MusicSheet. Will only modify the note given if the oldNote can
-   * be found in the IMusicSheet.
+   * Edits the given note on a MusicSheet. Will only modify the note given if the oldNote can be
+   * found in the IMusicSheet.
+   *
    * @return true on a successful operation
    */
   boolean edit(N oldNote, N newNote);
 
   /**
    * Creates a copy of this music sheet
+   *
    * @return clone of this current music sheet
    */
   IMusicSheet<N> clone();
 
   /**
-   * Returns an array with the following information
-   * Index 0 - Minimum note of the IMusicSheet
-   * Index 1 - Maximum note of the IMusicSheet
-   * Index 2 - Length of the Piece
-   * @param notes
-   * @return
+   * Returns an array with the following information Index 0 - Minimum note of the IMusicSheet
+   * Index 1 - Maximum note of the IMusicSheet Index 2 - Length of the Piece
    */
   int[] getSpread(Collection<MidiNote> notes);
 

@@ -16,6 +16,9 @@ import cs3500.music.model.IComposition;
 import cs3500.music.model.MidiComposition;
 import cs3500.music.model.MidiNote;
 
+/**
+ *
+ */
 public class MidiView implements IMidiView<MidiComposition>, Runnable {
   IComposition<MidiNote> comp;
   Sequencer song;
