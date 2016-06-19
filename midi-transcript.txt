@@ -1,0 +1,142 @@
+MidiObject created!
+Receiver obtained!
+Message NoteOn	Chan: 0	Value: 64	Velocity: 77
+Message NoteOff	Chan: 0	Value: 64	Velocity: 77
+Receiver: Message NoteOn	Chan: 0	Value: 64	Velocity: 77At time:9600000
+Receiver: Message NoteOff	Chan: 0	Value: 64	Velocity: 77At time:10200000
+Message NoteOn	Chan: 0	Value: 64	Velocity: 72
+Message NoteOff	Chan: 0	Value: 64	Velocity: 72
+Receiver: Message NoteOn	Chan: 0	Value: 64	Velocity: 72At time:400000
+Receiver: Message NoteOff	Chan: 0	Value: 64	Velocity: 72At time:1000000
+Message NoteOn	Chan: 0	Value: 55	Velocity: 78
+Message NoteOff	Chan: 0	Value: 55	Velocity: 78
+Receiver: Message NoteOn	Chan: 0	Value: 55	Velocity: 78At time:6800000
+Receiver: Message NoteOff	Chan: 0	Value: 55	Velocity: 78At time:8600000
+Message NoteOn	Chan: 0	Value: 62	Velocity: 75
+Message NoteOff	Chan: 0	Value: 62	Velocity: 75
+Receiver: Message NoteOn	Chan: 0	Value: 62	Velocity: 75At time:3600000
+Receiver: Message NoteOff	Chan: 0	Value: 62	Velocity: 75At time:4200000
+Message NoteOn	Chan: 0	Value: 60	Velocity: 71
+Message NoteOff	Chan: 0	Value: 60	Velocity: 71
+Receiver: Message NoteOn	Chan: 0	Value: 60	Velocity: 71At time:7600000
+Receiver: Message NoteOff	Chan: 0	Value: 60	Velocity: 71At time:8200000
+Message NoteOn	Chan: 0	Value: 64	Velocity: 73
+Message NoteOff	Chan: 0	Value: 64	Velocity: 73
+Receiver: Message NoteOn	Chan: 0	Value: 64	Velocity: 73At time:6800000
+Receiver: Message NoteOff	Chan: 0	Value: 64	Velocity: 73At time:7400000
+Message NoteOn	Chan: 0	Value: 55	Velocity: 77
+Message NoteOff	Chan: 0	Value: 55	Velocity: 77
+Receiver: Message NoteOn	Chan: 0	Value: 55	Velocity: 77At time:3600000
+Receiver: Message NoteOff	Chan: 0	Value: 55	Velocity: 77At time:5400000
+Message NoteOn	Chan: 0	Value: 64	Velocity: 82
+Message NoteOff	Chan: 0	Value: 64	Velocity: 82
+Receiver: Message NoteOn	Chan: 0	Value: 64	Velocity: 82At time:5200000
+Receiver: Message NoteOff	Chan: 0	Value: 64	Velocity: 82At time:5800000
+Message NoteOn	Chan: 0	Value: 55	Velocity: 79
+Message NoteOff	Chan: 0	Value: 55	Velocity: 79
+Receiver: Message NoteOn	Chan: 0	Value: 55	Velocity: 79At time:8400000
+Receiver: Message NoteOff	Chan: 0	Value: 55	Velocity: 79At time:10200000
+Message NoteOn	Chan: 0	Value: 55	Velocity: 79
+Message NoteOff	Chan: 0	Value: 55	Velocity: 79
+Receiver: Message NoteOn	Chan: 0	Value: 55	Velocity: 79At time:2000000
+Receiver: Message NoteOff	Chan: 0	Value: 55	Velocity: 79At time:3600000
+Message NoteOn	Chan: 0	Value: 60	Velocity: 73
+Message NoteOff	Chan: 0	Value: 60	Velocity: 73
+Receiver: Message NoteOn	Chan: 0	Value: 60	Velocity: 73At time:11600000
+Receiver: Message NoteOff	Chan: 0	Value: 60	Velocity: 73At time:13400000
+Message NoteOn	Chan: 0	Value: 55	Velocity: 78
+Message NoteOff	Chan: 0	Value: 55	Velocity: 78
+Receiver: Message NoteOn	Chan: 0	Value: 55	Velocity: 78At time:10000000
+Receiver: Message NoteOff	Chan: 0	Value: 55	Velocity: 78At time:11800000
+Message NoteOn	Chan: 0	Value: 52	Velocity: 72
+Message NoteOff	Chan: 0	Value: 52	Velocity: 72
+Receiver: Message NoteOn	Chan: 0	Value: 52	Velocity: 72At time:11600000
+Receiver: Message NoteOff	Chan: 0	Value: 52	Velocity: 72At time:13400000
+Message NoteOn	Chan: 0	Value: 55	Velocity: 79
+Message NoteOff	Chan: 0	Value: 55	Velocity: 79
+Receiver: Message NoteOn	Chan: 0	Value: 55	Velocity: 79At time:5200000
+Receiver: Message NoteOff	Chan: 0	Value: 55	Velocity: 79At time:5800000
+Message NoteOn	Chan: 0	Value: 62	Velocity: 74
+Message NoteOff	Chan: 0	Value: 62	Velocity: 74
+Receiver: Message NoteOn	Chan: 0	Value: 62	Velocity: 74At time:10400000
+Receiver: Message NoteOff	Chan: 0	Value: 62	Velocity: 74At time:11000000
+Message NoteOn	Chan: 0	Value: 62	Velocity: 79
+Message NoteOff	Chan: 0	Value: 62	Velocity: 79
+Receiver: Message NoteOn	Chan: 0	Value: 62	Velocity: 79At time:1600000
+Receiver: Message NoteOff	Chan: 0	Value: 62	Velocity: 79At time:2200000
+Message NoteOn	Chan: 0	Value: 62	Velocity: 70
+Message NoteOff	Chan: 0	Value: 62	Velocity: 70
+Receiver: Message NoteOn	Chan: 0	Value: 62	Velocity: 70At time:11200000
+Receiver: Message NoteOff	Chan: 0	Value: 62	Velocity: 70At time:11800000
+Message NoteOn	Chan: 0	Value: 64	Velocity: 76
+Message NoteOff	Chan: 0	Value: 64	Velocity: 76
+Receiver: Message NoteOn	Chan: 0	Value: 64	Velocity: 76At time:8800000
+Receiver: Message NoteOff	Chan: 0	Value: 64	Velocity: 76At time:9400000
+Message NoteOn	Chan: 0	Value: 62	Velocity: 80
+Message NoteOff	Chan: 0	Value: 62	Velocity: 80
+Receiver: Message NoteOn	Chan: 0	Value: 62	Velocity: 80At time:8000000
+Receiver: Message NoteOff	Chan: 0	Value: 62	Velocity: 80At time:8600000
+Message NoteOn	Chan: 0	Value: 67	Velocity: 84
+Message NoteOff	Chan: 0	Value: 67	Velocity: 84
+Receiver: Message NoteOn	Chan: 0	Value: 67	Velocity: 84At time:5600000
+Receiver: Message NoteOff	Chan: 0	Value: 67	Velocity: 84At time:6200000
+Message NoteOn	Chan: 0	Value: 62	Velocity: 69
+Message NoteOff	Chan: 0	Value: 62	Velocity: 69
+Receiver: Message NoteOn	Chan: 0	Value: 62	Velocity: 69At time:7200000
+Receiver: Message NoteOff	Chan: 0	Value: 62	Velocity: 69At time:7800000
+Message NoteOn	Chan: 0	Value: 62	Velocity: 75
+Message NoteOff	Chan: 0	Value: 62	Velocity: 75
+Receiver: Message NoteOn	Chan: 0	Value: 62	Velocity: 75At time:10000000
+Receiver: Message NoteOff	Chan: 0	Value: 62	Velocity: 75At time:10600000
+Message NoteOn	Chan: 0	Value: 62	Velocity: 72
+Message NoteOff	Chan: 0	Value: 62	Velocity: 72
+Receiver: Message NoteOn	Chan: 0	Value: 62	Velocity: 72At time:800000
+Receiver: Message NoteOff	Chan: 0	Value: 62	Velocity: 72At time:1400000
+Message NoteOn	Chan: 0	Value: 64	Velocity: 85
+Message NoteOff	Chan: 0	Value: 64	Velocity: 85
+Receiver: Message NoteOn	Chan: 0	Value: 64	Velocity: 85At time:2000000
+Receiver: Message NoteOff	Chan: 0	Value: 64	Velocity: 85At time:2600000
+Message NoteOn	Chan: 0	Value: 62	Velocity: 77
+Message NoteOff	Chan: 0	Value: 62	Velocity: 77
+Receiver: Message NoteOn	Chan: 0	Value: 62	Velocity: 77At time:4000000
+Receiver: Message NoteOff	Chan: 0	Value: 62	Velocity: 77At time:4600000
+Message NoteOn	Chan: 0	Value: 67	Velocity: 75
+Message NoteOff	Chan: 0	Value: 67	Velocity: 75
+Receiver: Message NoteOn	Chan: 0	Value: 67	Velocity: 75At time:6000000
+Receiver: Message NoteOff	Chan: 0	Value: 67	Velocity: 75At time:7000000
+Message NoteOn	Chan: 0	Value: 64	Velocity: 81
+Message NoteOff	Chan: 0	Value: 64	Velocity: 81
+Receiver: Message NoteOn	Chan: 0	Value: 64	Velocity: 81At time:10800000
+Receiver: Message NoteOff	Chan: 0	Value: 64	Velocity: 81At time:11400000
+Message NoteOn	Chan: 0	Value: 62	Velocity: 75
+Message NoteOff	Chan: 0	Value: 62	Velocity: 75
+Receiver: Message NoteOn	Chan: 0	Value: 62	Velocity: 75At time:4400000
+Receiver: Message NoteOff	Chan: 0	Value: 62	Velocity: 75At time:5400000
+Message NoteOn	Chan: 0	Value: 55	Velocity: 70
+Message NoteOff	Chan: 0	Value: 55	Velocity: 70
+Receiver: Message NoteOn	Chan: 0	Value: 55	Velocity: 70At time:400000
+Receiver: Message NoteOff	Chan: 0	Value: 55	Velocity: 70At time:2000000
+Message NoteOn	Chan: 0	Value: 60	Velocity: 71
+Message NoteOff	Chan: 0	Value: 60	Velocity: 71
+Receiver: Message NoteOn	Chan: 0	Value: 60	Velocity: 71At time:1200000
+Receiver: Message NoteOff	Chan: 0	Value: 60	Velocity: 71At time:1800000
+Message NoteOn	Chan: 0	Value: 64	Velocity: 84
+Message NoteOff	Chan: 0	Value: 64	Velocity: 84
+Receiver: Message NoteOn	Chan: 0	Value: 64	Velocity: 84At time:8400000
+Receiver: Message NoteOff	Chan: 0	Value: 64	Velocity: 84At time:9000000
+Message NoteOn	Chan: 0	Value: 64	Velocity: 78
+Message NoteOff	Chan: 0	Value: 64	Velocity: 78
+Receiver: Message NoteOn	Chan: 0	Value: 64	Velocity: 78At time:2400000
+Receiver: Message NoteOff	Chan: 0	Value: 64	Velocity: 78At time:3000000
+Message NoteOn	Chan: 0	Value: 64	Velocity: 74
+Message NoteOff	Chan: 0	Value: 64	Velocity: 74
+Receiver: Message NoteOn	Chan: 0	Value: 64	Velocity: 74At time:2800000
+Receiver: Message NoteOff	Chan: 0	Value: 64	Velocity: 74At time:3600000
+Message NoteOn	Chan: 0	Value: 64	Velocity: 74
+Message NoteOff	Chan: 0	Value: 64	Velocity: 74
+Receiver: Message NoteOn	Chan: 0	Value: 64	Velocity: 74At time:9200000
+Receiver: Message NoteOff	Chan: 0	Value: 64	Velocity: 74At time:9800000
+Done adding notes!
+Total notes: 34
+Total length (beats): 65
+Total length (s): 13
