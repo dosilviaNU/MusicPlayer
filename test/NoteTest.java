@@ -63,12 +63,14 @@ public abstract class NoteTest {
   }
 
   @Test(expected = IllegalArgumentException.class)
+  //tests pitch up exception
   public void testPitchUpExcept() {
     initData();
     highNote.pitchUp(1);
   }
 
   @Test
+  //tests pitch up
   public void testPitchUp() {
     initData();
     assertEquals(middleNote.toString(), "C4");
@@ -86,12 +88,14 @@ public abstract class NoteTest {
   }
 
   @Test(expected = IllegalArgumentException.class)
+  //tests pitch down exception
   public void testPitchDownExcept() {
     initData();
     lowNote.pitchDown(1);
   }
 
   @Test
+  //tests pitch down
   public void testPitchDown() {
     initData();
     assertEquals(middleNote.toString(), "C4");
@@ -109,6 +113,7 @@ public abstract class NoteTest {
   }
 
   @Test
+  //test extend
   public void testExtend() {
     initData();
     assertEquals(middleNote.getDuration(), 4);
@@ -126,6 +131,7 @@ public abstract class NoteTest {
   }
 
   @Test
+  //test shorten
   public void testShorten() {
     initData();
     assertEquals(middleNote.getDuration(), 4);
@@ -144,12 +150,14 @@ public abstract class NoteTest {
   }
 
   @Test(expected = IllegalArgumentException.class)
+  //tests shorten exception
   public void testShortenExcept() {
     initData();
     shortNote.shorten(1);
   }
 
   @Test
+  //test shifting notes
   public void testShiftLeft() {
     initData();
     assertEquals(middleNote.getStart(), 10);
@@ -168,12 +176,14 @@ public abstract class NoteTest {
   }
 
   @Test(expected = IllegalArgumentException.class)
+  //tests exception for left shifting note
   public void testShiftLeftExcept() {
     initData();
     earlyNote.shiftLeft(1);
   }
 
   @Test
+  //test shifting right
   public void testShiftRight() {
     initData();
     assertEquals(middleNote.getStart(), 10);

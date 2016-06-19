@@ -34,7 +34,7 @@ public abstract class CompBuilderTest {
   public void testBuild() {
     initData();
     IComposition test = (IComposition<MidiNote>)compB2.build();
-    assertEquals(test.getTempo(), 250);
+    assertEquals(test.getTempo(), 250000);
     assertEquals(test.size(), 65);
     assertEquals(test.getSpread(test.getNotes())[0], 52);
     assertEquals(test.getSpread(test.getNotes())[1], 64);
@@ -46,7 +46,7 @@ public abstract class CompBuilderTest {
   public void setTempo() {
     initData();
     IComposition test = (IComposition<MidiNote>)compB2.build();
-    assertEquals(test.getTempo(), 250);
+    assertEquals(test.getTempo(), 250000);
     compB2.setTempo(200000);
     test = (IComposition<MidiNote>)compB2.build();
     assertEquals(test.getTempo(), 200000);
@@ -57,7 +57,7 @@ public abstract class CompBuilderTest {
   public void setTempoExcept() {
     initData();
     IComposition test = (IComposition<MidiNote>)compB2.build();
-    assertEquals(test.getTempo(), 250);
+    assertEquals(test.getTempo(), 250000);
     compB2.setTempo(-1);
     test = (IComposition<MidiNote>)compB2.build();
     assertEquals(test.getTempo(), 200000);
@@ -68,10 +68,10 @@ public abstract class CompBuilderTest {
   public void setTempoExceptCatch() {
     initData();
     IComposition test = (IComposition<MidiNote>)compB2.build();
-    assertEquals(test.getTempo(), 250);
+    assertEquals(test.getTempo(), 250000);
     try { compB2.setTempo(-1); }
     catch (Exception e) { }
-    assertEquals(test.getTempo(), 250);
+    assertEquals(test.getTempo(), 250000);
     compB2.setTempo(200000);
     test = (IComposition<MidiNote>)compB2.build();
     assertEquals(test.getTempo(), 200000);
