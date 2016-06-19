@@ -14,12 +14,20 @@ import cs3500.music.view.midi.MidiView;
 /**
  * Created by David on 6/16/2016.
  */
+
+/**
+ * Holds main method for launching the Music Editor.
+ * Main method takes a midi text file, and a display method as arguments
+ * valid inputs are "gui", "midi" and "console" case insensitive.
+ */
 public class MusicEditor {
   public static void main(String[] args) throws InterruptedException {
     if(args.length<2){
       System.exit(0);
     }
     File musicFile = new File(args[0]);
+
+    //Parse and build given music text file.
     FileReader music = null;
     try {
       music = new FileReader(musicFile);
@@ -34,7 +42,10 @@ public class MusicEditor {
     }catch (IllegalArgumentException e){
       e.getMessage();
     }
-    switch (args[1]){
+    String mode = args[1].toLowerCase();
+
+    //Validate and run given mode.
+    switch (mode){
       case "console": ConsoleView console = new ConsoleView(comp);
               console.display();
         break;
