@@ -14,6 +14,7 @@ import static org.junit.Assert.assertFalse;
  */
 public abstract class NoteTest {
   abstract INote makeNote(INote.Pitch p, int octave, int start, int length);
+
   INote middleNote;
   INote lowNote;
   INote highNote;
@@ -33,7 +34,7 @@ public abstract class NoteTest {
   }
 
   //Tests validity of constructor used
-  
+
   @Test(expected = IllegalArgumentException.class)
   //tests constructor errors
   public void testLowOctave() {
@@ -216,11 +217,11 @@ public abstract class NoteTest {
       //4 instances of notes with slightly modifies parameters (one pitch, octave, start beat,
       // length
       INote note3 = makeNote(INote.Pitch.fromValue(random),
-              (oct == -1 ? oct + 1 :  oct - 1), random, random);
-      INote note4 = makeNote(INote.Pitch.fromValue(random),  oct, random + 1, random);
-      INote note5 = makeNote(INote.Pitch.fromValue(random),  oct, random, random + 1);
+              (oct == -1 ? oct + 1 : oct - 1), random, random);
+      INote note4 = makeNote(INote.Pitch.fromValue(random), oct, random + 1, random);
+      INote note5 = makeNote(INote.Pitch.fromValue(random), oct, random, random + 1);
       INote note6 = makeNote(INote.Pitch.fromValue(
-              (random == 0 ? random + 1 : random - 1)),  oct, random, random);
+              (random == 0 ? random + 1 : random - 1)), oct, random, random);
       //are notes 1 and 2 the same
       assertEquals(note1, note2);
       assertEquals(note1.hashCode(), note2.hashCode());
@@ -244,11 +245,12 @@ public abstract class NoteTest {
     INote hiChan;
     INote loVelocity;
     INote hiVelocity;
+
     public INote makeNote(INote.Pitch p, int octave, int start, int length) {
       return new MidiNote(p, octave, start, length);
     }
 
-    public void initData2 () {
+    public void initData2() {
       normalNote = new MidiNote(60, 0, 1, 60, 1);
       lowChan = new MidiNote(60, 0, 1, 60, 0);
       hiChan = new MidiNote(60, 0, 1, 60, 15);
