@@ -40,7 +40,7 @@ public class NoteDisplay extends JComponent {
     noteMod = spread[1] - spread[0] - 1;
     noteCount = spread[1] - spread[0] + 1;
     windowHeight = (noteMod + 3) * topBorder;
-    windowWidth = (spread[2] + 1) * leftBorder;
+    windowWidth = (spread[2]+1) * leftBorder;
 
     setPreferredSize(new Dimension(windowWidth, windowHeight));
    setVisible(true);
@@ -60,7 +60,7 @@ public class NoteDisplay extends JComponent {
     for (INote note : notes) {
       int x = (note.getStart() + 1) * leftBorder;
       int y = calcY(note.getValue());
-      int width = note.getDuration() * leftBorder;
+      int width = (note.getDuration()-1)*leftBorder;
       g2.setColor(Color.green);
       g2.fillRect(x, y, width, topBorder);
       g2.setColor(Color.black);
