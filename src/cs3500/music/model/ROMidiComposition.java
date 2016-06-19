@@ -3,7 +3,10 @@ package cs3500.music.model;
 import java.util.Collection;
 
 /**
- * This is a read only version of a MidiComposition.
+ * Read only version of a MidiComposition.
+ * The only supported operations are getNotes(), getNotes(int beat), getTempo(), getInstrument
+ * (), size(), and getSpread(), clone().
+ * Throws unsupported operations exceptions for any other operation
  * Created by Jake on 6/15/2016.
  */
 public class ROMidiComposition implements IComposition<MidiNote> {

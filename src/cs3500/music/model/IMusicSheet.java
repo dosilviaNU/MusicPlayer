@@ -6,7 +6,6 @@ import java.util.Collection;
  * Interface describing operations for a sheet of music as well as basic operations that can be
  * preformed on IMusicSheets. Implemented with a version of INote N to allow it to operate.
  *
- *
  * Created by Jake on 6/9/2016.
  */
 public interface IMusicSheet<N> {
@@ -80,6 +79,14 @@ public interface IMusicSheet<N> {
    */
   IMusicSheet<N> clone();
 
+  /**
+   * Returns an array with the following information
+   * Index 0 - Minimum note of the IMusicSheet
+   * Index 1 - Maximum note of the IMusicSheet
+   * Index 2 - Length of the Piece
+   * @param notes
+   * @return
+   */
   int[] getSpread(Collection<MidiNote> notes);
 
 }

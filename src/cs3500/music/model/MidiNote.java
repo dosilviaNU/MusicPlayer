@@ -16,7 +16,7 @@ public class MidiNote implements INote, Comparable<MidiNote> {
   private int channel; //invariant: once set, will always be >= 0
 
   /**
-   * Constructor that takes midi value of note
+   * Constructor that takes midi value of note, start and end beats
    *
    * @param value     midiNote value
    * @param beatStart start of note
@@ -36,7 +36,8 @@ public class MidiNote implements INote, Comparable<MidiNote> {
    * @param value     midiNote value
    * @param beatStart start of note
    * @param length    length of note
-   * @param volume    volume of note
+   * @param volume    velocity of note
+   * @param channel    channel of the note
    */
   public MidiNote(int value, int beatStart, int length, int volume, int channel) throws
           IllegalArgumentException {
@@ -99,7 +100,6 @@ public class MidiNote implements INote, Comparable<MidiNote> {
     } else {
       throw new IllegalArgumentException("Channel must be between 0-15");
     }
-
   }
 
   /**
@@ -169,7 +169,6 @@ public class MidiNote implements INote, Comparable<MidiNote> {
   @Override
   public void shiftRight(int value) {
     this.beatStart = validateStart(this.beatStart + value);
-
   }
 
   @Override
@@ -231,6 +230,7 @@ public class MidiNote implements INote, Comparable<MidiNote> {
 
   @Override
   public int hashCode() {
-    return Objects.hash(this.beatStart, this.length, this.midiNote);
+    return Objects.hash(this.beatStart, this.length, this.midiNote, this
+            .volume, this.channel);
   }
 }

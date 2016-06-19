@@ -203,6 +203,12 @@ public class MidiSheet implements IMusicSheet<MidiNote> {
   }
 
 
+  /**
+   * prints a line of notes
+   * @param size size buffer space
+   * @param stats array with min and max note
+   * @return built note line
+   */
   private StringBuilder printNoteLine(int size, int[] stats) {
     StringBuilder result = new StringBuilder();
     for (int i = 0; i < size; i++) {
@@ -214,6 +220,12 @@ public class MidiSheet implements IMusicSheet<MidiNote> {
     return result;
   }
 
+  /**
+   * Converts line of beats to the correct spacing of x's and |'s
+   * @param beat
+   * @param stats
+   * @return
+   */
   private StringBuilder beatToString(int beat, int[] stats) {
     StringBuilder result = new StringBuilder();
     ArrayList<MidiNote> notes = sheet.get(beat);
@@ -235,7 +247,11 @@ public class MidiSheet implements IMusicSheet<MidiNote> {
     return result;
   }
 
-
+  /**
+   * Converts a pitch/octave value to a 5 char string
+   * @param value
+   * @return
+   */
   private String noteToString(int value) {
     StringBuilder result = new StringBuilder();
     result.append(" ");
@@ -248,14 +264,9 @@ public class MidiSheet implements IMusicSheet<MidiNote> {
       result.append(" ");
     }
     return result.toString();
-
   }
 
-  private String
-  printFormattedLine(int size, int line, int[] stats) {
-    return "";
-  }
-
+  @Override
   public int[] getSpread(Collection<MidiNote> notes) { //make public
     int minPitch = 128;
     int maxPitch = -1;
