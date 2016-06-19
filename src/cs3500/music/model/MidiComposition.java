@@ -5,8 +5,7 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * Interface for a composition of a 16 channel midi audio file.
- * Created by Jake on 6/14/2016.
+ * Interface for a composition of a 16 channel midi audio file. Created by Jake on 6/14/2016.
  */
 public class MidiComposition extends MidiSheet implements IComposition<MidiNote> {
   private int[] instrument;
@@ -39,6 +38,7 @@ public class MidiComposition extends MidiSheet implements IComposition<MidiNote>
 
   /**
    * Validates the channel is between 0-15
+   *
    * @param channel channel to be validated
    * @return channel number if valid
    */
@@ -51,6 +51,7 @@ public class MidiComposition extends MidiSheet implements IComposition<MidiNote>
 
   /**
    * Validates teh instrument is a valid instrument number (0-127)
+   *
    * @param instrument instrument to be validated
    * @return instrument number if valid
    */

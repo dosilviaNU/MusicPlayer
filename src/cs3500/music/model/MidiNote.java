@@ -4,9 +4,8 @@ import java.util.Objects;
 
 /**
  * Representation of an INote for Midi format Represents notes pitches from C-1 - G9 (0-127) Can
- * represent notes to a minimum resolution of a beat, with a trailing length. All
- * mutators will throw Exceptions if they will make the MidiNote invalid.
- * Created by Jake on 6/9/2016.
+ * represent notes to a minimum resolution of a beat, with a trailing length. All mutators will
+ * throw Exceptions if they will make the MidiNote invalid. Created by Jake on 6/9/2016.
  */
 public class MidiNote implements INote, Comparable<MidiNote> {
   private int midiNote; //invariant: once set, must be in range 0-127
@@ -37,7 +36,7 @@ public class MidiNote implements INote, Comparable<MidiNote> {
    * @param beatStart start of note
    * @param length    length of note
    * @param volume    velocity of note
-   * @param channel    channel of the note
+   * @param channel   channel of the note
    */
   public MidiNote(int value, int beatStart, int length, int volume, int channel) throws
           IllegalArgumentException {
@@ -197,10 +196,14 @@ public class MidiNote implements INote, Comparable<MidiNote> {
   }
 
   @Override
-  public int getVolume() { return this.volume; }
+  public int getVolume() {
+    return this.volume;
+  }
 
   @Override
-  public int getChannel() { return this.channel; }
+  public int getChannel() {
+    return this.channel;
+  }
 
   @Override
   public int compareTo(MidiNote o) {

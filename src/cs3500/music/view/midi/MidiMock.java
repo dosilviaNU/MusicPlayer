@@ -13,9 +13,10 @@ import cs3500.music.model.MidiComposition;
 import cs3500.music.model.MidiNote;
 
 /**
+ * Mock of the MidiView for testing
  * Created by Jake on 6/17/2016.
  */
-public class MidiMock implements IMidiView<MidiComposition> {
+public class MidiMock implements IMidiView<IComposition> {
   IComposition<MidiNote> comp;
   Formatter debug;
   MidiObject synth;
@@ -101,7 +102,7 @@ public class MidiMock implements IMidiView<MidiComposition> {
     }
     debug.format("Done adding notes!\n");
     debug.format("Total notes: " + totalNotes + "\n");
-    debug.format("Total length (beats): " + numBeats + "\n");
+    debug.format("Total length (beats): " + (numBeats - 1) + "\n");
     debug.format("Total length (s): " + numBeats * comp.getTempo() / 1000000 + "\n");
   }
 

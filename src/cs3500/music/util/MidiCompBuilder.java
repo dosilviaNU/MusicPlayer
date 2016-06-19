@@ -34,8 +34,8 @@ public class MidiCompBuilder implements CompositionBuilder<MidiComposition> {
                                                      int pitch, int volume)
           throws IllegalArgumentException {
     try {
-    comp.addNote(new MidiNote(pitch, start, end + 1 - start, volume, instrument - 1)); }
-    catch(Exception e) {
+      comp.addNote(new MidiNote(pitch, start, end + 1 - start, volume, instrument - 1));
+    } catch (Exception e) {
       throw new IllegalArgumentException("Error in MidiCompBuilder: " + e.getMessage());
     }
     return this;
