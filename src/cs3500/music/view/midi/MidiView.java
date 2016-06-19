@@ -12,12 +12,12 @@ import javax.sound.midi.Sequencer;
 import javax.sound.midi.ShortMessage;
 import javax.sound.midi.Synthesizer;
 
+import cs3500.music.model.IComposition;
 import cs3500.music.model.MidiComposition;
 import cs3500.music.model.MidiNote;
-import cs3500.music.view.IMusicView;
 
-public class MidiView implements IMusicView<MidiComposition>, Runnable {
-  MidiComposition comp;
+public class MidiView implements IMidiView<MidiComposition>, Runnable {
+  IComposition<MidiNote> comp;
   Sequencer song;
   Synthesizer synth;
   Receiver receiver;
@@ -42,7 +42,7 @@ public class MidiView implements IMusicView<MidiComposition>, Runnable {
 
   @Override
   public void display() {
-    return;
+    run();
   }
 
   @Override
@@ -57,16 +57,6 @@ public class MidiView implements IMusicView<MidiComposition>, Runnable {
     }
   }
 
-  public void play(int channel, int note, int volume, boolean play) throws
-          InterruptedException {
-    if (play) {
-      mc[channel].noteOn(note, volume);
-    } else {
-      mc[channel].noteOff(note, volume);
-    }
-
-  }
-
   public void playComp() {
     MidiMessage start;
     MidiMessage stop;
@@ -79,12 +69,17 @@ public class MidiView implements IMusicView<MidiComposition>, Runnable {
                   n.getVolume());
           stop = new ShortMessage(ShortMessage.NOTE_OFF, n.getChannel(), n.getValue(),
                   n.getVolume());
-          this.receiver.send(start, (1 + n.getStart()) * delay);
-          this.receiver.send(stop, (1 + n.getStart() + n.getDuration()) * delay);
+          this.receiver.send(start, 400000 + (n.getStart()) * delay);
+          this.receiver.send(stop, 400000 + (n.getStart() + n.getDuration()) * delay);
         } catch (Exception e) {
         }
       }
     } catch (Exception e) {
     }
+  }
+
+  @Override
+  public long getBeat() {
+    return (synth.getMicrosecondPosition() - 400000) / this.comp.getTempo();
   }
 }
