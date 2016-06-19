@@ -11,6 +11,9 @@ import cs3500.music.model.MidiNote;
 public class MidiCompBuilder implements CompositionBuilder<MidiComposition> {
   MidiComposition comp;
 
+  /**
+   * Default constructor, creates a new MidiCompBuilder
+   */
   public MidiCompBuilder() {
     comp = new MidiComposition();
   }
