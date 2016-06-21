@@ -2,7 +2,7 @@ package cs3500.music.controller;
 
 /**
  * Interface for a controller
- * An IController should take
+ * An IController should take at least one IMidiView and one IGuiView
  * Created by Jake on 6/21/2016.
  */
 public interface IController {
@@ -22,9 +22,13 @@ public interface IController {
   void editNote();
 
   /**
-   * Remove
+   * Remove note from IComposition
    */
   void removeNote();
+
+  /**
+   * Gets the current beat of a playing IComposition
+   */
   void getBeat();
 
 
