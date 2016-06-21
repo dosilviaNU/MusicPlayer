@@ -31,5 +31,20 @@ public interface IController {
    */
   void getBeat();
 
+  /**
+   * Starts playing current IComposition
+   */
+  void startPlay();
+
+  /**
+   * Stops playing current IComposition
+   */
+  void stopPlay();
+
+  /**
+   * Resumes playing current IComposition
+   */
+  void resumePlay();
+
 
 }
