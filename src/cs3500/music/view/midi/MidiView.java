@@ -19,7 +19,7 @@ import cs3500.music.model.MidiNote;
 /**
  *
  */
-public class MidiView implements IMidiView<MidiComposition>, Runnable {
+public class MidiView implements IMidiView<IComposition>, Runnable {
   IComposition<MidiNote> comp;
   Sequencer song;
   Synthesizer synth;
@@ -28,7 +28,7 @@ public class MidiView implements IMidiView<MidiComposition>, Runnable {
   Instrument[] instr;
 
 
-  public MidiView(MidiComposition composition) {
+  public MidiView(IComposition composition) {
     this.comp = composition;
     try {
       this.synth = MidiSystem.getSynthesizer();
@@ -45,7 +45,7 @@ public class MidiView implements IMidiView<MidiComposition>, Runnable {
 
   @Override
   public void display() {
-    run();
+    this.run();
   }
 
   @Override
@@ -82,7 +82,19 @@ public class MidiView implements IMidiView<MidiComposition>, Runnable {
   }
 
   @Override
-  public long getBeat() {
-    return (synth.getMicrosecondPosition() - 400000) / this.comp.getTempo();
+  public int getBeat() {
+    long result = (synth.getMicrosecondPosition() - 400000) / this.comp.getTempo();
+    //return 0 if piece hasn't started yet.
+    return (int)(result < 0 ? 0 : result);
+  }
+
+  @Override
+  public void play() {
+    this.run();
+  }
+
+  @Override
+  public void resumePlay(int beat) {
+   throw new UnsupportedOperationException("Invalid Operation");
   }
 }

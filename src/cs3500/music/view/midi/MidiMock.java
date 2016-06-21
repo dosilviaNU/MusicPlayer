@@ -45,9 +45,19 @@ public class MidiMock implements IMidiView<IComposition> {
   }
 
   @Override
-  public long getBeat() {
+  public int getBeat() {
     //no synthesiser in this mock
     return 0;
+  }
+
+  @Override
+  public void play() {
+    display();
+  }
+
+  @Override
+  public void resumePlay(int beat) {
+    display();
   }
 
 
