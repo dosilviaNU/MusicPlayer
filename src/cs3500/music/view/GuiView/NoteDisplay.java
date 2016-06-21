@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * Main window of the GuiView, paints all the notes,beat counts, and grid lines.
  */
-public class NoteDisplay extends JComponent {
+public class NoteDisplay extends JComponent implements Scrollable {
   private static IMusicSheet sheet;
   private static int[] spread;
   private static int noteMod;
@@ -35,6 +35,7 @@ public class NoteDisplay extends JComponent {
    */
   public NoteDisplay(IMusicSheet givenSheet) {
     super();
+    setAutoscrolls(true);
     //Initialize instance variables.
     sheet = givenSheet;
     spread = sheet.getSpread(sheet.getNotes());
@@ -135,4 +136,28 @@ public class NoteDisplay extends JComponent {
     curBeat=curBeat+1;
   }
 
+  @Override
+  public Dimension getPreferredScrollableViewportSize() {
+    return null;
+  }
+
+  @Override
+  public int getScrollableUnitIncrement(Rectangle visibleRect, int orientation, int direction) {
+    return 0;
+  }
+
+  @Override
+  public int getScrollableBlockIncrement(Rectangle visibleRect, int orientation, int direction) {
+    return 0;
+  }
+
+  @Override
+  public boolean getScrollableTracksViewportWidth() {
+    return false;
+  }
+
+  @Override
+  public boolean getScrollableTracksViewportHeight() {
+    return false;
+  }
 }

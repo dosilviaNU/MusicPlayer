@@ -4,6 +4,8 @@ import cs3500.music.model.INote;
 import cs3500.music.model.MidiNote;
 
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.util.Collection;
 
@@ -30,6 +32,12 @@ public class EditorMenu extends JComponent {
         editorMain.setPreferredSize(new Dimension(250,500));
         editorMain.setLayout(new BoxLayout(editorMain, BoxLayout.PAGE_AXIS));
 
+        JLabel fileBoxLabel = new JLabel("Enter Filename to Open: ");
+        fileBoxLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        editorMain.add(fileBoxLabel);
+
+
+
         //Add file.
         fileAdder = new JPanel();
         fileAdder.setVisible(true);
@@ -51,6 +59,10 @@ public class EditorMenu extends JComponent {
         addRemoveEdit.add(removeNote);
         addRemoveEdit.add(editNote);
         editorMain.add(addRemoveEdit);
+
+        JLabel fieldBoxLabel = new JLabel("Enter Desired Integer Values: ");
+        fieldBoxLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        editorMain.add(fieldBoxLabel);
 
         //Note Field Level pitch,channel,velocity,start, end.
         pitchFields = new JPanel();
@@ -96,7 +108,7 @@ public class EditorMenu extends JComponent {
         endFields = new JPanel();
         endFields.setVisible(true);
         endFields.setLayout(new FlowLayout());
-        JLabel end = new JLabel("End:        ");
+        JLabel end = new JLabel("Duration:        ");
         JTextField endValues = new JTextField(10);
         endFields.add(end);
         endFields.add(endValues);
@@ -110,17 +122,30 @@ public class EditorMenu extends JComponent {
 
         //Notes at Beat List
         noteList = new JList();
+        noteList.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                int index = noteList.getSelectedIndex();
+                MidiNote note = noteListModel.getElementAt(index);
+                pitchValues.setText(note.toString());
+                channelValues.setText(""+note.getChannel());
+                velocityValues.setText(""+note.getVolume());
+                startValues.setText(""+note.getStart());
+                endValues.setText(""+note.getDuration());
+
+            }
+        });
         noteListModel = new DefaultListModel();
         JScrollPane listScroll = new JScrollPane(noteList);
-        listScroll.setPreferredSize(new Dimension(150,500));
+        listScroll.setSize(new Dimension(150,300));
         noteList.setModel(noteListModel);
         noteListModel.addElement(new MidiNote(60, 5, 10));
-        noteListModel.addElement(new MidiNote(60, 5, 10));
-        noteListModel.addElement(new MidiNote(60, 5, 10));
-        noteListModel.addElement(new MidiNote(60, 5, 10));
-        noteListModel.addElement(new MidiNote(60, 5, 10));
+        noteListModel.addElement(new MidiNote(50, 5, 20));
+        noteListModel.addElement(new MidiNote(72, 5, 30));
+        noteListModel.addElement(new MidiNote(80, 5, 40));
+        noteListModel.addElement(new MidiNote(95, 5, 50));
         noteList.setVisible(true);
-        noteList.setPreferredSize(new Dimension(200, 500));
+        noteList.setPreferredSize(new Dimension(200, 300));
         editorMain.add(listScroll);
 
 

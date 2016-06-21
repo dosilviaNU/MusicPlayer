@@ -19,7 +19,7 @@ public class GuiView extends JFrame implements IGuiView {
     private static NoteDisplay centerPanel;
     private static EditorMenu eastPanel;
 
-    public static final int GUI_WIDTH = 1500;
+    public static final int GUI_WIDTH = 1200;
     public static final int GUI_HEIGHT =500;
     public static final int BEAT_WIDTH = 40;
     public static final int BEAT_HEIGHT=20;
