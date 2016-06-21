@@ -27,6 +27,7 @@ public class NoteDisplay extends JComponent {
   private static int windowHeight;
   private static int windowWidth;
   private static Collection<INote> notes;
+  private static int curBeat;
 
   /**
    * Default constructor for a NoteDisplay panel.
@@ -41,9 +42,11 @@ public class NoteDisplay extends JComponent {
     noteCount = spread[1] - spread[0] + 1;
     windowHeight = (noteMod + 3) * topBorder;
     windowWidth = (spread[2]+1) * leftBorder;
+    curBeat=2;
+
 
     setPreferredSize(new Dimension(windowWidth, windowHeight));
-   setVisible(true);
+    setVisible(true);
   }
 
   /**
@@ -53,6 +56,7 @@ public class NoteDisplay extends JComponent {
    */
   @Override
   public void paintComponent(Graphics g) {
+    int beatLine = (curBeat*leftBorder)+leftBorder;
     Graphics2D g2 = (Graphics2D) g;
     notes = sheet.getNotes();
 
@@ -94,8 +98,13 @@ public class NoteDisplay extends JComponent {
       }
       g.drawLine(leftBorder, i, windowWidth, i);
     }
+
+    //Paint beat line.
+    g2.setStroke(new BasicStroke(3));
+    g2.setColor(Color.red);
+    g2.drawLine(beatLine+1, topBorder+2, beatLine+1, windowHeight-3);
   }
-  
+
   /**
    * Given a note value, return the y position for that note.
    *
@@ -120,6 +129,10 @@ public class NoteDisplay extends JComponent {
     result.append(INote.Pitch.fromValue(noteValue % 12).toString());
     result.append((noteValue / 12) - 1);
     return result.toString();
+  }
+
+  public void nextBeat(){
+    curBeat=curBeat+1;
   }
 
 }
