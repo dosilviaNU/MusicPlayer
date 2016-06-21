@@ -1,11 +1,12 @@
 package cs3500.music.view.GuiView;
 
 import cs3500.music.model.INote;
+import cs3500.music.view.IMusicView;
 
 /**
  * Created by Jake on 6/21/2016.
  */
-public interface IGuiView {
+public interface IGuiView extends IMusicView {
   /**
    * Returns the note from the 5 Text fields in the editor pane
    * @return Note being newly created

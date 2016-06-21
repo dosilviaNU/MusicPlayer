@@ -1,6 +1,7 @@
 package cs3500.music.view.GuiView;
 
 import cs3500.music.model.IComposition;
+import cs3500.music.model.INote;
 import cs3500.music.view.IMusicView;
 
 
@@ -14,7 +15,7 @@ import java.awt.*;
 /**
  * Displays an IMusicSheet using Java Swing components.
  */
-public class GuiView extends JFrame implements IMusicView {
+public class GuiView extends JFrame implements IGuiView {
     private static NoteDisplay centerPanel;
     private static EditorMenu eastPanel;
 
@@ -50,5 +51,15 @@ public class GuiView extends JFrame implements IMusicView {
     @Override
     public void display() {
         this.setVisible(true);
+    }
+
+    @Override
+    public INote getNoteFromFields() {
+        return null;
+    }
+
+    @Override
+    public INote getNoteFromList() {
+        return null;
     }
 }

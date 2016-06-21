@@ -1,12 +1,25 @@
 package cs3500.music.view.GuiView;
 
+import cs3500.music.model.INote;
+import cs3500.music.model.MidiNote;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.Collection;
 
 /**
  * Created by David on 6/21/2016.
  */
 public class EditorMenu extends JComponent {
+    private JPanel fileAdder;
+    private JPanel addRemoveEdit;
+    private JPanel pitchFields;
+    private JPanel channelFields;
+    private JPanel velocityFields;
+    private JPanel startFields;
+    private JPanel endFields;
+    private JList noteList;
+    private DefaultListModel<MidiNote> noteListModel;
 
     public EditorMenu(){
         setVisible(true);
@@ -18,7 +31,7 @@ public class EditorMenu extends JComponent {
         editorMain.setLayout(new BoxLayout(editorMain, BoxLayout.PAGE_AXIS));
 
         //Add file.
-        JPanel fileAdder = new JPanel();
+        fileAdder = new JPanel();
         fileAdder.setVisible(true);
         fileAdder.setLayout(new FlowLayout());
         TextField fileInput = new TextField(20);
@@ -28,7 +41,7 @@ public class EditorMenu extends JComponent {
         editorMain.add(fileAdder);
 
         //Add/Remove/Edit buttons.
-        JPanel addRemoveEdit = new JPanel();
+        addRemoveEdit = new JPanel();
         addRemoveEdit.setVisible(true);
         addRemoveEdit.setLayout(new FlowLayout());
         JButton addNote = new JButton("Add");
@@ -40,7 +53,7 @@ public class EditorMenu extends JComponent {
         editorMain.add(addRemoveEdit);
 
         //Note Field Level pitch,channel,velocity,start, end.
-        JPanel pitchFields = new JPanel();
+        pitchFields = new JPanel();
         pitchFields.setVisible(true);
         pitchFields.setLayout(new FlowLayout());
         JLabel pitch = new JLabel("Pitch:      ");
@@ -50,7 +63,7 @@ public class EditorMenu extends JComponent {
         editorMain.add(pitchFields);
 
         //Channel fields.
-        JPanel channelFields = new JPanel();
+        channelFields = new JPanel();
         channelFields.setVisible(true);
         channelFields.setLayout(new FlowLayout());
         JLabel channel = new JLabel("Channel: ");
@@ -60,7 +73,7 @@ public class EditorMenu extends JComponent {
         editorMain.add(channelFields);
 
         //Velocity fields.
-        JPanel velocityFields = new JPanel();
+        velocityFields = new JPanel();
         velocityFields.setVisible(true);
         velocityFields.setLayout(new FlowLayout());
         JLabel velocity = new JLabel("Velocity: ");
@@ -70,7 +83,7 @@ public class EditorMenu extends JComponent {
         editorMain.add(velocityFields);
 
         //Start fields.
-        JPanel startFields = new JPanel();
+        startFields = new JPanel();
         startFields.setVisible(true);
         startFields.setLayout(new FlowLayout());
         JLabel start = new JLabel("Start:      ");
@@ -80,7 +93,7 @@ public class EditorMenu extends JComponent {
         editorMain.add(startFields);
 
         //End fields.
-        JPanel endFields = new JPanel();
+        endFields = new JPanel();
         endFields.setVisible(true);
         endFields.setLayout(new FlowLayout());
         JLabel end = new JLabel("End:        ");
@@ -89,9 +102,36 @@ public class EditorMenu extends JComponent {
         endFields.add(endValues);
         editorMain.add(endFields);
 
+        JLabel noteBoxLabel = new JLabel("Notes at Selected Beat");
+        noteBoxLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
+        editorMain.add(noteBoxLabel);
+
+
+
+        //Notes at Beat List
+        noteList = new JList();
+        noteListModel = new DefaultListModel();
+        JScrollPane listScroll = new JScrollPane(noteList);
+        listScroll.setPreferredSize(new Dimension(150,500));
+        noteList.setModel(noteListModel);
+        noteListModel.addElement(new MidiNote(60, 5, 10));
+        noteListModel.addElement(new MidiNote(60, 5, 10));
+        noteListModel.addElement(new MidiNote(60, 5, 10));
+        noteListModel.addElement(new MidiNote(60, 5, 10));
+        noteListModel.addElement(new MidiNote(60, 5, 10));
+        noteList.setVisible(true);
+        noteList.setPreferredSize(new Dimension(200, 500));
+        editorMain.add(listScroll);
+
 
 
         add(editorMain);
+    }
+
+    public void populateNoteList(Collection<MidiNote> notes){
+        for(MidiNote note:notes){
+            noteListModel.addElement(note);
+        }
     }
 }
 
