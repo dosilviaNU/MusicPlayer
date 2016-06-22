@@ -37,6 +37,7 @@ public class MidiController implements ActionListener {
 
   @Override
   //NEED TO ADD INT MIDIVIEW COMPLIMENTS.
+  //EXTRACT TO ACTIONLISTENER AND IMPLEMENT RUNNABLES IN CONTROLLER>
   public void actionPerformed(ActionEvent e) {
     switch (e.getActionCommand()) {
       case "add":
@@ -55,6 +56,7 @@ public class MidiController implements ActionListener {
         sheet.edit(edit, editTo);
         viewer.redraw();
         break;
+      //TEST CASE FOR TESTING SCROLL TO START/END AND UPDATE BEAT.
       case "update":
         viewer.scrollToStart();
         beat+=1;

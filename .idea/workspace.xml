@@ -2,28 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a80aa146-c878-4628-bc90-99326b0b3314" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/hw05/cs3500/music/model/MidiSheet.class" afterPath="$PROJECT_DIR$/out/production/hw05/cs3500/music/model/MidiSheet.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cs3500/music/MusicEditor.java" afterPath="$PROJECT_DIR$/src/cs3500/music/MusicEditor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cs3500/music/controller/IController.java" afterPath="$PROJECT_DIR$/src/cs3500/music/controller/IController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cs3500/music/controller/MidiController.java" afterPath="$PROJECT_DIR$/src/cs3500/music/controller/MidiController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cs3500/music/controller/SwingActionListener.java" afterPath="$PROJECT_DIR$/src/cs3500/music/controller/SwingActionListener.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cs3500/music/controller/SwingKeyboardListener.java" afterPath="$PROJECT_DIR$/src/cs3500/music/controller/SwingKeyboardListener.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cs3500/music/controller/SwingMouseListener.java" afterPath="$PROJECT_DIR$/src/cs3500/music/controller/SwingMouseListener.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cs3500/music/model/IMusicSheet.java" afterPath="$PROJECT_DIR$/src/cs3500/music/model/IMusicSheet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cs3500/music/model/INote.java" afterPath="$PROJECT_DIR$/src/cs3500/music/model/INote.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cs3500/music/model/MidiSheet.java" afterPath="$PROJECT_DIR$/src/cs3500/music/model/MidiSheet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cs3500/music/util/CompositionBuilder.java" afterPath="$PROJECT_DIR$/src/cs3500/music/util/CompositionBuilder.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cs3500/music/view/GuiView/EditorMenu.java" afterPath="$PROJECT_DIR$/src/cs3500/music/view/GuiView/EditorMenu.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cs3500/music/view/GuiView/GuiView.java" afterPath="$PROJECT_DIR$/src/cs3500/music/view/GuiView/GuiView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cs3500/music/view/GuiView/IGuiView.java" afterPath="$PROJECT_DIR$/src/cs3500/music/view/GuiView/IGuiView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cs3500/music/view/GuiView/NoteDisplay.java" afterPath="$PROJECT_DIR$/src/cs3500/music/view/GuiView/NoteDisplay.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cs3500/music/view/IMusicView.java" afterPath="$PROJECT_DIR$/src/cs3500/music/view/IMusicView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cs3500/music/view/console/ConsoleMock.java" afterPath="$PROJECT_DIR$/src/cs3500/music/view/console/ConsoleMock.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cs3500/music/view/console/ConsoleView.java" afterPath="$PROJECT_DIR$/src/cs3500/music/view/console/ConsoleView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cs3500/music/view/midi/IMidiView.java" afterPath="$PROJECT_DIR$/src/cs3500/music/view/midi/IMidiView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cs3500/music/view/midi/MidiMock.java" afterPath="$PROJECT_DIR$/src/cs3500/music/view/midi/MidiMock.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cs3500/music/view/midi/MidiView.java" afterPath="$PROJECT_DIR$/src/cs3500/music/view/midi/MidiView.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/MusicReaderTest.java" afterPath="$PROJECT_DIR$/test/MusicReaderTest.java" />
     </list>
     <ignored path="hw05.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -130,8 +111,8 @@
       <file leaf-file-name="MidiController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/cs3500/music/controller/MidiController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="986">
-              <caret line="58" column="31" selection-start-line="58" selection-start-column="31" selection-end-line="58" selection-end-column="31" />
+            <state relative-caret-position="306">
+              <caret line="39" column="68" selection-start-line="39" selection-start-column="68" selection-end-line="39" selection-end-column="68" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -159,11 +140,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NoteDisplay.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/cs3500/music/view/GuiView/NoteDisplay.java">
+      <file leaf-file-name="SwingActionListener.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/cs3500/music/controller/SwingActionListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="541">
-              <caret line="132" column="29" selection-start-line="132" selection-start-column="29" selection-end-line="132" selection-end-column="29" />
+            <state relative-caret-position="204">
+              <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="18" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -200,7 +181,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/test/NoteTest.java" />
         <option value="$PROJECT_DIR$/src/cs3500/music/model/MidiNote.java" />
         <option value="$PROJECT_DIR$/src/cs3500/music/model/INote.java" />
         <option value="$PROJECT_DIR$/src/Notes" />
@@ -250,6 +230,7 @@
         <option value="$PROJECT_DIR$/src/cs3500/music/view/GuiView/EditorMenu.java" />
         <option value="$PROJECT_DIR$/src/cs3500/music/view/GuiView/IGuiView.java" />
         <option value="$PROJECT_DIR$/src/cs3500/music/view/GuiView/GuiView.java" />
+        <option value="$PROJECT_DIR$/src/cs3500/music/controller/SwingActionListener.java" />
         <option value="$PROJECT_DIR$/src/cs3500/music/controller/MidiController.java" />
       </list>
     </option>
@@ -1045,7 +1026,14 @@
       <option name="project" value="LOCAL" />
       <updated>1466554938035</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Added in scrolltoend/start and ability to update the beat.">
+      <created>1466557112857</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1466557112857</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1158,7 +1146,8 @@
     <MESSAGE value="Added in editor side panel." />
     <MESSAGE value="EditorPanel mostly finished" />
     <MESSAGE value="Added in ActionListener capability to add/remove/edit note from EditorMenu, as well as load a new MusicSheet from an input file." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added in ActionListener capability to add/remove/edit note from EditorMenu, as well as load a new MusicSheet from an input file." />
+    <MESSAGE value="Added in scrolltoend/start and ability to update the beat." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added in scrolltoend/start and ability to update the beat." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1391,14 +1380,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cs3500/music/controller/SwingActionListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/cs3500/music/view/GuiView/NoteDisplay.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="541">
@@ -1449,14 +1430,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cs3500/music/util/CompositionBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="5" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/cs3500/music/view/GuiView/EditorMenu.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
@@ -1467,14 +1440,6 @@
             <element signature="e#6599#6600#0" expanded="true" />
             <element signature="e#6635#6636#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cs3500/music/controller/IController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="5" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1501,10 +1466,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/cs3500/music/controller/IController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="5" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cs3500/music/controller/SwingActionListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="18" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cs3500/music/util/CompositionBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="5" selection-start-line="9" selection-start-column="5" selection-end-line="9" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/cs3500/music/controller/MidiController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="986">
-          <caret line="58" column="31" selection-start-line="58" selection-start-column="31" selection-end-line="58" selection-end-column="31" />
+        <state relative-caret-position="306">
+          <caret line="39" column="68" selection-start-line="39" selection-start-column="68" selection-end-line="39" selection-end-column="68" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
