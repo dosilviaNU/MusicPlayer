@@ -4,9 +4,13 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 
+import cs3500.music.controller.IController;
+import cs3500.music.controller.MidiController;
+import cs3500.music.controller.SwingActionListener;
 import cs3500.music.model.MidiComposition;
 import cs3500.music.util.MidiCompBuilder;
 import cs3500.music.util.MusicReader;
+import cs3500.music.view.IMusicView;
 import cs3500.music.view.console.ConsoleView;
 import cs3500.music.view.GuiView.GuiView;
 import cs3500.music.view.midi.MidiView;
@@ -54,9 +58,16 @@ public class MusicEditor {
         Thread.sleep(400000);
         break;
       case "gui": GuiView gui = new GuiView(comp);
-        gui.display();
+        //gui.display();
+        MidiView midiView = new MidiView(comp);
+        MidiController midiController = new MidiController(comp);
         break;
       default: throw new IllegalArgumentException("Invalid Input.");
     }
+
+
+
+
+
   }
 }

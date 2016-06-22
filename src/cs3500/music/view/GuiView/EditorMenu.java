@@ -7,6 +7,8 @@ import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -14,23 +16,35 @@ import java.util.Collection;
  */
 public class EditorMenu extends JComponent {
     private JPanel fileAdder;
+    private JTextField fileValue;
     private JPanel addRemoveEdit;
     private JPanel pitchFields;
+    private JTextField pitchValue;
     private JPanel channelFields;
+    private JTextField channelValue;
     private JPanel velocityFields;
+    private JTextField velocityValue;
     private JPanel startFields;
+    private JTextField startValue;
     private JPanel endFields;
+    private JTextField endValue;
+    private ArrayList<JButton> buttons;
     private JList noteList;
     private DefaultListModel<MidiNote> noteListModel;
 
     public EditorMenu(){
+
         setVisible(true);
         setPreferredSize(new Dimension(250,500));
         setLayout(new FlowLayout());
         JPanel editorMain = new JPanel();
+
+        buttons=new ArrayList<JButton>();
+
         editorMain.setVisible(true);
         editorMain.setPreferredSize(new Dimension(250,500));
         editorMain.setLayout(new BoxLayout(editorMain, BoxLayout.PAGE_AXIS));
+
 
         JLabel fileBoxLabel = new JLabel("Enter Filename to Open: ");
         fileBoxLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -42,9 +56,13 @@ public class EditorMenu extends JComponent {
         fileAdder = new JPanel();
         fileAdder.setVisible(true);
         fileAdder.setLayout(new FlowLayout());
-        TextField fileInput = new TextField(20);
+        fileValue = new JTextField(20);
+
         JButton openFile = new JButton("Open");
-        fileAdder.add(fileInput);
+        openFile.setActionCommand("open");
+        buttons.add(openFile);
+
+        fileAdder.add(fileValue);
         fileAdder.add(openFile);
         editorMain.add(fileAdder);
 
@@ -52,9 +70,19 @@ public class EditorMenu extends JComponent {
         addRemoveEdit = new JPanel();
         addRemoveEdit.setVisible(true);
         addRemoveEdit.setLayout(new FlowLayout());
+
         JButton addNote = new JButton("Add");
+        addNote.setActionCommand("add");
+        buttons.add(addNote);
+
         JButton removeNote = new JButton("Remove");
+        removeNote.setActionCommand("remove");
+        buttons.add(removeNote);
+
         JButton editNote = new JButton("Edit");
+        editNote.setActionCommand("edit");
+        buttons.add(editNote);
+
         addRemoveEdit.add(addNote);
         addRemoveEdit.add(removeNote);
         addRemoveEdit.add(editNote);
@@ -69,9 +97,9 @@ public class EditorMenu extends JComponent {
         pitchFields.setVisible(true);
         pitchFields.setLayout(new FlowLayout());
         JLabel pitch = new JLabel("Pitch:      ");
-        JTextField pitchValues = new JTextField(10);
+        pitchValue = new JTextField(10);
         pitchFields.add(pitch);
-        pitchFields.add(pitchValues);
+        pitchFields.add(pitchValue);
         editorMain.add(pitchFields);
 
         //Channel fields.
@@ -79,9 +107,9 @@ public class EditorMenu extends JComponent {
         channelFields.setVisible(true);
         channelFields.setLayout(new FlowLayout());
         JLabel channel = new JLabel("Channel: ");
-        JTextField channelValues = new JTextField(10);
+        channelValue = new JTextField(10);
         channelFields.add(channel);
-        channelFields.add(channelValues);
+        channelFields.add(channelValue);
         editorMain.add(channelFields);
 
         //Velocity fields.
@@ -89,9 +117,9 @@ public class EditorMenu extends JComponent {
         velocityFields.setVisible(true);
         velocityFields.setLayout(new FlowLayout());
         JLabel velocity = new JLabel("Velocity: ");
-        JTextField velocityValues = new JTextField(10);
+        velocityValue = new JTextField(10);
         velocityFields.add(velocity);
-        velocityFields.add(velocityValues);
+        velocityFields.add(velocityValue);
         editorMain.add(velocityFields);
 
         //Start fields.
@@ -99,9 +127,9 @@ public class EditorMenu extends JComponent {
         startFields.setVisible(true);
         startFields.setLayout(new FlowLayout());
         JLabel start = new JLabel("Start:      ");
-        JTextField startValues = new JTextField(10);
+        startValue = new JTextField(10);
         startFields.add(start);
-        startFields.add(startValues);
+        startFields.add(startValue);
         editorMain.add(startFields);
 
         //End fields.
@@ -109,9 +137,9 @@ public class EditorMenu extends JComponent {
         endFields.setVisible(true);
         endFields.setLayout(new FlowLayout());
         JLabel end = new JLabel("Duration:        ");
-        JTextField endValues = new JTextField(10);
+        endValue = new JTextField(10);
         endFields.add(end);
-        endFields.add(endValues);
+        endFields.add(endValue);
         editorMain.add(endFields);
 
         JLabel noteBoxLabel = new JLabel("Notes at Selected Beat");
@@ -127,11 +155,11 @@ public class EditorMenu extends JComponent {
             public void valueChanged(ListSelectionEvent e) {
                 int index = noteList.getSelectedIndex();
                 MidiNote note = noteListModel.getElementAt(index);
-                pitchValues.setText(note.toString());
-                channelValues.setText(""+note.getChannel());
-                velocityValues.setText(""+note.getVolume());
-                startValues.setText(""+note.getStart());
-                endValues.setText(""+note.getDuration());
+                pitchValue.setText(""+note.getValue());
+                channelValue.setText(""+note.getChannel());
+                velocityValue.setText(""+note.getVolume());
+                startValue.setText(""+note.getStart());
+                endValue.setText(""+note.getDuration());
 
             }
         });
@@ -158,6 +186,30 @@ public class EditorMenu extends JComponent {
             noteListModel.addElement(note);
         }
     }
+
+    public void addActionListener(ActionListener actionListener){
+        for(JButton button:buttons){
+            button.addActionListener(actionListener);
+        }
+    }
+
+    public INote getNoteFromFields() throws IllegalArgumentException{
+        int pValue = Integer.valueOf(pitchValue.getText());
+        int start = Integer.valueOf(startValue.getText());
+        int duration = Integer.valueOf(endValue.getText());
+        int volume = Integer.valueOf(velocityValue.getText());
+        int channel = Integer.valueOf(channelValue.getText());
+        return new MidiNote(pValue,start,duration,volume,channel);
+    }
+
+    public INote getNoteFromList(){
+        return (INote)noteList.getSelectedValue();
+    }
+
+    public String getFileFromField(){
+        return fileValue.getText();
+    }
+
 }
 
 

@@ -7,6 +7,10 @@ import cs3500.music.view.IMusicView;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseListener;
+import java.io.File;
 
 /**
  * Created by David on 6/12/2016.
@@ -27,7 +31,7 @@ public class GuiView extends JFrame implements IGuiView {
     /**
      * Default constructor for a GuiView
      * Takes in an IMusicSheet to represent.
-     * @param sheet IMusicShhet this GuiView will display.
+     * @param sheet IMusicSheet this GuiView will display.
      */
     public GuiView(IComposition sheet){
         super("Music Editor OOD Summer 1");
@@ -55,11 +59,42 @@ public class GuiView extends JFrame implements IGuiView {
 
     @Override
     public INote getNoteFromFields() {
-        return null;
+        return eastPanel.getNoteFromFields();
     }
+
+  public String getFileFromField(){
+    return eastPanel.getFileFromField();
+  }
 
     @Override
     public INote getNoteFromList() {
-        return null;
+        return eastPanel.getNoteFromList();
     }
+
+    @Override
+    public void addKListener(KeyListener keyListener) {
+        centerPanel.addKeyListener(keyListener);
+    }
+
+    @Override
+    public void addAListener(ActionListener actionListener) {
+        eastPanel.addActionListener(actionListener);
+    }
+
+  public void redraw(){
+    repaint();
+  }
+
+    @Override
+    public void addMListener(MouseListener mouseListener) {
+        centerPanel.addMouseListener(mouseListener);
+    }
+
+  public void remove(){
+    setVisible(false);
+  }
+
+
+
+
 }

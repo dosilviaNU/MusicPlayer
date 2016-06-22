@@ -1,5 +1,10 @@
 package cs3500.music.view.GuiView;
 
+import java.awt.event.ActionListener;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseListener;
+import java.io.File;
+
 import cs3500.music.model.INote;
 import cs3500.music.view.IMusicView;
 
@@ -18,4 +23,16 @@ public interface IGuiView extends IMusicView {
    * @return Currently Selected Note
    */
   INote getNoteFromList();
+
+  void redraw();
+
+  void addKListener(KeyListener keyListener);
+
+  void addAListener(ActionListener actionListener);
+
+  void addMListener(MouseListener mouseListener);
+
+  void remove();
+
+  String getFileFromField();
 }
