@@ -14,12 +14,14 @@ import cs3500.music.view.IMusicView;
 public interface IGuiView extends IMusicView {
   /**
    * Returns the note from the 5 Text fields in the editor pane
+   *
    * @return Note being newly created
    */
   INote getNoteFromFields();
 
   /**
    * Returns the currently selected note in the JList of notes
+   *
    * @return Currently Selected Note
    */
   INote getNoteFromList();
@@ -35,4 +37,10 @@ public interface IGuiView extends IMusicView {
   void remove();
 
   String getFileFromField();
+
+  void updateBeat(int beat);
+
+  void scrollToEnd();
+
+  void scrollToStart();
 }

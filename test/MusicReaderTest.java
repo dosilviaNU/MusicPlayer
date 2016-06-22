@@ -17,8 +17,8 @@ import cs3500.music.view.midi.MidiView;
 
 import static org.junit.Assert.*;
 
-/** File for creating the other required test files for the assignment
- * Created by Jake on 6/15/2016.
+/**
+ * File for creating the other required test files for the assignment Created by Jake on 6/15/2016.
  */
 public class MusicReaderTest {
   /*to use the parser
@@ -36,7 +36,7 @@ public class MusicReaderTest {
     FileReader music = new FileReader(file1);
     StringBuilder sbOut1 = new StringBuilder();
     IComposition comp = mr.parseFile(music, mcb1);
-    comp = new ROMidiComposition((MidiComposition)comp);
+    comp = new ROMidiComposition((MidiComposition) comp);
     assertTrue(comp.size() > 0);
     IMusicView<IComposition> mock = new MidiMock(comp, sbOut1);
     mock.display();
@@ -47,8 +47,6 @@ public class MusicReaderTest {
     //console2.display();
 
 
-
-
     File file2 = new File("mystery-1.txt");
     FileReader music2 = new FileReader(file2);
     StringBuilder sbOut2 = new StringBuilder();
@@ -57,9 +55,6 @@ public class MusicReaderTest {
     assertTrue(comp.size() > 0);
     IMusicView<IComposition> console = new ConsoleView(comp2);
     console.display();
-
-
-
 
 
     //MidiComposition comp2 = mr.parseFile(musicTfaf, mcb);

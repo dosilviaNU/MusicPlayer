@@ -17,8 +17,8 @@ public interface IMusicSheet<N> {
   void addNote(N n);
 
   /**
-   * Removes an INote from an IMusicSheet will return true if the note was successfully removed
-   * from the sheet. False if the note does not exits in the music sheet.
+   * Removes an INote from an IMusicSheet will return true if the note was successfully removed from
+   * the sheet. False if the note does not exits in the music sheet.
    *
    * @param n INote to be removed
    */
@@ -87,8 +87,8 @@ public interface IMusicSheet<N> {
   IMusicSheet<N> clone();
 
   /**
-   * Returns an array with the following information Index 0 - Minimum note of the IMusicSheet
-   * Index 1 - Maximum note of the IMusicSheet Index 2 - Length of the Piece
+   * Returns an array with the following information Index 0 - Minimum note of the IMusicSheet Index
+   * 1 - Maximum note of the IMusicSheet Index 2 - Length of the Piece
    */
   int[] getSpread(Collection<MidiNote> notes);
 

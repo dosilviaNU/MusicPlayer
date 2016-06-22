@@ -20,13 +20,12 @@ import cs3500.music.view.midi.MidiView;
  */
 
 /**
- * Holds main method for launching the Music Editor.
- * Main method takes a midi text file, and a display method as arguments
- * valid inputs are "gui", "midi" and "console" case insensitive.
+ * Holds main method for launching the Music Editor. Main method takes a midi text file, and a
+ * display method as arguments valid inputs are "gui", "midi" and "console" case insensitive.
  */
 public class MusicEditor {
   public static void main(String[] args) throws InterruptedException {
-    if(args.length<2){
+    if (args.length < 2) {
       System.exit(0);
     }
     File musicFile = new File(args[0]);
@@ -43,31 +42,30 @@ public class MusicEditor {
     MidiComposition comp = null;
     try {
       comp = mr.parseFile(music, mcb);
-    }catch (IllegalArgumentException e){
+    } catch (IllegalArgumentException e) {
       e.getMessage();
     }
     String mode = args[1].toLowerCase();
 
     //Validate and run given mode.
-    switch (mode){
-      case "console": ConsoleView console = new ConsoleView(comp);
-              console.display();
+    switch (mode) {
+      case "console":
+        ConsoleView console = new ConsoleView(comp);
+        console.display();
         break;
-      case "midi": MidiView midi = new MidiView(comp);
-              midi.playComp();
+      case "midi":
+        MidiView midi = new MidiView(comp);
+        midi.playComp();
         Thread.sleep(400000);
         break;
-      case "gui": GuiView gui = new GuiView(comp);
+      case "gui":
+        GuiView gui = new GuiView(comp);
         //gui.display();
         MidiView midiView = new MidiView(comp);
         MidiController midiController = new MidiController(comp);
         break;
-      default: throw new IllegalArgumentException("Invalid Input.");
+      default:
+        throw new IllegalArgumentException("Invalid Input.");
     }
-
-
-
-
-
   }
 }

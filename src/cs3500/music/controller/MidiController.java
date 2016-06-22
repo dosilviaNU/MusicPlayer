@@ -19,13 +19,13 @@ import cs3500.music.view.midi.IMidiView;
 import cs3500.music.view.midi.MidiView;
 
 /**
- * Concrete Class implementing the IController Interface
- * Created by Jake on 6/21/2016.
+ * Concrete Class implementing the IController Interface Created by Jake on 6/21/2016.
  */
 public class MidiController implements ActionListener {
   IComposition sheet;
   IMidiView player;
   IGuiView viewer;
+  int beat = 0;
 
   public MidiController(IComposition musicSheet) {
     this.player = new MidiView(musicSheet);
@@ -36,8 +36,9 @@ public class MidiController implements ActionListener {
   }
 
   @Override
+  //NEED TO ADD INT MIDIVIEW COMPLIMENTS.
   public void actionPerformed(ActionEvent e) {
-    switch (e.getActionCommand()){
+    switch (e.getActionCommand()) {
       case "add":
         INote add = viewer.getNoteFromFields();
         sheet.addNote(add);
@@ -54,6 +55,11 @@ public class MidiController implements ActionListener {
         sheet.edit(edit, editTo);
         viewer.redraw();
         break;
+      case "update":
+        viewer.scrollToStart();
+        beat+=1;
+        viewer.redraw();
+        break;
       case "open":
         File musicFile = new File(viewer.getFileFromField());
         //Parse and build given music text file.
@@ -68,7 +74,7 @@ public class MidiController implements ActionListener {
         MidiComposition comp = null;
         try {
           comp = mr.parseFile(music, mcb);
-        }catch (IllegalArgumentException err){
+        } catch (IllegalArgumentException err) {
           err.getMessage();
         }
         this.sheet = comp;

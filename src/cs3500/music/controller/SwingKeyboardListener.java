@@ -4,8 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 /**
- * Listener for KeyBoard Events in an IController
- * Created by Jake on 6/21/2016.
+ * Listener for KeyBoard Events in an IController Created by Jake on 6/21/2016.
  */
 public class SwingKeyboardListener implements KeyListener {
   @Override

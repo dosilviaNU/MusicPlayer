@@ -8,19 +8,18 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Model for a Sheet of Midi notes.
- * This Model represents a sheet of music from C-1 to G9 on the musical scale.
+ * Model for a Sheet of Midi notes. This Model represents a sheet of music from C-1 to G9 on the
+ * musical scale.
  *
- * In this model, notes can be added on top of one another, as well as duplicated over one
- * another. The model will allow you to do this. Removing will only remove one instance of the
- * note from the sheet, however.
+ * In this model, notes can be added on top of one another, as well as duplicated over one another.
+ * The model will allow you to do this. Removing will only remove one instance of the note from the
+ * sheet, however.
  *
- * Getting the MidiNotes from the sheet will only return one copy of the note if duplicates
- * exist on the sheet.
+ * Getting the MidiNotes from the sheet will only return one copy of the note if duplicates exist on
+ * the sheet.
  *
- * All MidiNotes are stored and returned as clones of the argument passed in.
- * MidiSheets will never throw exceptions except when a heap overflow occurs on extremely large
- * sheets.
+ * All MidiNotes are stored and returned as clones of the argument passed in. MidiSheets will never
+ * throw exceptions except when a heap overflow occurs on extremely large sheets.
  *
  * Created by Jake on 6/9/2016.
  */
@@ -44,6 +43,7 @@ public class MidiSheet implements IMusicSheet<MidiNote> {
 
   /**
    * Adds a note to the MidiSheet
+   *
    * @param n clone of note to be added
    */
   private void _add(MidiNote n) {
@@ -67,6 +67,7 @@ public class MidiSheet implements IMusicSheet<MidiNote> {
 
   /**
    * removes a note from a MidiSheet
+   *
    * @param n clone of note to be removed
    * @return was a note successfully removed
    */
@@ -88,6 +89,7 @@ public class MidiSheet implements IMusicSheet<MidiNote> {
 
   /**
    * private method for adding notes
+   *
    * @param notes notes to be added
    */
   private void _addNotes(Collection<MidiNote> notes) {
@@ -117,33 +119,33 @@ public class MidiSheet implements IMusicSheet<MidiNote> {
   }
 
   /**
-   * {@inheritDoc}
-   * Note: this method will only show unique {@link MidiNote}, not duplicates. If notes have
-   * the same pitch and starting beat, but different lengths, they will show as unique, even if
-   * one is contained in another.
+   * {@inheritDoc} Note: this method will only show unique {@link MidiNote}, not duplicates. If
+   * notes have the same pitch and starting beat, but different lengths, they will show as unique,
+   * even if one is contained in another.
    */
   public Collection<MidiNote> getNotes() {
     Set<MidiNote> results = new HashSet<MidiNote>();
     Collection<ArrayList<MidiNote>> notes = sheet.values();
     for (ArrayList<MidiNote> arrNote : notes) {
-      for (MidiNote n: arrNote) {
+      for (MidiNote n : arrNote) {
         results.add(new MidiNote(n));
       }
     }
     return results;
   }
 
-   /**
-   * {@inheritDoc}
-   * Note: this method will only show unique {@link MidiNote}, not duplicates. If notes have
-   * the same pitch and starting beat, but different lengths, they will show as unique, even if
-   * one is contained in another.
+  /**
+   * {@inheritDoc} Note: this method will only show unique {@link MidiNote}, not duplicates. If
+   * notes have the same pitch and starting beat, but different lengths, they will show as unique,
+   * even if one is contained in another.
    **/
   public Collection<MidiNote> getNotes(int beat) {
     Set<MidiNote> result = new HashSet<MidiNote>();
     ArrayList<MidiNote> notes = sheet.get(beat);
-    if (beat < 0 || notes == null) { return result;}
-    for (MidiNote n: sheet.get(beat)) {
+    if (beat < 0 || notes == null) {
+      return result;
+    }
+    for (MidiNote n : sheet.get(beat)) {
       result.add(new MidiNote(n));
     }
     return result;
@@ -170,6 +172,7 @@ public class MidiSheet implements IMusicSheet<MidiNote> {
 
   /**
    * Pads a beat with space to the correct size
+   *
    * @param beat number of the beat
    * @param size correct size of the string to return
    * @return padded StringBuilder containing the beat.
@@ -196,8 +199,7 @@ public class MidiSheet implements IMusicSheet<MidiNote> {
     if (this._remove(oldNote)) {
       this._add(newNote);
       return true;
-    }
-    else {
+    } else {
       return false;
     }
   }
@@ -205,7 +207,8 @@ public class MidiSheet implements IMusicSheet<MidiNote> {
 
   /**
    * prints a line of notes
-   * @param size size buffer space
+   *
+   * @param size  size buffer space
    * @param stats array with min and max note
    * @return built note line
    */
@@ -222,9 +225,6 @@ public class MidiSheet implements IMusicSheet<MidiNote> {
 
   /**
    * Converts line of beats to the correct spacing of x's and |'s
-   * @param beat
-   * @param stats
-   * @return
    */
   private StringBuilder beatToString(int beat, int[] stats) {
     StringBuilder result = new StringBuilder();
@@ -249,8 +249,6 @@ public class MidiSheet implements IMusicSheet<MidiNote> {
 
   /**
    * Converts a pitch/octave value to a 5 char string
-   * @param value
-   * @return
    */
   private String noteToString(int value) {
     StringBuilder result = new StringBuilder();
@@ -288,8 +286,8 @@ public class MidiSheet implements IMusicSheet<MidiNote> {
 
   public MidiSheet clone() {
     MidiSheet result = new MidiSheet();
-    for (ArrayList<MidiNote> notes: sheet.values()) {
-      for (MidiNote n: notes) {
+    for (ArrayList<MidiNote> notes : sheet.values()) {
+      for (MidiNote n : notes) {
         result.addNote(n);
       }
     }

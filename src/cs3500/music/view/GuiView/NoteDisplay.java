@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * Main window of the GuiView, paints all the notes,beat counts, and grid lines.
  */
-public class NoteDisplay extends JComponent implements Scrollable {
+public class NoteDisplay extends JComponent {
   private IMusicSheet sheet;
   private int[] spread;
   private int noteMod;
@@ -34,7 +34,6 @@ public class NoteDisplay extends JComponent implements Scrollable {
 
   /**
    * Default constructor for a NoteDisplay panel.
-   * @param givenSheet
    */
   public NoteDisplay(IMusicSheet givenSheet) {
     super();
@@ -45,8 +44,8 @@ public class NoteDisplay extends JComponent implements Scrollable {
     this.noteMod = spread[1] - spread[0] - 1;
     this.noteCount = spread[1] - spread[0] + 1;
     this.windowHeight = (noteMod + 3) * topBorder;
-    this.windowWidth = (spread[2]+1) * leftBorder;
-    this.curBeat=2;
+    this.windowWidth = (spread[2] + 1) * leftBorder;
+    this.curBeat = 2;
     setPreferredSize(new Dimension(windowWidth, windowHeight));
     setVisible(true);
     repaint();
@@ -59,7 +58,7 @@ public class NoteDisplay extends JComponent implements Scrollable {
    */
   @Override
   public void paintComponent(Graphics g) {
-    int beatLine = (curBeat*leftBorder)+leftBorder;
+    int beatLine = (curBeat * leftBorder) + leftBorder;
     Graphics2D g2 = (Graphics2D) g;
     this.notes = sheet.getNotes();
 
@@ -67,7 +66,7 @@ public class NoteDisplay extends JComponent implements Scrollable {
     for (INote note : this.notes) {
       int x = (note.getStart() + 1) * leftBorder;
       int y = calcY(note.getValue());
-      int width = (note.getDuration()-1)*leftBorder;
+      int width = (note.getDuration() - 1) * leftBorder;
       g2.setColor(Color.green);
       g2.fillRect(x, y, width, topBorder);
       g2.setColor(Color.black);
@@ -105,7 +104,7 @@ public class NoteDisplay extends JComponent implements Scrollable {
     //Paint beat line.
     g2.setStroke(new BasicStroke(3));
     g2.setColor(Color.red);
-    g2.drawLine(beatLine+1, topBorder+2, beatLine+1, windowHeight-3);
+    g2.drawLine(beatLine + 1, topBorder + 2, beatLine + 1, windowHeight - 3);
   }
 
   /**
@@ -134,33 +133,8 @@ public class NoteDisplay extends JComponent implements Scrollable {
     return result.toString();
   }
 
-  public void nextBeat(){
-    curBeat=curBeat+1;
-  }
-
-  @Override
-  public Dimension getPreferredScrollableViewportSize() {
-    return null;
-  }
-
-  @Override
-  public int getScrollableUnitIncrement(Rectangle visibleRect, int orientation, int direction) {
-    return 0;
-  }
-
-  @Override
-  public int getScrollableBlockIncrement(Rectangle visibleRect, int orientation, int direction) {
-    return 0;
-  }
-
-  @Override
-  public boolean getScrollableTracksViewportWidth() {
-    return false;
-  }
-
-  @Override
-  public boolean getScrollableTracksViewportHeight() {
-    return false;
+  public void nextBeat(int beat) {
+    curBeat = beat;
   }
 
 }
