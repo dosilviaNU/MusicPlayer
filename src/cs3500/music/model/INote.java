@@ -1,10 +1,10 @@
 package cs3500.music.model;
 
 /**
- * Interface for represented operations needed on notes in chromatic scale All INotes have a
- * pitch, octave, and length that represent the sound they make. All modification methods should
- * throw IllegalArgumentExceptions if the modification will take them out of the range allowed by
- * the INote Created by Jake on 6/9/2016.
+ * Interface for represented operations needed on notes in chromatic scale All INotes have a pitch,
+ * octave, and length that represent the sound they make. All modification methods should throw
+ * IllegalArgumentExceptions if the modification will take them out of the range allowed by the
+ * INote Created by Jake on 6/9/2016.
  */
 public interface INote {
 
@@ -87,8 +87,8 @@ public interface INote {
     }
 
     /**
-     * returns a Pitch for the given value, starting with C as 0. numbers greater than 12 will
-     * roll over to the appropriate pitch,
+     * returns a Pitch for the given value, starting with C as 0. numbers greater than 12 will roll
+     * over to the appropriate pitch,
      *
      * @param value interger value representing pitch
      * @return Pitch enum

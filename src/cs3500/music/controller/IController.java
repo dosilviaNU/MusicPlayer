@@ -1,8 +1,7 @@
 package cs3500.music.controller;
 
 /**
- * Interface for a controller
- * An IController should take at least one IMidiView and one IGuiView
+ * Interface for a controller An IController should take at least one IMidiView and one IGuiView
  * Created by Jake on 6/21/2016.
  */
 public interface IController {

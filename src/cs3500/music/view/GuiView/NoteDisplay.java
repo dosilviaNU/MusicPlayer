@@ -7,6 +7,9 @@ import javax.swing.*;
 
 import java.awt.*;
 
+import java.awt.event.ActionListener;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseListener;
 import java.util.*;
 import java.util.List;
 
@@ -17,37 +20,35 @@ import java.util.List;
 /**
  * Main window of the GuiView, paints all the notes,beat counts, and grid lines.
  */
-public class NoteDisplay extends JComponent implements Scrollable {
-  private static IMusicSheet sheet;
-  private static int[] spread;
-  private static int noteMod;
-  private static int noteCount;
-  private static final int topBorder = GuiView.BEAT_HEIGHT;
-  private static final int leftBorder = GuiView.BEAT_WIDTH;
-  private static int windowHeight;
-  private static int windowWidth;
-  private static Collection<INote> notes;
-  private static int curBeat;
+public class NoteDisplay extends JComponent {
+  private IMusicSheet sheet;
+  private int[] spread;
+  private int noteMod;
+  private int noteCount;
+  private final int topBorder = GuiView.BEAT_HEIGHT;
+  private final int leftBorder = GuiView.BEAT_WIDTH;
+  private int windowHeight;
+  private int windowWidth;
+  private Collection<INote> notes;
+  private int curBeat;
 
   /**
    * Default constructor for a NoteDisplay panel.
-   * @param givenSheet
    */
   public NoteDisplay(IMusicSheet givenSheet) {
     super();
     setAutoscrolls(true);
     //Initialize instance variables.
-    sheet = givenSheet;
-    spread = sheet.getSpread(sheet.getNotes());
-    noteMod = spread[1] - spread[0] - 1;
-    noteCount = spread[1] - spread[0] + 1;
-    windowHeight = (noteMod + 3) * topBorder;
-    windowWidth = (spread[2]+1) * leftBorder;
-    curBeat=2;
-
-
+    this.sheet = givenSheet;
+    this.spread = sheet.getSpread(sheet.getNotes());
+    this.noteMod = spread[1] - spread[0] - 1;
+    this.noteCount = spread[1] - spread[0] + 1;
+    this.windowHeight = (noteMod + 3) * topBorder;
+    this.windowWidth = (spread[2] + 1) * leftBorder;
+    this.curBeat = 2;
     setPreferredSize(new Dimension(windowWidth, windowHeight));
     setVisible(true);
+    repaint();
   }
 
   /**
@@ -57,15 +58,15 @@ public class NoteDisplay extends JComponent implements Scrollable {
    */
   @Override
   public void paintComponent(Graphics g) {
-    int beatLine = (curBeat*leftBorder)+leftBorder;
+    int beatLine = (curBeat * leftBorder) + leftBorder;
     Graphics2D g2 = (Graphics2D) g;
-    notes = sheet.getNotes();
+    this.notes = sheet.getNotes();
 
     //Draw notes.
-    for (INote note : notes) {
+    for (INote note : this.notes) {
       int x = (note.getStart() + 1) * leftBorder;
       int y = calcY(note.getValue());
-      int width = (note.getDuration()-1)*leftBorder;
+      int width = (note.getDuration() - 1) * leftBorder;
       g2.setColor(Color.green);
       g2.fillRect(x, y, width, topBorder);
       g2.setColor(Color.black);
@@ -86,7 +87,7 @@ public class NoteDisplay extends JComponent implements Scrollable {
 
     //Paint vert gridlines.
     g2.setColor(Color.black);
-    for (int i = leftBorder; i < windowWidth; i += 4 * leftBorder) {
+    for (int i = leftBorder; i <= windowWidth; i += 4 * leftBorder) {
       g2.setStroke(new BasicStroke(2));
       g.drawLine(i, topBorder, i, windowHeight);
     }
@@ -103,7 +104,7 @@ public class NoteDisplay extends JComponent implements Scrollable {
     //Paint beat line.
     g2.setStroke(new BasicStroke(3));
     g2.setColor(Color.red);
-    g2.drawLine(beatLine+1, topBorder+2, beatLine+1, windowHeight-3);
+    g2.drawLine(beatLine + 1, topBorder + 2, beatLine + 1, windowHeight - 3);
   }
 
   /**
@@ -132,32 +133,8 @@ public class NoteDisplay extends JComponent implements Scrollable {
     return result.toString();
   }
 
-  public void nextBeat(){
-    curBeat=curBeat+1;
+  public void nextBeat(int beat) {
+    curBeat = beat;
   }
 
-  @Override
-  public Dimension getPreferredScrollableViewportSize() {
-    return null;
-  }
-
-  @Override
-  public int getScrollableUnitIncrement(Rectangle visibleRect, int orientation, int direction) {
-    return 0;
-  }
-
-  @Override
-  public int getScrollableBlockIncrement(Rectangle visibleRect, int orientation, int direction) {
-    return 0;
-  }
-
-  @Override
-  public boolean getScrollableTracksViewportWidth() {
-    return false;
-  }
-
-  @Override
-  public boolean getScrollableTracksViewportHeight() {
-    return false;
-  }
 }

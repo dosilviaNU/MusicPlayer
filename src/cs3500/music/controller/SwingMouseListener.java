@@ -4,8 +4,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 /**
- * Listener for MouseEvents in an IController
- * Created by Jake on 6/21/2016.
+ * Listener for MouseEvents in an IController Created by Jake on 6/21/2016.
  */
 public class SwingMouseListener implements MouseListener {
   @Override

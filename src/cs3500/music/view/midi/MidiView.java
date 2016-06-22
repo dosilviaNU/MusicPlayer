@@ -85,7 +85,7 @@ public class MidiView implements IMidiView<IComposition>, Runnable {
   public int getBeat() {
     long result = (synth.getMicrosecondPosition() - 400000) / this.comp.getTempo();
     //return 0 if piece hasn't started yet.
-    return (int)(result < 0 ? 0 : result);
+    return (int) (result < 0 ? 0 : result);
   }
 
   @Override
@@ -95,6 +95,6 @@ public class MidiView implements IMidiView<IComposition>, Runnable {
 
   @Override
   public void resumePlay(int beat) {
-   throw new UnsupportedOperationException("Invalid Operation");
+    throw new UnsupportedOperationException("Invalid Operation");
   }
 }

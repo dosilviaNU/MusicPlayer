@@ -9,8 +9,7 @@ import cs3500.music.model.INote;
 import cs3500.music.view.IMusicView;
 
 /**
- * Mock for the console view to print to an appendable
- * Created by Jake on 6/19/2016.
+ * Mock for the console view to print to an appendable Created by Jake on 6/19/2016.
  */
 public class ConsoleMock implements IMusicView<IComposition> {
   private IComposition sheet;

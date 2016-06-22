@@ -5,8 +5,7 @@ import javax.swing.*;
 import java.util.jar.JarEntry;
 
 /**
- * Interface for different types of views for compositions
- * Created by David on 6/12/2016.
+ * Interface for different types of views for compositions Created by David on 6/12/2016.
  */
 public interface IMusicView<T> {
   /**

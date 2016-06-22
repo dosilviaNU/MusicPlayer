@@ -13,8 +13,7 @@ import cs3500.music.model.MidiComposition;
 import cs3500.music.model.MidiNote;
 
 /**
- * Mock of the MidiView for testing
- * Created by Jake on 6/17/2016.
+ * Mock of the MidiView for testing Created by Jake on 6/17/2016.
  */
 public class MidiMock implements IMidiView<IComposition> {
   IComposition<MidiNote> comp;

@@ -12,8 +12,7 @@ import cs3500.music.model.MidiSheet;
 import cs3500.music.view.IMusicView;
 
 /**
- * View that prints the Composition to the console
- * Created by David on 6/14/2016.
+ * View that prints the Composition to the console Created by David on 6/14/2016.
  */
 public class ConsoleView implements IMusicView<IComposition> {
   private IComposition sheet;
