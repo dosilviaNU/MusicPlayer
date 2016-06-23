@@ -178,12 +178,20 @@ public class NoteDisplay extends JComponent {
     return value;
   }
 
+  /**
+   * Updates and redraws this note display after an edited music sheet.
+   * @param notes new notes.
+   * @param spread new spread.
+   */
   public void updateNotes(Collection<INote> notes, int[] spread){
     this.notes = notes;
     this.spread = spread;
     updateSpread();
   }
 
+  /**
+   * Updates the note spread based on an update music sheet,
+   */
   private void updateSpread(){
     this.noteMod = spread[1] - spread[0] - 1;
     this.noteCount = spread[1] - spread[0] + 1;

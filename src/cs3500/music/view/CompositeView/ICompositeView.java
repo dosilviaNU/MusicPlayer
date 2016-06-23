@@ -54,8 +54,6 @@ public int getBeat();
 
   void fieldsFromClick(int[] noteValue);
 
-  void remove();
-
   String getFileFromField();
 
   void scrollLeft();

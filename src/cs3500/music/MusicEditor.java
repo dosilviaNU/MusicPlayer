@@ -64,6 +64,9 @@ public class MusicEditor {
         MidiView midiView = new MidiView(comp);
         MidiController midiController = new MidiController(comp);
         break;
+      case "controller":
+        MidiController controller = new MidiController(comp);
+        break;
       default:
         throw new IllegalArgumentException("Invalid Input.");
     }

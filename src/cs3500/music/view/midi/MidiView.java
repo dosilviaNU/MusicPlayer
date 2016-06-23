@@ -84,6 +84,7 @@ public class MidiView implements IMidiView<IComposition>, Runnable {
   @Override
   public int getBeat() {
     long result = (synth.getMicrosecondPosition() - 400000) / this.comp.getTempo();
+    System.out.println(result);
     //return 0 if piece hasn't started yet.
     return (int) (result < 0 ? 0 : result);
   }

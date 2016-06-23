@@ -84,11 +84,6 @@ public class CompositeView implements ICompositeView {
   }
 
   @Override
-  public void remove() {
-    viewer.remove();
-  }
-
-  @Override
   public String getFileFromField() {
     return viewer.getFileFromField();
   }

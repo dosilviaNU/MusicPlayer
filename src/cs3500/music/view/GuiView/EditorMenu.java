@@ -209,10 +209,7 @@ public class EditorMenu extends JComponent {
       velocityValue.setText("" + note.getVolume());
       startValue.setText("" + note.getStart());
       endValue.setText("" + note.getDuration());
-
     }
-
-
   }
 }
 

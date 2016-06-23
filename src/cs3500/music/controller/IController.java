@@ -6,47 +6,6 @@ package cs3500.music.controller;
  */
 public interface IController {
 
-
-  /**
-   * sets the position to the current song beat
-   */
-  //void setPosition();
-
-  /**
-   * Add a note to a IComposition
-   */
-  //void addNote();
-
-  /**
-   * Edits an existing note in an IComposiiton
-   */
-  //void editNote();
-
-  /**
-   * Remove note from IComposition
-   */
-  //void removeNote();
-
-  /**
-   * Gets the current beat of a playing IComposition
-   */
-  //void getBeat();
-
-  /**
-   * Starts playing current IComposition
-   */
-  //void startPlay();
-
-  /**
-   * Stops playing current IComposition
-   */
-  //void stopPlay();
-
-  /**
-   * Resumes playing current IComposition
-   */
-  //void resumePlay();
-
   /**
    * Gets the corresponding runnable from the given key,
    * @param key String key to keyboard runnables hashmap.
@@ -61,9 +20,9 @@ public interface IController {
   void actionRunnable(String key);
 
   /**
-   *
-   * @param x
-   * @param y
+   *Handles mouse clicks.
+   * @param x x position of the mouse click.
+   * @param y y position of the mouse click.
    */
   void mouseRunnable(int x, int y);
 

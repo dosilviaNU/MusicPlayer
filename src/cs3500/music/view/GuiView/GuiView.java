@@ -28,7 +28,7 @@ public class GuiView extends JFrame implements IGuiView {
   private static int[] stats;
 
   public static final int GUI_WIDTH = 1200;
-  public static final int GUI_HEIGHT = 500;
+  public static final int GUI_HEIGHT= 600;
   public static final int BEAT_WIDTH = 40;
   public static final int BEAT_HEIGHT = 20;
 
@@ -42,9 +42,11 @@ public class GuiView extends JFrame implements IGuiView {
     super("Music Editor OOD Summer 1");
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setResizable(false);
+    stats=sheet.getSpread(sheet.getNotes());
+
     setSize(new Dimension(GuiView.GUI_WIDTH, GUI_HEIGHT));
     setLayout(new BorderLayout());
-    stats=sheet.getSpread(sheet.getNotes());
+
     setFocusable(true);
 
     //Set center panel, as scrollpane.
@@ -84,9 +86,7 @@ public class GuiView extends JFrame implements IGuiView {
   @Override
   public void scrollRight() {
     int current = scrollPane.getHorizontalScrollBar().getValue();
-    if(current <= (stats[2]-1)*BEAT_WIDTH) {
-      scrollPane.getHorizontalScrollBar().setValue(current + BEAT_WIDTH);
-    }
+    scrollPane.getHorizontalScrollBar().setValue(current + BEAT_WIDTH);
   }
 
   @Override
@@ -133,10 +133,7 @@ public class GuiView extends JFrame implements IGuiView {
     eastPanel.fieldsFromClick(noteValue);
   }
 
-  public void remove() {
-    setVisible(false);
-  }
-
+  @Override
   public void updateBeat(int beat){
     centerPanel.nextBeat(beat);
     if(beat%22==0) {
@@ -146,7 +143,7 @@ public class GuiView extends JFrame implements IGuiView {
 
   @Override
   public void scrollToStart() {
-    scrollPane.getHorizontalScrollBar().setValue(0*BEAT_WIDTH);
+    scrollPane.getHorizontalScrollBar().setValue(0);
   }
 
   @Override
@@ -154,16 +151,16 @@ public class GuiView extends JFrame implements IGuiView {
     scrollPane.getHorizontalScrollBar().setValue(stats[2]*BEAT_WIDTH);
   }
 
+  @Override
   public void populateNoteList(Collection<INote> notes){
     eastPanel.populateNoteList(notes);
   }
 
+  @Override
   public void updateNotes(Collection<INote> notes, int[] spread){
     centerPanel.updateNotes(notes, spread);
     scrollPane.setPreferredSize(centerPanel.getPreferredSize());
     repaint();
     requestFocus();
-      }
-
-
+  }
 }
