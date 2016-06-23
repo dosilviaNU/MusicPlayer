@@ -139,7 +139,9 @@ public class GuiView extends JFrame implements IGuiView {
 
   public void updateBeat(int beat){
     centerPanel.nextBeat(beat);
-    scrollPane.getHorizontalScrollBar().setValue(beat * BEAT_WIDTH);
+    if(beat%22==0) {
+      scrollPane.getHorizontalScrollBar().setValue((beat) * BEAT_WIDTH);
+    }
   }
 
   @Override

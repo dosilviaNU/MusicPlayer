@@ -2,6 +2,7 @@ package cs3500.music.view.GuiView;
 
 import cs3500.music.model.IMusicSheet;
 import cs3500.music.model.INote;
+import javafx.animation.Animation;
 
 import javax.swing.*;
 
@@ -136,6 +137,7 @@ public class NoteDisplay extends JComponent {
 
   public void nextBeat(int beat) {
     curBeat = beat;
+    repaint();
   }
 
   /**

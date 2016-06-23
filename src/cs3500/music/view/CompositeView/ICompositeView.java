@@ -80,4 +80,6 @@ public int getBeat();
 
   void display();
 
+  void startBeat();
+
 }

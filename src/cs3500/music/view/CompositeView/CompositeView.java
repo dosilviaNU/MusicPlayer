@@ -18,10 +18,13 @@ import cs3500.music.view.midi.MidiView;
 public class CompositeView implements ICompositeView {
   IMidiView player;
   IGuiView viewer;
+  boolean playing;
 
   public CompositeView(IComposition sheet){
     this.player = new MidiView(sheet);
     this.viewer = new GuiView(sheet);
+    playing = true;
+
   }
 
 
@@ -141,5 +144,11 @@ public class CompositeView implements ICompositeView {
 
   public void display(){
     viewer.display();
+  }
+
+  public void startBeat(){
+    while (playing){
+      viewer.updateBeat(player.getBeat());
+    }
   }
 }
