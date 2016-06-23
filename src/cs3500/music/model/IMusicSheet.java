@@ -45,6 +45,12 @@ public interface IMusicSheet<N> {
   void consecutiveSheets(IMusicSheet<N> sheet);
 
   /**
+   * Adds a second sheet starting at the provided beat on the first sheet. This sheet will be
+   * shifted to accommodate the new notes to the right.
+   */
+ // void insertSheets(IMusicSheet<N> sheet, int start);
+
+  /**
    * get all the notes in the IMusicSheet as a collection
    */
   Collection<N> getNotes();
