@@ -108,10 +108,7 @@ public class MidiController implements IController {
     public void run() {
       INote add = viewer.getNoteFromFields();
       sheet.addNote(add);
-      viewer.remove();
-      //viewer = new GuiView(sheet);
-      viewer.display();
-      viewer.addAListener(actionListener);
+      viewer.updateNotes(sheet.getNotes(), sheet.getSpread(sheet.getNotes()));
 
     }
   }
@@ -125,7 +122,7 @@ public class MidiController implements IController {
     public void run() {
       INote remove = viewer.getNoteFromFields();
       sheet.removeNote(remove);
-      viewer.redraw();
+      viewer.updateNotes(sheet.getNotes(), sheet.getSpread(sheet.getNotes()));
     }
   }
 

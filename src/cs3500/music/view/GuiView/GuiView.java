@@ -5,6 +5,7 @@ import cs3500.music.model.INote;
 import cs3500.music.view.IMusicView;
 
 
+import javax.imageio.metadata.IIOMetadataNode;
 import javax.swing.*;
 
 import java.awt.*;
@@ -156,6 +157,9 @@ public class GuiView extends JFrame implements IGuiView {
     eastPanel.populateNoteList(notes);
   }
 
+  public void updateNotes(Collection<INote> notes, int[] spread){
+    centerPanel.updateNotes(notes, spread);
+  }
 
 
 }

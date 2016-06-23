@@ -58,4 +58,6 @@ public interface IGuiView extends IMusicView {
   void scrollToStart();
 
   void populateNoteList(Collection<INote> notes);
+
+  void updateNotes(Collection<INote> notes, int[] spread);
 }

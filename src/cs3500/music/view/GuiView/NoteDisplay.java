@@ -175,4 +175,10 @@ public class NoteDisplay extends JComponent {
     return value;
   }
 
+  public void updateNotes(Collection<INote> notes, int[] spread){
+    this.notes = notes;
+    this.spread = spread;
+    repaint();
+  }
+
 }
