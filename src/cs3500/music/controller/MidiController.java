@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -87,8 +88,11 @@ public class MidiController implements IController {
 
   @Override
   public void mouseRunnable(int x, int y) {
-    System.out.print(viewer.getNoteFromClick(x, y));
-    viewer.fieldsFromClick(viewer.getNoteFromClick(x, y));
+    int[] noteValues = viewer.getNoteFromClick(x, y);
+    System.out.print(noteValues);
+    viewer.fieldsFromClick(noteValues);
+    Collection<INote> notes = sheet.getNotes(noteValues[0],noteValues[1]);
+    viewer.populateNoteList(notes);
   }
 
   /**
@@ -105,7 +109,7 @@ public class MidiController implements IController {
       INote add = viewer.getNoteFromFields();
       sheet.addNote(add);
       viewer.remove();
-      viewer = new GuiView(sheet);
+      //viewer = new GuiView(sheet);
       viewer.display();
       viewer.addAListener(actionListener);
 

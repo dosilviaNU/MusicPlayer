@@ -129,7 +129,7 @@ public class NoteDisplay extends JComponent {
   private static String valueToPitchString(int noteValue) {
     StringBuilder result = new StringBuilder();
     result.append(INote.Pitch.fromValue(noteValue % 12).toString());
-
+    result.append((noteValue / 12)-1);
     return result.toString();
   }
 

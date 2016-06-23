@@ -103,7 +103,7 @@ public class MidiSheet implements IMusicSheet<MidiNote> {
     this._addNotes(notes);
   }
 
-  @Override
+
   public void insertSheets(IMusicSheet<MidiNote> sheet, int start) {
     Collection<MidiNote> preInsert = this.getNotes();
     Collection<MidiNote> insert = sheet.getNotes();
@@ -325,7 +325,7 @@ public class MidiSheet implements IMusicSheet<MidiNote> {
         result.add(n);
       }
     }
-    return notes;
+    return result;
   }
 
 

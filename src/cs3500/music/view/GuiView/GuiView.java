@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
 import java.io.File;
+import java.util.Collection;
 
 /**
  * Created by David on 6/12/2016.
@@ -151,6 +152,9 @@ public class GuiView extends JFrame implements IGuiView {
     scrollPane.getHorizontalScrollBar().setValue(stats[2]*BEAT_WIDTH);
   }
 
+  public void populateNoteList(Collection<INote> notes){
+    eastPanel.populateNoteList(notes);
+  }
 
 
 

@@ -70,6 +70,11 @@ public class ROMidiComposition implements IComposition<MidiNote> {
   }
 
   @Override
+  public Collection<MidiNote> getNotes(int pitch, int beat) {
+    return null;
+  }
+
+  @Override
   public String printSheet() {
     return comp.printSheet();
   }

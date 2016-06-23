@@ -31,7 +31,7 @@ public class EditorMenu extends JComponent {
   private JTextField endValue;
   private ArrayList<JButton> buttons;
   private JList noteList;
-  private DefaultListModel<MidiNote> noteListModel;
+  private DefaultListModel<INote> noteListModel;
 
   public EditorMenu() {
 
@@ -153,7 +153,7 @@ public class EditorMenu extends JComponent {
       @Override
       public void valueChanged(ListSelectionEvent e) {
         int index = noteList.getSelectedIndex();
-        MidiNote note = noteListModel.getElementAt(index);
+        INote note = noteListModel.getElementAt(index);
         pitchValue.setText("" + note.getValue());
         channelValue.setText("" + note.getChannel());
         velocityValue.setText("" + note.getVolume());
@@ -179,8 +179,9 @@ public class EditorMenu extends JComponent {
     add(editorMain);
   }
 
-  public void populateNoteList(Collection<MidiNote> notes) {
-    for (MidiNote note : notes) {
+  public void populateNoteList(Collection<INote> notes) {
+    noteListModel.clear();
+    for (INote note : notes) {
       noteListModel.addElement(note);
     }
   }
