@@ -24,7 +24,7 @@ import java.util.Set;
  * Created by Jake on 6/9/2016.
  */
 public class MidiSheet implements IMusicSheet<MidiNote> {
-  protected final HashMap<Integer, ArrayList<MidiNote>> sheet;
+  protected HashMap<Integer, ArrayList<MidiNote>> sheet;
   //invariant: MidiSheets are the collection of all notes added, minus the ones removed.
   // Duplicate notes can exist. Blank MidiSheets can only be obtained by constructing a new
   // MidiSheet, or removing everything from an existing one.
@@ -103,14 +103,27 @@ public class MidiSheet implements IMusicSheet<MidiNote> {
     this._addNotes(notes);
   }
 
-  /*@Override
+  @Override
   public void insertSheets(IMusicSheet<MidiNote> sheet, int start) {
-    Set<MidiNote> preInsert = new HashSet<MidiNote>();
-    MidiSheet result=
-    for (int i = 0; i < start; i++ ) {
-      preInsert.addAll(sheet.getNotes(i));
+    Collection<MidiNote> preInsert = this.getNotes();
+    Collection<MidiNote> insert = sheet.getNotes();
+    int offset = sheet.size();
+    MidiSheet result = new MidiSheet();
+    for (MidiNote n: insert) {
+      n.shiftRight(start);
+      result.addNote(n);
     }
-  }*/
+    for (MidiNote n: preInsert) {
+      if (n.getStart() < start){
+        result.addNote(n);
+      }
+      else {
+        n.shiftRight(offset);
+        result.addNote(n);
+      }
+    }
+
+  }
 
   @Override
   public void mergeSheets(IMusicSheet sheet) {
@@ -306,9 +319,10 @@ public class MidiSheet implements IMusicSheet<MidiNote> {
   @Override
   public Collection<MidiNote> getNotes(int pitch, int beat) {
     Collection<MidiNote> notes = this.getNotes(beat);
+    Collection<MidiNote> result = new ArrayList<MidiNote>();
     for (MidiNote n: notes) {
       if (n.getValue() == pitch) {
-        notes.remove(n);
+        result.add(n);
       }
     }
     return notes;
