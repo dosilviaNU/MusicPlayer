@@ -32,6 +32,7 @@ public class EditorMenu extends JComponent {
   private ArrayList<JButton> buttons;
   private JList noteList;
   private DefaultListModel<INote> noteListModel;
+  private EditorMenuListener editListener;
 
   public EditorMenu() {
 
@@ -39,6 +40,7 @@ public class EditorMenu extends JComponent {
     setPreferredSize(new Dimension(250, 500));
     setLayout(new FlowLayout());
     JPanel editorMain = new JPanel();
+    editListener = new EditorMenuListener();
 
     buttons = new ArrayList<JButton>();
 
@@ -149,41 +151,24 @@ public class EditorMenu extends JComponent {
 
     //Notes at Beat List
     noteList = new JList();
-    noteList.addListSelectionListener(new ListSelectionListener() {
-      @Override
-      public void valueChanged(ListSelectionEvent e) {
-        int index = noteList.getSelectedIndex();
-        INote note = noteListModel.getElementAt(index);
-        pitchValue.setText("" + note.getValue());
-        channelValue.setText("" + note.getChannel());
-        velocityValue.setText("" + note.getVolume());
-        startValue.setText("" + note.getStart());
-        endValue.setText("" + note.getDuration());
-
-      }
-    });
-    noteListModel = new DefaultListModel();
+    noteList.addListSelectionListener(editListener);
+            noteListModel = new DefaultListModel();
     JScrollPane listScroll = new JScrollPane(noteList);
     listScroll.setSize(new Dimension(150, 300));
     noteList.setModel(noteListModel);
-    noteListModel.addElement(new MidiNote(60, 5, 10));
-    noteListModel.addElement(new MidiNote(50, 5, 20));
-    noteListModel.addElement(new MidiNote(72, 5, 30));
-    noteListModel.addElement(new MidiNote(80, 5, 40));
-    noteListModel.addElement(new MidiNote(95, 5, 50));
     noteList.setVisible(true);
     noteList.setPreferredSize(new Dimension(200, 300));
     editorMain.add(listScroll);
-
-
     add(editorMain);
   }
 
   public void populateNoteList(Collection<INote> notes) {
+    noteList.removeListSelectionListener(editListener);
     noteListModel.clear();
     for (INote note : notes) {
       noteListModel.addElement(note);
     }
+    noteList.addListSelectionListener(editListener);
   }
 
   public void addActionListener(ActionListener actionListener) {
@@ -209,13 +194,26 @@ public class EditorMenu extends JComponent {
     return fileValue.getText();
   }
 
-  public void fieldsFromClick(int[] noteValue){
-    pitchValue.setText(""+noteValue[0]);
-    startValue.setText(""+noteValue[1]);
+  public void fieldsFromClick(int[] noteValue) {
+    pitchValue.setText("" + noteValue[0]);
+    startValue.setText("" + noteValue[1]);
   }
 
+  class EditorMenuListener implements ListSelectionListener {
+    @Override
+    public void valueChanged(ListSelectionEvent e) {
+      int index = noteList.getSelectedIndex();
+      INote note = noteListModel.getElementAt(index);
+      pitchValue.setText("" + note.getValue());
+      channelValue.setText("" + note.getChannel());
+      velocityValue.setText("" + note.getVolume());
+      startValue.setText("" + note.getStart());
+      endValue.setText("" + note.getDuration());
+
+    }
 
 
+  }
 }
 
 

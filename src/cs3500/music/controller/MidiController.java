@@ -89,9 +89,10 @@ public class MidiController implements IController {
   @Override
   public void mouseRunnable(int x, int y) {
     int[] noteValues = viewer.getNoteFromClick(x, y);
-    System.out.print(noteValues);
-    viewer.fieldsFromClick(noteValues);
     Collection<INote> notes = sheet.getNotes(noteValues[0],noteValues[1]);
+    if(notes.size() == 0){
+    viewer.fieldsFromClick(noteValues);
+    }
     viewer.populateNoteList(notes);
   }
 
@@ -166,10 +167,7 @@ public class MidiController implements IController {
       }
       sheet = comp;
       player = new MidiView(comp);
-      viewer.remove();
-      viewer = new GuiView(comp);
-      viewer.addAListener(actionListener);
-      viewer.display();
+      viewer.updateNotes(sheet.getNotes(),sheet.getSpread(sheet.getNotes()));
     }
   }
 

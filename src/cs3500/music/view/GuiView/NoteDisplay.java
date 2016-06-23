@@ -40,12 +40,13 @@ public class NoteDisplay extends JComponent {
     setAutoscrolls(true);
     //Initialize instance variables.
     this.sheet = givenSheet;
-    this.spread = sheet.getSpread(sheet.getNotes());
+    this.notes = sheet.getNotes();
+    this.spread = sheet.getSpread(notes);
     this.noteMod = spread[1] - spread[0] - 1;
     this.noteCount = spread[1] - spread[0] + 1;
     this.windowHeight = (noteMod + 3) * topBorder;
     this.windowWidth = (spread[2] + 1) * leftBorder;
-    this.curBeat = 2;
+    this.curBeat = 0;
     setPreferredSize(new Dimension(windowWidth, windowHeight));
     setVisible(true);
     setFocusable(true);
@@ -61,7 +62,7 @@ public class NoteDisplay extends JComponent {
   public void paintComponent(Graphics g) {
     int beatLine = (curBeat * leftBorder) + leftBorder;
     Graphics2D g2 = (Graphics2D) g;
-    this.notes = sheet.getNotes();
+
 
     //Draw notes.
     for (INote note : this.notes) {
@@ -178,7 +179,15 @@ public class NoteDisplay extends JComponent {
   public void updateNotes(Collection<INote> notes, int[] spread){
     this.notes = notes;
     this.spread = spread;
-    repaint();
+    updateSpread();
+  }
+
+  private void updateSpread(){
+    this.noteMod = spread[1] - spread[0] - 1;
+    this.noteCount = spread[1] - spread[0] + 1;
+    this.windowHeight = (noteMod + 3) * topBorder;
+    this.windowWidth = (spread[2] + 1) * leftBorder;
+    setPreferredSize(new Dimension(windowWidth, windowHeight));
   }
 
 }

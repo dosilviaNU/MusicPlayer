@@ -159,7 +159,10 @@ public class GuiView extends JFrame implements IGuiView {
 
   public void updateNotes(Collection<INote> notes, int[] spread){
     centerPanel.updateNotes(notes, spread);
-  }
+    scrollPane.setPreferredSize(centerPanel.getPreferredSize());
+    repaint();
+    requestFocus();
+      }
 
 
 }
