@@ -293,4 +293,15 @@ public class MidiSheet implements IMusicSheet<MidiNote> {
     }
     return result;
   }
+
+  @Override
+  public Collection<MidiNote> getNotes(int pitch, int beat) {
+    Collection<MidiNote> notes = this.getNotes(beat);
+    for (MidiNote n: notes) {
+      if (n.getValue() == pitch) {
+        notes.remove(n);
+      }
+    }
+    return notes;
+  }
 }

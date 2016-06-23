@@ -57,6 +57,15 @@ public interface IMusicSheet<N> {
    */
   Collection<N> getNotes(int beat);
 
+
+  /**
+   * get all the notes at the specified beat and pitch
+   *
+   * @param beat beat to retreive notes from
+   * @param pitch pit to retreive notes from
+   */
+  Collection<N> getNotes(int pitch, int beat);
+
   /**
    * Returns a String containing a textual representation of an IMusicSheet
    *
