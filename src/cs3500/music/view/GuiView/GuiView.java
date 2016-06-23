@@ -44,6 +44,7 @@ public class GuiView extends JFrame implements IGuiView {
     setSize(new Dimension(GuiView.GUI_WIDTH, GUI_HEIGHT));
     setLayout(new BorderLayout());
     stats=sheet.getSpread(sheet.getNotes());
+    setFocusable(true);
 
     //Set center panel, as scrollpane.
     centerPanel = new NoteDisplay(sheet);
@@ -72,13 +73,39 @@ public class GuiView extends JFrame implements IGuiView {
   }
 
   @Override
+  public void scrollLeft() {
+    int current = scrollPane.getHorizontalScrollBar().getValue();
+
+      scrollPane.getHorizontalScrollBar().setValue(current - BEAT_WIDTH);
+
+  }
+
+  @Override
+  public void scrollRight() {
+    int current = scrollPane.getHorizontalScrollBar().getValue();
+    if(current <= (stats[2]-1)*BEAT_WIDTH) {
+      scrollPane.getHorizontalScrollBar().setValue(current + BEAT_WIDTH);
+    }
+  }
+
+  @Override
+  public void scrollUp() {
+
+  }
+
+  @Override
+  public void scrollDown() {
+
+  }
+
+  @Override
   public INote getNoteFromList() {
     return eastPanel.getNoteFromList();
   }
 
   @Override
   public void addKListener(KeyListener keyListener) {
-    centerPanel.addKeyListener(keyListener);
+    addKeyListener(keyListener);
   }
 
   @Override
@@ -113,6 +140,8 @@ public class GuiView extends JFrame implements IGuiView {
   public void scrollToEnd() {
     scrollPane.getHorizontalScrollBar().setValue(stats[2]*BEAT_WIDTH);
   }
+
+
 
 
 }

@@ -56,19 +56,14 @@ public class EditorMenu extends JComponent {
     fileAdder = new JPanel();
     fileAdder.setVisible(true);
     fileAdder.setLayout(new FlowLayout());
-    fileValue = new JTextField(20);
+    fileValue = new JTextField(15);
 
     JButton openFile = new JButton("Open");
     openFile.setActionCommand("open");
     buttons.add(openFile);
 
-    JButton update = new JButton("UPDATE");
-    update.setActionCommand("update");
-    buttons.add(update);
-
     fileAdder.add(fileValue);
     fileAdder.add(openFile);
-    fileAdder.add(update);
     editorMain.add(fileAdder);
 
     //Add/Remove/Edit buttons.

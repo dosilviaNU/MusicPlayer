@@ -38,6 +38,14 @@ public interface IGuiView extends IMusicView {
 
   String getFileFromField();
 
+  void scrollLeft();
+
+  void scrollRight();
+
+  void scrollUp();
+
+  void scrollDown();
+
   void updateBeat(int beat);
 
   void scrollToEnd();

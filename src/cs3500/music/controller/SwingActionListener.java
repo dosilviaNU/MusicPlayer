@@ -15,6 +15,6 @@ public class SwingActionListener implements ActionListener {
 
   @Override
   public void actionPerformed(ActionEvent e) {
-
+    controller.actionRunnable(e.getActionCommand());
   }
 }

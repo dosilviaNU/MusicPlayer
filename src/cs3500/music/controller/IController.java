@@ -5,45 +5,66 @@ package cs3500.music.controller;
  * Created by Jake on 6/21/2016.
  */
 public interface IController {
+
+
   /**
    * sets the position to the current song beat
    */
-  void setPosition();
+  //void setPosition();
 
   /**
    * Add a note to a IComposition
    */
-  void addNote();
+  //void addNote();
 
   /**
    * Edits an existing note in an IComposiiton
    */
-  void editNote();
+  //void editNote();
 
   /**
    * Remove note from IComposition
    */
-  void removeNote();
+  //void removeNote();
 
   /**
    * Gets the current beat of a playing IComposition
    */
-  void getBeat();
+  //void getBeat();
 
   /**
    * Starts playing current IComposition
    */
-  void startPlay();
+  //void startPlay();
 
   /**
    * Stops playing current IComposition
    */
-  void stopPlay();
+  //void stopPlay();
 
   /**
    * Resumes playing current IComposition
    */
-  void resumePlay();
+  //void resumePlay();
+
+  /**
+   * Gets the corresponding runnable from the given key,
+   * @param key String key to keyboard runnables hashmap.
+   */
+
+  void keyboardRunnable(int key);
+
+  /**
+   * Gets the corresponding runnable from the given key.
+   * @param key String key to action runnables hashmap.
+   */
+  void actionRunnable(String key);
+
+  /**
+   * Gets the corresponding runnable from the given key.
+   * @param key String key to mouse runnables hashmap.
+   */
+  void mouseRunnable(String key);
 
 
 }
