@@ -144,18 +144,14 @@ public class NoteDisplay extends JComponent {
    * @param y
    * @return
    */
-  public String getNoteFromClick(int x, int y){
-    StringBuilder key = new StringBuilder();
-
+  public int[] getNoteFromClick(int x, int y){
+    int[] results = new int[2];
     //Find and convert pitchValue.
-    int pitchValue = yCoordToValue(y);
-    key.append(pitchValue);
-    key.append("=");
+    results[0] =  yCoordToValue(y);
     //Find and append beat value.
-    int beat = xCoordToValue(x);
-    key.append(beat);
+    results[1]  = xCoordToValue(x);
 
-    return key.toString();
+    return results;
   }
 
   /**
