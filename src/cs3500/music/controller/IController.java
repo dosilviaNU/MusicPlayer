@@ -61,10 +61,11 @@ public interface IController {
   void actionRunnable(String key);
 
   /**
-   * Gets the corresponding runnable from the given key.
-   * @param key String key to mouse runnables hashmap.
+   *
+   * @param x
+   * @param y
    */
-  void mouseRunnable(String key);
+  void mouseRunnable(int x, int y);
 
 
 }

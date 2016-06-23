@@ -48,6 +48,7 @@ public class NoteDisplay extends JComponent {
     this.curBeat = 2;
     setPreferredSize(new Dimension(windowWidth, windowHeight));
     setVisible(true);
+    setFocusable(true);
     repaint();
   }
 
@@ -122,19 +123,60 @@ public class NoteDisplay extends JComponent {
 
   /**
    * Given a note value, returns its string representation.
-   *
    * @param noteValue Value to convert to a string.
    * @return String representation of given note value.
    */
   private static String valueToPitchString(int noteValue) {
     StringBuilder result = new StringBuilder();
     result.append(INote.Pitch.fromValue(noteValue % 12).toString());
-    result.append((noteValue / 12) - 1);
+
     return result.toString();
   }
 
   public void nextBeat(int beat) {
     curBeat = beat;
+  }
+
+  /**
+   * Returns the String representation of a note with = as a delimiter between values
+   * example: Pitch=Beat
+   * @param x
+   * @param y
+   * @return
+   */
+  public String getNoteFromClick(int x, int y){
+    StringBuilder key = new StringBuilder();
+
+    //Find and convert pitchValue.
+    int pitchValue = yCoordToValue(y);
+    key.append(pitchValue);
+    key.append("=");
+    //Find and append beat value.
+    int beat = xCoordToValue(x);
+    key.append(beat);
+
+    return key.toString();
+  }
+
+  /**
+   *Given a y coordinate, return the pitch value associated with it.
+   * @param y Mouse y position.
+   * @return Pitch value associated with given y.
+   */
+  private  int yCoordToValue(int y) {
+    int ordinal = ((y - topBorder - 1) / topBorder) - 1;
+    int value = (noteMod - ordinal) + spread[0];
+    return value;
+  }
+
+  /**
+   * Given an x coordinate, return the beat number associated with it.
+   * @param x Mouse x position.
+   * @return Beat number associated with given x.
+   */
+  private  int xCoordToValue(int x) {
+    int value = ((x - leftBorder) / leftBorder);
+    return value;
   }
 
 }

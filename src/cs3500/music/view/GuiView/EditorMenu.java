@@ -136,7 +136,7 @@ public class EditorMenu extends JComponent {
     endFields = new JPanel();
     endFields.setVisible(true);
     endFields.setLayout(new FlowLayout());
-    JLabel end = new JLabel("Duration:        ");
+    JLabel end = new JLabel("Duration: ");
     endValue = new JTextField(10);
     endFields.add(end);
     endFields.add(endValue);
@@ -207,6 +207,14 @@ public class EditorMenu extends JComponent {
   public String getFileFromField() {
     return fileValue.getText();
   }
+
+  public void fieldsFromClick(String noteValue){
+    String[] noteValues = noteValue.split("=");
+    pitchValue.setText(noteValues[0]);
+    startValue.setText(noteValues[1]);
+  }
+
+
 
 }
 

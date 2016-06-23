@@ -122,6 +122,16 @@ public class GuiView extends JFrame implements IGuiView {
     centerPanel.addMouseListener(mouseListener);
   }
 
+  @Override
+  public String getNoteFromClick(int x, int y) {
+    return centerPanel.getNoteFromClick(x, y);
+  }
+
+  @Override
+  public void fieldsFromClick(String noteValue) {
+    eastPanel.fieldsFromClick(noteValue);
+  }
+
   public void remove() {
     setVisible(false);
   }

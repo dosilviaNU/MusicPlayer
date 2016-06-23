@@ -34,6 +34,10 @@ public interface IGuiView extends IMusicView {
 
   void addMListener(MouseListener mouseListener);
 
+  String getNoteFromClick(int x, int y);
+
+  void fieldsFromClick(String noteValue);
+
   void remove();
 
   String getFileFromField();

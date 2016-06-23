@@ -20,6 +20,7 @@ import cs3500.music.view.midi.MidiView;
 
 import static java.awt.event.KeyEvent.VK_LEFT;
 import static java.awt.event.KeyEvent.VK_RIGHT;
+import static java.awt.event.MouseEvent.BUTTON1;
 
 /**
  * Concrete Class implementing the IController Interface Created by Jake on 6/21/2016.
@@ -31,6 +32,7 @@ public class MidiController implements IController {
   int beat = 0;
   SwingActionListener actionListener;
   SwingKeyboardListener keyListener;
+  SwingMouseListener mouseListener;
   Map<String, Runnable> actionMap;
   Map<Integer, Runnable> keyMap;
 
@@ -45,9 +47,11 @@ public class MidiController implements IController {
 
     actionListener = new SwingActionListener(this);
     keyListener = new SwingKeyboardListener(this);
+    mouseListener = new SwingMouseListener(this);
 
     viewer.addAListener(actionListener);
     viewer.addKListener(keyListener);
+    viewer.addMListener(mouseListener);
     viewer.display();
 
   }
@@ -82,8 +86,9 @@ public class MidiController implements IController {
   }
 
   @Override
-  public void mouseRunnable(String key) {
-
+  public void mouseRunnable(int x, int y) {
+    System.out.print(viewer.getNoteFromClick(x, y));
+    viewer.fieldsFromClick(viewer.getNoteFromClick(x, y));
   }
 
   /**
@@ -185,11 +190,6 @@ public class MidiController implements IController {
     }
   }
 
-
-
-
-
-
   /**
    * sets the position to the current song beat
    */
@@ -199,12 +199,6 @@ public class MidiController implements IController {
 
     }
   }
-
-
-
-
-
-
   /**
    * Gets the current beat of a playing IComposition
    */
@@ -244,4 +238,5 @@ public class MidiController implements IController {
 
     }
   }
+
 }
