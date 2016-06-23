@@ -14,6 +14,8 @@ import cs3500.music.model.INote;
 import cs3500.music.model.MidiComposition;
 import cs3500.music.util.MidiCompBuilder;
 import cs3500.music.util.MusicReader;
+import cs3500.music.view.CompositeView.CompositeView;
+import cs3500.music.view.CompositeView.ICompositeView;
 import cs3500.music.view.GuiView.GuiView;
 import cs3500.music.view.GuiView.IGuiView;
 import cs3500.music.view.midi.IMidiView;
@@ -28,9 +30,7 @@ import static java.awt.event.MouseEvent.BUTTON1;
  */
 public class MidiController implements IController {
   IComposition sheet;
-  IMidiView player;
-  IGuiView viewer;
-  int beat = 0;
+  ICompositeView viewer;
   SwingActionListener actionListener;
   SwingKeyboardListener keyListener;
   SwingMouseListener mouseListener;
@@ -39,8 +39,7 @@ public class MidiController implements IController {
 
 
   public MidiController(IComposition musicSheet) {
-    this.player = new MidiView(musicSheet);
-    this.viewer = new GuiView(musicSheet);
+    this.viewer = new CompositeView(musicSheet);
     this.sheet = musicSheet;
 
     buildActionMap();
@@ -166,7 +165,7 @@ public class MidiController implements IController {
         err.getMessage();
       }
       sheet = comp;
-      player = new MidiView(comp);
+      viewer.updateMidiComp(sheet);
       viewer.updateNotes(sheet.getNotes(),sheet.getSpread(sheet.getNotes()));
     }
   }

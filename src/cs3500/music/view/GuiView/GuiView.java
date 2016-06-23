@@ -2,17 +2,16 @@ package cs3500.music.view.GuiView;
 
 import cs3500.music.model.IComposition;
 import cs3500.music.model.INote;
-import cs3500.music.view.IMusicView;
 
 
-import javax.imageio.metadata.IIOMetadataNode;
+
 import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
-import java.io.File;
+
 import java.util.Collection;
 
 /**
