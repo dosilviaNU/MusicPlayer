@@ -123,12 +123,12 @@ public class GuiView extends JFrame implements IGuiView {
   }
 
   @Override
-  public String getNoteFromClick(int x, int y) {
+  public int[] getNoteFromClick(int x, int y) {
     return centerPanel.getNoteFromClick(x, y);
   }
 
   @Override
-  public void fieldsFromClick(String noteValue) {
+  public void fieldsFromClick(int[] noteValue) {
     eastPanel.fieldsFromClick(noteValue);
   }
 

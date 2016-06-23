@@ -208,10 +208,9 @@ public class EditorMenu extends JComponent {
     return fileValue.getText();
   }
 
-  public void fieldsFromClick(String noteValue){
-    String[] noteValues = noteValue.split("=");
-    pitchValue.setText(noteValues[0]);
-    startValue.setText(noteValues[1]);
+  public void fieldsFromClick(int[] noteValue){
+    pitchValue.setText(""+noteValue[0]);
+    startValue.setText(""+noteValue[1]);
   }
 
 
