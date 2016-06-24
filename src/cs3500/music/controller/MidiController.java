@@ -218,15 +218,10 @@ public class MidiController implements IController {
     @Override
     public void run() {
       play=true;
-      Play play1 = new Play();
-      Thread bar = (new Thread(new UpdateBar(play1)));
-      Thread player = new Thread(play1);
+      Thread bar = (new Thread(new UpdateBar()));
+      Thread player = new Thread(new Play());
       bar.start();
       player.start();
-      if(!player.isAlive()){
-        play = false;
-        viewer.scrollToStart();
-      }
     }
   }
 
@@ -235,19 +230,16 @@ public class MidiController implements IController {
    * Synchronized with Play.
    */
   class UpdateBar implements Runnable {
-    Play sp;
-    public UpdateBar(Play sp) {
-      this.sp = sp;
-    }
+
+
     public void run() {
-      synchronized (sp) {
         while (play) {
           viewer.updateBeat(viewer.getBeat());
 
         }
       }
     }
-  }
+
 
 
   /**
