@@ -224,7 +224,6 @@ public class MidiController implements IController {
       bar.start();
       player.start();
       if(!player.isAlive()){
-        System.out.print("dad");
         play = false;
         viewer.scrollToStart();
       }

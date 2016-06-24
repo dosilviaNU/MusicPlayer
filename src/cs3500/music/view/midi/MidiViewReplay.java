@@ -17,6 +17,7 @@ public class MidiViewReplay extends MidiView {
     super(composition);
   }
 
+  /*
   public void resumePlay(int beat) {
     MidiMessage start;
     MidiMessage stop;
@@ -35,5 +36,7 @@ public class MidiViewReplay extends MidiView {
         }
       }
     }
-  }
+  }*/
+
+
 }
