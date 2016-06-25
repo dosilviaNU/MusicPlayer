@@ -60,11 +60,6 @@ public class CompositeView implements ICompositeView {
   }
 
   @Override
-  public void redraw() {
-    viewer.redraw();
-  }
-
-  @Override
   public void addKListener(KeyListener keyListener) {
     viewer.addKListener(keyListener);
   }
@@ -149,13 +144,6 @@ public class CompositeView implements ICompositeView {
   public void display(){
     viewer.display();
   }
-
-  //Todo does this do anything?
-  /*public void startBeat(){
-    while (playing){
-      viewer.updateBeat(player.getBeat());
-    }
-  }*/
 
   @Override
   public void giveFocus() {

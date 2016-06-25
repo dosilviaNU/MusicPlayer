@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
+import cs3500.music.controller.MidiController;
+
 /**
  * Model for a Sheet of Midi notes. This Model represents a sheet of music from C-1 to G9 on the
  * musical scale.
