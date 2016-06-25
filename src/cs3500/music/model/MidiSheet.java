@@ -321,7 +321,7 @@ public class MidiSheet implements IMusicSheet<MidiNote> {
     Collection<MidiNote> notes = this.getNotes(beat);
     Collection<MidiNote> result = new ArrayList<MidiNote>();
     for (MidiNote n: notes) {
-      if (n.getValue() == pitch) {
+      if (n.getValue() == pitch && (n.getDuration() + n.getStart() -1 != beat)) {
         result.add(n);
       }
     }
