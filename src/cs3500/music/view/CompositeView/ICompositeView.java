@@ -49,6 +49,7 @@ public interface ICompositeView {
    */
   INote getNoteFromList();
 
+  //Todo These need method definiitions
   void redraw();
 
   void addKListener(KeyListener keyListener);
