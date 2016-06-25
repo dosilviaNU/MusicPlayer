@@ -31,15 +31,15 @@ package cs3500.music.controller;
  * Concrete Class implementing the IController Interface Created by Jake on 6/21/2016.
  */
 public class MidiController implements IController {
-  IComposition sheet;
-  ICompositeView viewer;
-  SwingActionListener actionListener;
-  SwingKeyboardListener keyListener;
-  SwingMouseListener mouseListener;
-  Map<String, Runnable> actionMap;
-  Map<Integer, Runnable> keyMap;
-  boolean play;
-  int position;
+  private IComposition sheet;
+  private ICompositeView viewer;
+  private SwingActionListener actionListener;
+  private SwingKeyboardListener keyListener;
+  private SwingMouseListener mouseListener;
+  private Map<String, Runnable> actionMap;
+  private Map<Integer, Runnable> keyMap;
+  private boolean play;
+  private int position;
 
 
   /**

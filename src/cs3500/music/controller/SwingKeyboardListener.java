@@ -9,8 +9,8 @@ import java.util.Map;
  */
 public class SwingKeyboardListener implements KeyListener {
   private long lastPressProcessed = 0;
-  IController controller;
-  Map<Integer, Runnable> keyMap;
+  private IController controller;
+  private Map<Integer, Runnable> keyMap;
 
   public SwingKeyboardListener(IController controller, Map<Integer, Runnable> keyMap) {
     this.keyMap = keyMap;

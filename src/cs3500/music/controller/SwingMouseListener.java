@@ -7,7 +7,7 @@ import java.awt.event.MouseListener;
  * Listener for MouseEvents in an IController Created by Jake on 6/21/2016.
  */
 public class SwingMouseListener implements MouseListener {
-  IController controller;
+  private IController controller;
 
   public SwingMouseListener(IController controller){
     this.controller = controller;

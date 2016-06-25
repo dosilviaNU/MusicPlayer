@@ -8,8 +8,8 @@ import java.util.Map;
  * Listener Action Events in an IController Created by Jake on 6/21/2016.
  */
 public class SwingActionListener implements ActionListener {
-  IController controller;
-  Map<String, Runnable> actionMap;
+  private IController controller;
+  private Map<String, Runnable> actionMap;
 
   SwingActionListener(IController controller, Map<String, Runnable> actionMap) {
     this.controller = controller;
