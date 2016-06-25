@@ -9,6 +9,12 @@ Represent a tempo
 Represent a volume (velocity)
 Represent a channel
 
+Additional Features required by HW07
+Supporting Pause
+Supporting Resume
+Supporting Play
+Supporting Adding, Removing, Editng notes on GuiView
+
 Features:
 Must be able to add and remove notes from the sheet
 Must be able to print to a given textual format
@@ -21,6 +27,10 @@ Additional Features in HW06
 MidiView
 ConsoleView
 GuiView
+
+Additional Features:
+Controller
+Composite View
 
 Assumptions Made:
 This is a model for a Java (not a big leap) MIDI (mentioned in class) player.
@@ -54,6 +64,9 @@ in midi.A Midi sound cannot be played without a channel or velocity, so it was r
 into the original class. This was designed to cause no backwards compatibility issues, and
 continued to work with existing code and tests from HW05.
 
+Addition Features in Model for HW07:
+None
+
 IMusicSheets
 Contains all the hinted at operations in the assignment
 add, remove notes on a MidiSheet (adds a clone)
@@ -70,6 +83,8 @@ instruments, which also verify the information.
 Additional Class: ROMidiComposition
 This also implements IComposition and is a read only wrapper for MidiComposition which only
 allows access to the data, but does not allow the user to modify the data.
+
+Nothing added for HW07 in Model
 
 
 MidiSheet
@@ -102,7 +117,31 @@ an appendable (using Formatter) instead, so the output can be tested.
 GuiView/Noteview
  Creates a graphical representation of the view.
 
+IGuiView extends IMusicView
+Contains the GuiSpecific Methods that need to be called by the composite view
+
+Added for HW07
+
+IComposite/Composite view
+This Interface contains all the methods of both the IGui and IMidi views, but does not extend
+those views. This would allow someone to integrate other view types more easily, as long as
+they implement all the required methods.
+
+The concrete class delegates the methods to the appropriate interfaces contained within the
+CompositeView.
+
+IMidiController/MidiController
+This class contains a series of Runnable Class that contain all the funtionality needed to run
+the program.
+The interface defines all the runnable classes, and allows a MidiController to create the
+Runnables outside its class, so they can be placed in keyMaps.
+
+
 MusicEditor
 Main method for the project, takes two command line arguments "filename.txt", and either "midi",
 "gui", or "console". It will then run the specified view with the specified file.
+
+This file now also builds the keyMaps and actionMaps, so the controller is completely swing
+independent when it comes to playing music. (Error messages are swing objects, but they are self
+contained.)
 
