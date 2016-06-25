@@ -33,15 +33,12 @@ import cs3500.music.view.ErrorWindow.ErrorWindow;
  * Created by Jake on 6/23/2016.
  */
 public class MockController implements IController {
-  Formatter debug;
-  
-  IComposition sheet;
-  private ICompositeView viewer;
-  private SwingActionListener actionListener;
-  private SwingKeyboardListener keyListener;
-  private SwingMouseListener mouseListener;
-  private Map<String, Runnable> actionMap;
-  private Map<Integer, Runnable> keyMap;
+  public Formatter debug;
+  public IComposition sheet;
+  public ICompositeView viewer;
+  public MockListeners listeners;
+  public Map<String, Runnable> actionMap;
+  public Map<Integer, Runnable> keyMap;
   private boolean play;
   private int position;
 
@@ -59,15 +56,14 @@ public class MockController implements IController {
     buildActionMap();
     buildKeyMap();
 
-    actionListener = new SwingActionListener(this, actionMap);
-    keyListener = new SwingKeyboardListener(this, keyMap);
-    mouseListener = new SwingMouseListener(this);
+    listeners = new MockListeners(this, actionMap, keyMap);
 
-    viewer.addAListener(actionListener);
-    viewer.addKListener(keyListener);
-    viewer.addMListener(mouseListener);
+    viewer.addAListener(listeners);
+    viewer.addKListener(listeners);
+    viewer.addMListener(listeners);
     viewer.display();
     int position = 0;
+    debug.format("Controller Constructed\n");
   }
 
   /**
@@ -112,6 +108,7 @@ public class MockController implements IController {
   class AddNote implements Runnable {
     @Override
     public void run() {
+      debug.format("Attempting to add note\n");
       try { INote add = viewer.getNoteFromFields();
         sheet.addNote(add);
         viewer.updateNotes(sheet.getNotes(), sheet.getSpread(sheet.getNotes())); }
@@ -128,6 +125,7 @@ public class MockController implements IController {
   class RemoveNote implements Runnable {
     @Override
     public void run() {
+      debug.format("Attempting to remove note\n");
       INote remove = viewer.getNoteFromFields();
       sheet.removeNote(remove);
       viewer.updateNotes(sheet.getNotes(), sheet.getSpread(sheet.getNotes()));
@@ -140,6 +138,7 @@ public class MockController implements IController {
   class EditNote implements Runnable {
     @Override
     public void run() {
+      debug.format("Attempting to edit note\n");
       try {
         INote edit = viewer.getNoteFromList();
         INote editTo = viewer.getNoteFromFields();
@@ -157,6 +156,8 @@ public class MockController implements IController {
   class OpenFile implements Runnable {
     @Override
     public void run() {
+
+      debug.format("Attempting to open file\n");
       File musicFile = new File(viewer.getFileFromField());
       //Parse and build given music text file.
       FileReader music = null;
@@ -228,7 +229,7 @@ public class MockController implements IController {
   class StartPlay implements Runnable {
     @Override
     public void run() {
-      debug.format("Starting Threads");
+      debug.format("Starting Threads\n");
       play = true;
       Thread bar = (new Thread(new MockController.UpdateBar()));
       Thread player = new Thread(new MockController.Play());
@@ -244,7 +245,7 @@ public class MockController implements IController {
 
 
     public void run() {
-      debug.format("Updating Bar");
+      debug.format("Updating Bar\n");
       while (play) {
         viewer.updateBeat(viewer.getBeat());
         position = viewer.getBeat();
@@ -259,7 +260,7 @@ public class MockController implements IController {
    */
   class Play implements Runnable {
     public void run() {
-      debug.format("Playing");
+      debug.format("Playing\n");
       viewer.play();
     }
   }
@@ -270,7 +271,7 @@ public class MockController implements IController {
   class StopPlay implements Runnable {
     @Override
     public void run() {
-      debug.format("Stopping");
+      debug.format("Stopping\n");
       play = false;
       viewer.stop();
     }
@@ -282,7 +283,7 @@ public class MockController implements IController {
   class ResumePlay implements Runnable {
     @Override
     public void run() {
-      debug.format("In resume, position = " + position);
+      debug.format("In resume, position = " + position + "\n");
       play = true;
       viewer.resume(position);
       new Thread(new MockController.UpdateBar()).start();
