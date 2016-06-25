@@ -113,7 +113,7 @@ public class MockController implements IController {
         sheet.addNote(add);
         viewer.updateNotes(sheet.getNotes(), sheet.getSpread(sheet.getNotes())); }
       catch (Exception e) {
-        new ErrorWindow(e.getMessage(), "Invalid Note");
+        //new ErrorWindow(e.getMessage(), "Invalid Note");
       }
 
     }
@@ -145,7 +145,7 @@ public class MockController implements IController {
         sheet.edit(edit, editTo);
         viewer.updateNotes(sheet.getNotes(), sheet.getSpread(sheet.getNotes()));
       } catch (Exception e) {
-        new ErrorWindow(e.getMessage(), "Edit Failed");
+        //new ErrorWindow(e.getMessage(), "Edit Failed");
       }
     }
   }
@@ -164,7 +164,7 @@ public class MockController implements IController {
       try {
         music = new FileReader(musicFile);
       } catch (FileNotFoundException err) {
-        new ErrorWindow(err.getMessage(), "Cannot find file!");
+        //new ErrorWindow(err.getMessage(), "Cannot find file!");
         viewer.giveFocus();
       }
       MusicReader mr = new MusicReader();
@@ -173,7 +173,7 @@ public class MockController implements IController {
       try {
         comp = mr.parseFile(music, mcb);
       } catch (IllegalArgumentException err) {
-        new ErrorWindow(err.getMessage(), "Cannot parse file!");
+        //new ErrorWindow(err.getMessage(), "Cannot parse file!");
         viewer.giveFocus();
       }
       sheet = comp;
@@ -189,6 +189,7 @@ public class MockController implements IController {
   class ScrollLeft implements Runnable {
     @Override
     public void run() {
+      debug.format("scroll left");
       viewer.scrollLeft();
     }
   }
@@ -199,6 +200,7 @@ public class MockController implements IController {
   class ScrollRight implements Runnable {
     @Override
     public void run() {
+      debug.format("scroll right");
       viewer.scrollRight();
     }
   }
@@ -209,6 +211,7 @@ public class MockController implements IController {
   class ScrollHome implements Runnable {
     @Override
     public void run() {
+      debug.format("Goto home");
       viewer.scrollToStart();
     }
   }
@@ -219,6 +222,7 @@ public class MockController implements IController {
   class ScrollEnd implements Runnable {
     @Override
     public void run() {
+      debug.format("Goto end");
       viewer.scrollToEnd();
     }
   }
