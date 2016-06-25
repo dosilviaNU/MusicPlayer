@@ -24,10 +24,16 @@ public class SwingKeyboardListener implements KeyListener {
 
   @Override
   public void keyPressed(KeyEvent e) {
-    if (System.currentTimeMillis() - lastPressProcessed > 500) {
-      this.keyboardRunnable(e.getKeyCode());
-      lastPressProcessed = System.currentTimeMillis();
+    if (System.currentTimeMillis() - lastPressProcessed > 200) {
+      Runnable action = keyMap.get(e.getKeyCode());
+      try {
+        action.run();
+      } catch (Exception ex) {
+        System.out.println("Invalid Key");
+      }
     }
+    lastPressProcessed = System.currentTimeMillis();
+
   }
 
   @Override
