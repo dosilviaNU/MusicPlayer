@@ -62,7 +62,6 @@ public class MidiController implements IController {
     viewer.addKListener(keyListener);
     viewer.addMListener(mouseListener);
     viewer.display();
-    int position = 0;
   }
 
   /**

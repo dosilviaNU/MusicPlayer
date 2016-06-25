@@ -11,9 +11,12 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collection;
-//Todo method headers
+
 /**
  * Created by David on 6/21/2016.
+ */
+/**
+ * Class to represent an editor menu JComponent housed within the maing GuiView Frame.
  */
 public class EditorMenu extends JComponent {
   private JPanel fileAdder;
@@ -34,21 +37,25 @@ public class EditorMenu extends JComponent {
   private DefaultListModel<INote> noteListModel;
   private EditorMenuListener editListener;
 
+  /**
+   * Constructor for the editor menu.
+   */
   public EditorMenu() {
 
     setVisible(true);
     setPreferredSize(new Dimension(250, 500));
-    setLayout(new FlowLayout());
-    JPanel editorMain = new JPanel();
+    FlowLayout flow = new FlowLayout();
+    setLayout(flow);
     editListener = new EditorMenuListener();
-
     buttons = new ArrayList<JButton>();
 
+    //Main panel.
+    JPanel editorMain = new JPanel();
     editorMain.setVisible(true);
     editorMain.setPreferredSize(new Dimension(250, 500));
     editorMain.setLayout(new BoxLayout(editorMain, BoxLayout.PAGE_AXIS));
 
-
+    //Open file label.
     JLabel fileBoxLabel = new JLabel("Enter Filename to Open: ");
     fileBoxLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
     editorMain.add(fileBoxLabel);
@@ -160,9 +167,35 @@ public class EditorMenu extends JComponent {
     noteList.setPreferredSize(new Dimension(200, 300));
     noteList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     editorMain.add(listScroll);
+
+    //Filler
+    JTextPane filler = new JTextPane();
+    filler.setVisible(false);
+    filler.setPreferredSize(new Dimension(50,50));
+    editorMain.add(filler);
+    //Commands
+    JTextPane commandInfo = new JTextPane();
+    commandInfo.setText("Press P to Play Current Song from Start\nPress O to Stop the Song" +
+            "\nPress I to Resume\n\nTo Add a Note Fill in Desired Values and Press Add" +
+            "\nTo Remove a Note Select A Note from The List and Press Remove\n" +
+            "To Edit a Note Select a Note from the List and Enter New Values And Press Edit");
+    flow.setVgap(20);
+    editorMain.add(commandInfo);
+
+
+
+
     add(editorMain);
+
+
+
+
   }
 
+  /**
+   * Populates the embedded JList with the collection of notes provided.
+   * @param notes Notes to fill the JList with.
+   */
   public void populateNoteList(Collection<INote> notes) {
     noteList.removeListSelectionListener(editListener);
     noteListModel.clear();
@@ -172,12 +205,21 @@ public class EditorMenu extends JComponent {
     noteList.addListSelectionListener(editListener);
   }
 
+  /**
+   * Adds an action listener to all buttons contained in the editor menu.
+   * @param actionListener
+   */
   public void addActionListener(ActionListener actionListener) {
     for (JButton button : buttons) {
       button.addActionListener(actionListener);
     }
   }
 
+  /**
+   * Returns a note from the values currently entered in the appropriate text fields.
+   * @return Note created from given values.
+   * @throws IllegalArgumentException If invalid pararemeters are passed.
+   */
   public INote getNoteFromFields() throws IllegalArgumentException {
     int pValue = Integer.valueOf(pitchValue.getText());
     int start = Integer.valueOf(startValue.getText());
@@ -187,19 +229,35 @@ public class EditorMenu extends JComponent {
     return new MidiNote(pValue, start, duration, volume, channel);
   }
 
+  /**
+   * Returns the note currently selected in the JList.
+   * @return Note currently selected in the JList.
+   */
   public INote getNoteFromList() {
     return (INote) noteList.getSelectedValue();
   }
 
+  /**
+   * Returns the File currently entered in the add file text field.
+   * @return File name as a String.
+   */
   public String getFileFromField() {
     return fileValue.getText();
   }
 
+  /**
+   * Sets the pitch value and starting beat from the note clicked on in the note display.
+   * @param noteValue int[] array where idx 0 is the pitch value and idx 1 is the starting beat
+   *                  of the note that was clicked on.
+   */
   public void fieldsFromClick(int[] noteValue) {
     pitchValue.setText("" + noteValue[0]);
     startValue.setText("" + noteValue[1]);
   }
 
+  /**
+   * Listener for the JList.
+   */
   class EditorMenuListener implements ListSelectionListener {
     @Override
     public void valueChanged(ListSelectionEvent e) {
