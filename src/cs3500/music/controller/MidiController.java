@@ -150,6 +150,7 @@ public class MidiController implements IController {
         music = new FileReader(musicFile);
       } catch (FileNotFoundException err) {
         new ErrorWindow(err.getMessage(), "Cannot find file!");
+        viewer.giveFocus();
       }
       MusicReader mr = new MusicReader();
       MidiCompBuilder mcb = new MidiCompBuilder();
@@ -158,6 +159,7 @@ public class MidiController implements IController {
         comp = mr.parseFile(music, mcb);
       } catch (IllegalArgumentException err) {
         new ErrorWindow(err.getMessage(), "Cannot parse file!");
+        viewer.giveFocus();
       }
       sheet = comp;
       viewer.updateMidiComp(sheet);
@@ -288,5 +290,4 @@ public class MidiController implements IController {
       new Thread(new UpdateBar()).start();
     }
   }
-
 }

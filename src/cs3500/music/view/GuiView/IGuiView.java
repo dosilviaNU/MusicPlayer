@@ -119,4 +119,6 @@ public interface IGuiView extends IMusicView {
    * @param spread new spread.
    */
   void updateNotes(Collection<INote> notes, int[] spread);
+
+  void giveFocus();
 }

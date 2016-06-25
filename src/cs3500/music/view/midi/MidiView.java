@@ -21,6 +21,7 @@ import javax.sound.midi.Track;
 import cs3500.music.model.IComposition;
 import cs3500.music.model.MidiComposition;
 import cs3500.music.model.MidiNote;
+import cs3500.music.view.ErrorWindow.ErrorWindow;
 
 /**
  *
@@ -37,21 +38,13 @@ public class MidiView implements IMidiView<IComposition>, Runnable {
 
   public MidiView(IComposition composition) {
     this.comp = composition;
-
     try {
-
-      sequence = null;
-      try {
-        sequence = new Sequence(Sequence.PPQ, comp.getTempo());
-      } catch (Exception e) {
-      }
-
-
+      sequence = new Sequence(Sequence.PPQ, comp.getTempo());
       song = MidiSystem.getSequencer();
       song.open();
-    } catch (MidiUnavailableException e1) {
-      e1.printStackTrace();
-    }
+      } catch (Exception e) {
+
+      }
     beat = (int) (song.getMicrosecondPosition()/comp.getTempo());
   }
 
@@ -63,16 +56,16 @@ public class MidiView implements IMidiView<IComposition>, Runnable {
 
   @Override
   public void run() {
-    this.playComp();
+    this.setup();
   }
 
   private void setInstruments() {
     for (int i = 0; i < 16; i++) {
-
+      //Not used
     }
   }
 
-  public void playComp() {
+  private void setup() {
     MidiMessage start;
     MidiMessage stop;
     int delay = this.comp.getTempo();
@@ -83,38 +76,65 @@ public class MidiView implements IMidiView<IComposition>, Runnable {
     }
     Collection<MidiNote> notes = comp.getNotes();
     for (MidiNote n : notes) {
-      start = null;
-      stop = null;
       try {
+        //create Shortmessages
         start = new ShortMessage(ShortMessage.NOTE_ON, n.getChannel(), n.getValue(),
                 n.getVolume());
         stop = new ShortMessage(ShortMessage.NOTE_OFF, n.getChannel(), n.getValue(),
                 n.getVolume());
+        //Turn into midiEvents
+        MidiEvent me = new MidiEvent(start,(n.getStart()) * delay);
+        MidiEvent me2 = new MidiEvent(stop,(n.getStart() + n.getDuration()) * delay);
+        //add midievents to track
+        track.add(me);
+        track.add(me2);
       } catch (Exception e) {
+        new ErrorWindow(e.getMessage(), "Sequencer Failed to Start!");
       }
-      MidiEvent me = new MidiEvent(start,(n.getStart()) * delay);
-      MidiEvent me2 = new MidiEvent(stop,(n.getStart() + n.getDuration()) * delay);
-      track.add(me);
-      track.add(me2);
     }
     song.setTempoInMPQ(delay);
-    System.out.print(song.getTempoFactor());
-    song.start();
+    //System.out.print(song.getTempoFactor());
+    System.out.println("Loaded");
   }
 
   @Override
   public int getBeat() {
-    beat = (int) ((song.getTickPosition())/(comp.getTempo()));
-    return  beat;//(result < 0 ? 0 : result);
+    beat = (int) ((song.getTickPosition()) / (comp.getTempo()));
+    return beat;
+  }
+
+  @Override
+  public void loadComp(IComposition<MidiNote> comp) {
+    this.comp = comp;
+    try {
+      sequence = new Sequence(Sequence.PPQ, comp.getTempo());
+      song = MidiSystem.getSequencer();
+      song.open();
+    } catch (Exception e) {
+
+    }
+    beat = (int) (song.getMicrosecondPosition()/comp.getTempo());
+    this.setup();
   }
 
   @Override
   public void play() {
-    this.run();
+    song.close();
+    System.out.println("Playing");
+    this.loadComp(comp);
+    song.start();
+    song.setTempoInMPQ(comp.getTempo());
   }
 
   @Override
-  public void resumePlay(int beat) {
-    throw new UnsupportedOperationException("Invalid Operation");
-  }
+  public void stop() {
+    System.out.println("Stopping!");
+    song.stop(); }
+
+  @Override
+  public void resume(long beat) {
+    System.out.println("Going to beat: " + beat);
+    song.start();
+    song.setTempoInMPQ(comp.getTempo());}
+
 }

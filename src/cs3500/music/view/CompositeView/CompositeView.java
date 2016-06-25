@@ -22,6 +22,7 @@ public class CompositeView implements ICompositeView {
 
   public CompositeView(IComposition sheet){
     this.player = new MidiView(sheet);
+    player.run();
     this.viewer = new GuiView(sheet);
     playing = true;
 
@@ -34,14 +35,19 @@ public class CompositeView implements ICompositeView {
   }
 
   @Override
-  public void play() {
-    player.play();
+  public void play() { player.play();
+    playing = true; }
+
+  @Override
+  public void stop() {
+    player.stop();
+    playing = false;
   }
 
   @Override
-  public void resumePlay(int beat) {
-    player.resumePlay(beat);
-  }
+  public void resume(long position) {
+    playing = true;
+    player.resume(position); }
 
   @Override
   public INote getNoteFromFields() {
@@ -134,16 +140,23 @@ public class CompositeView implements ICompositeView {
   }
 
   public void updateMidiComp(IComposition sheet){
-    this.player = new MidiView(sheet);
+    player.loadComp(sheet);
   }
 
   public void display(){
     viewer.display();
   }
 
+  /*
+  Does this do anything?
+   */
   public void startBeat(){
     while (playing){
       viewer.updateBeat(player.getBeat());
     }
+  }
+
+  public void giveFocus() {
+    viewer.giveFocus();
   }
 }

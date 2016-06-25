@@ -158,6 +158,7 @@ public class EditorMenu extends JComponent {
     noteList.setModel(noteListModel);
     noteList.setVisible(true);
     noteList.setPreferredSize(new Dimension(200, 300));
+    noteList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     editorMain.add(listScroll);
     add(editorMain);
   }

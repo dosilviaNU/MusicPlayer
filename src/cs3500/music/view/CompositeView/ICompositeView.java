@@ -7,16 +7,18 @@ import java.util.Collection;
 
 import cs3500.music.model.IComposition;
 import cs3500.music.model.INote;
+import cs3500.music.view.midi.IMidiView;
 
 /**
  * Created by David on 6/23/2016.
  */
-public interface ICompositeView {  /**
- * Gets the current beat that is being played
- *
- * @return beat
- */
-public int getBeat();
+public interface ICompositeView {
+  /**
+   * Gets the current beat that is being played
+   *
+   * @return beat
+   */
+  public int getBeat();
 
   /**
    * Starts playing from begining of IComposition
@@ -24,9 +26,14 @@ public int getBeat();
   public void play();
 
   /**
+   * Stops playing the composition of IComposition
+   */
+  public void stop();
+
+  /**
    * Starts playing from specified beat
    */
-  public void resumePlay(int beat);
+  public void resume(long position);
 
   /**
    * Returns the note from the 5 Text fields in the editor pane
@@ -79,5 +86,7 @@ public int getBeat();
   void display();
 
   void startBeat();
+
+  void giveFocus();
 
 }

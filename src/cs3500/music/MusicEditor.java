@@ -55,7 +55,7 @@ public class MusicEditor {
         break;
       case "midi":
         MidiView midi = new MidiView(comp);
-        midi.playComp();
+        midi.run();
         Thread.sleep(400000);
         break;
       case "gui":

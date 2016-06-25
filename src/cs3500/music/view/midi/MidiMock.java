@@ -43,10 +43,19 @@ public class MidiMock implements IMidiView<IComposition> {
     }
   }
 
+  public void run() {
+    return;
+  }
+
   @Override
   public int getBeat() {
     //no synthesiser in this mock
     return 0;
+  }
+
+  @Override
+  public void loadComp(IComposition<MidiNote> comp) {
+
   }
 
   @Override
@@ -55,7 +64,16 @@ public class MidiMock implements IMidiView<IComposition> {
   }
 
   @Override
-  public void resumePlay(int beat) {
+  public void stop() {
+
+  }
+
+  @Override
+  public void resume(long beat) {
+
+  }
+
+  public void resumePlay(long beat) {
     display();
   }
 

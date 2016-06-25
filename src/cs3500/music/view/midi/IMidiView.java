@@ -1,6 +1,8 @@
 package cs3500.music.view.midi;
 
+import cs3500.music.model.IComposition;
 import cs3500.music.model.MidiComposition;
+import cs3500.music.model.MidiNote;
 import cs3500.music.view.IMusicView;
 
 /**
@@ -13,6 +15,18 @@ public interface IMidiView<T> extends IMusicView<T> {
    * @return beat
    */
   public int getBeat();
+  /**
+   * Loads and plays the song
+   *
+   * @return beat
+   */
+  public void run();
+  /**
+   * Gets the current beat that is being played
+   *
+   * @return beat
+   */
+  public void loadComp(IComposition<MidiNote> comp);
 
   /**
    * Starts playing from begining of IComposition
@@ -22,5 +36,10 @@ public interface IMidiView<T> extends IMusicView<T> {
   /**
    * Starts playing from specified beat
    */
-  public void resumePlay(int beat);
+  public void stop();
+
+  /**
+   * Starts playing from current beat
+   */
+  public void resume(long beat);
 }
