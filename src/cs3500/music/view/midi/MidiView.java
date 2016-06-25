@@ -32,10 +32,6 @@ public class MidiView implements IMidiView<IComposition>, Runnable {
   private Sequence sequence;
   private int beat;
 
-
-
-
-
   public MidiView(IComposition composition) {
     this.comp = composition;
     try {
