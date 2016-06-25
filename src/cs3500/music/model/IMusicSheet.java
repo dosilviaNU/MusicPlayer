@@ -17,8 +17,8 @@ public interface IMusicSheet<N> {
   void addNote(N n);
 
   /**
-   * Removes an INote from an IMusicSheet will return true if the note was successfully removed from
-   * the sheet. False if the note does not exits in the music sheet.
+   * Removes an INote from an IMusicSheet will return true if the note was successfully removed
+   * from the sheet. False if the note does not exits in the music sheet.
    *
    * @param n INote to be removed
    */
@@ -48,7 +48,7 @@ public interface IMusicSheet<N> {
    * Adds a second sheet starting at the provided beat on the first sheet. This sheet will be
    * shifted to accommodate the new notes to the right.
    */
- // void insertSheets(IMusicSheet<N> sheet, int start);
+  // void insertSheets(IMusicSheet<N> sheet, int start);
 
   /**
    * get all the notes in the IMusicSheet as a collection
@@ -67,7 +67,7 @@ public interface IMusicSheet<N> {
   /**
    * get all the notes at the specified beat and pitch
    *
-   * @param beat beat to retreive notes from
+   * @param beat  beat to retreive notes from
    * @param pitch pit to retreive notes from
    */
   Collection<N> getNotes(int pitch, int beat);
@@ -102,8 +102,8 @@ public interface IMusicSheet<N> {
   IMusicSheet<N> clone();
 
   /**
-   * Returns an array with the following information Index 0 - Minimum note of the IMusicSheet Index
-   * 1 - Maximum note of the IMusicSheet Index 2 - Length of the Piece
+   * Returns an array with the following information Index 0 - Minimum note of the IMusicSheet
+   * Index 1 - Maximum note of the IMusicSheet Index 2 - Length of the Piece
    */
   int[] getSpread(Collection<MidiNote> notes);
 

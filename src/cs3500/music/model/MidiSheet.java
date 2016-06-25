@@ -11,15 +11,15 @@ import java.util.Set;
  * Model for a Sheet of Midi notes. This Model represents a sheet of music from C-1 to G9 on the
  * musical scale.
  *
- * In this model, notes can be added on top of one another, as well as duplicated over one another.
- * The model will allow you to do this. Removing will only remove one instance of the note from the
- * sheet, however.
+ * In this model, notes can be added on top of one another, as well as duplicated over one
+ * another. The model will allow you to do this. Removing will only remove one instance of the
+ * note from the sheet, however.
  *
- * Getting the MidiNotes from the sheet will only return one copy of the note if duplicates exist on
- * the sheet.
+ * Getting the MidiNotes from the sheet will only return one copy of the note if duplicates exist
+ * on the sheet.
  *
- * All MidiNotes are stored and returned as clones of the argument passed in. MidiSheets will never
- * throw exceptions except when a heap overflow occurs on extremely large sheets.
+ * All MidiNotes are stored and returned as clones of the argument passed in. MidiSheets will
+ * never throw exceptions except when a heap overflow occurs on extremely large sheets.
  *
  * Created by Jake on 6/9/2016.
  */
@@ -109,15 +109,14 @@ public class MidiSheet implements IMusicSheet<MidiNote> {
     Collection<MidiNote> insert = sheet.getNotes();
     int offset = sheet.size();
     MidiSheet result = new MidiSheet();
-    for (MidiNote n: insert) {
+    for (MidiNote n : insert) {
       n.shiftRight(start);
       result.addNote(n);
     }
-    for (MidiNote n: preInsert) {
-      if (n.getStart() < start){
+    for (MidiNote n : preInsert) {
+      if (n.getStart() < start) {
         result.addNote(n);
-      }
-      else {
+      } else {
         n.shiftRight(offset);
         result.addNote(n);
       }
@@ -321,8 +320,8 @@ public class MidiSheet implements IMusicSheet<MidiNote> {
   public Collection<MidiNote> getNotes(int pitch, int beat) {
     Collection<MidiNote> notes = this.getNotes(beat);
     Collection<MidiNote> result = new ArrayList<MidiNote>();
-    for (MidiNote n: notes) {
-      if (n.getValue() == pitch && (n.getDuration() + n.getStart() -1 != beat)) {
+    for (MidiNote n : notes) {
+      if (n.getValue() == pitch && (n.getDuration() + n.getStart() - 1 != beat)) {
         result.add(n);
       }
     }

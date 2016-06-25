@@ -27,10 +27,10 @@ import cs3500.music.view.ErrorWindow.ErrorWindow;
  *
  */
 public class MidiView implements IMidiView<IComposition>, Runnable {
-  IComposition<MidiNote> comp;
-  Sequencer song;
-  Sequence sequence;
-  int beat;
+  private IComposition<MidiNote> comp;
+  private Sequencer song;
+  private Sequence sequence;
+  private int beat;
 
 
 
