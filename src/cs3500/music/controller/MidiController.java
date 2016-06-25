@@ -100,6 +100,71 @@ public class MidiController implements IController {
     viewer.populateNoteList(notes);
   }
 
+  @Override
+  public Runnable addNote() {
+    return new AddNote();
+  }
+
+  @Override
+  public Runnable removeNote() {
+    return new RemoveNote();
+  }
+
+  @Override
+  public Runnable editNote() {
+    return new EditNote();
+  }
+
+  @Override
+  public Runnable openFile() {
+    return new OpenFile();
+  }
+
+  @Override
+  public Runnable scrollLeft() {
+    return new ScrollLeft();
+  }
+
+  @Override
+  public Runnable scrollRight() {
+    return new ScrollRight();
+  }
+
+  @Override
+  public Runnable scrollHome() {
+    return new ScrollHome();
+  }
+
+  @Override
+  public Runnable scrollEnd() {
+    return new ScrollEnd();
+  }
+
+  @Override
+  public Runnable startPlay() {
+    return new StartPlay();
+  }
+
+  @Override
+  public Runnable updateBar() {
+    return new UpdateBar();
+  }
+
+  @Override
+  public Runnable play() {
+    return new Play();
+  }
+
+  @Override
+  public Runnable stopPlay() {
+    return new StopPlay();
+  }
+
+  @Override
+  public Runnable resumePlay() {
+    return new ResumePlay();
+  }
+
   /**
    * Runnable function object for adding a note to the composite view.
    */
