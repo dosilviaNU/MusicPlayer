@@ -120,5 +120,8 @@ public interface IGuiView extends IMusicView {
    */
   void updateNotes(Collection<INote> notes, int[] spread);
 
+  /**
+   * Gives focus back to the JFrame to await keyboard commands
+   */
   void giveFocus();
 }

@@ -172,7 +172,9 @@ public class MidiNote implements INote, Comparable<MidiNote> {
 
   @Override
   public String toString() {
-    return INote.Pitch.fromValue(midiNote).toString() + ((midiNote / 12) - 1) + " " + this.getChannel();
+    return INote.Pitch.fromValue(midiNote).toString() + ((midiNote / 12) - 1) +
+            " (" + this.getStart() + "," + (this.getStart() + this.getDuration()) + ") Channel: "
+            + this .getChannel();
   }
 
   @Override

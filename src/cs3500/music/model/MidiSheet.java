@@ -306,6 +306,7 @@ public class MidiSheet implements IMusicSheet<MidiNote> {
     return results;
   }
 
+  @Override
   public MidiSheet clone() {
     MidiSheet result = new MidiSheet();
     for (ArrayList<MidiNote> notes : sheet.values()) {

@@ -59,13 +59,11 @@ public class MusicEditor {
         Thread.sleep(400000);
         break;
       case "gui":
+      case "controller":
         GuiView gui = new GuiView(comp);
         //gui.display();
         MidiView midiView = new MidiView(comp);
         MidiController midiController = new MidiController(comp);
-        break;
-      case "controller":
-        MidiController controller = new MidiController(comp);
         break;
       default:
         throw new IllegalArgumentException("Invalid Input.");

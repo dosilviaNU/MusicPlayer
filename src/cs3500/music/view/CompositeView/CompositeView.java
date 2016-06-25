@@ -139,23 +139,25 @@ public class CompositeView implements ICompositeView {
     viewer.updateNotes(notes, spread);
   }
 
+  @Override
   public void updateMidiComp(IComposition sheet){
     player.loadComp(sheet);
+    viewer.updateBeat(0);
   }
 
+  @Override
   public void display(){
     viewer.display();
   }
 
-  /*
-  Does this do anything?
-   */
-  public void startBeat(){
+  //Todo does this do anything?
+  /*public void startBeat(){
     while (playing){
       viewer.updateBeat(player.getBeat());
     }
-  }
+  }*/
 
+  @Override
   public void giveFocus() {
     viewer.giveFocus();
   }

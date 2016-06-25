@@ -73,10 +73,6 @@ public class MidiMock implements IMidiView<IComposition> {
 
   }
 
-  public void resumePlay(long beat) {
-    display();
-  }
-
 
   private long getBeatMock(long time) {
     return (time / comp.getTempo()) - 1;

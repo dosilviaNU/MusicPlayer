@@ -74,18 +74,18 @@ public abstract class NoteTest {
   //tests pitch up
   public void testPitchUp() {
     initData();
-    assertEquals(middleNote.toString(), "C4");
-    assertEquals(lowNote.toString(), "C-1");
-    assertEquals(bNote.toString(), "B4");
-    assertEquals(eNote.toString(), "E4");
+    assertEquals(middleNote.toString(), "C4 (10,14) Channel: 0");
+    assertEquals(lowNote.toString(), "C-1 (6,8) Channel: 0");
+    assertEquals(bNote.toString(), "B4 (1,8) Channel: 0");
+    assertEquals(eNote.toString(), "E4 (9,21) Channel: 0");
     middleNote.pitchUp(1);
     lowNote.pitchUp(3);
     bNote.pitchUp(5);
     eNote.pitchUp(1);
-    assertEquals(middleNote.toString(), "C#4");
-    assertEquals(lowNote.toString(), "D#-1");
-    assertEquals(bNote.toString(), "E5");
-    assertEquals(eNote.toString(), "F4");
+    assertEquals(middleNote.toString(), "C#4 (10,14) Channel: 0");
+    assertEquals(lowNote.toString(), "D#-1 (6,8) Channel: 0");
+    assertEquals(bNote.toString(), "E5 (1,8) Channel: 0");
+    assertEquals(eNote.toString(), "F4 (9,21) Channel: 0");
   }
 
   @Test(expected = IllegalArgumentException.class)
@@ -99,18 +99,18 @@ public abstract class NoteTest {
   //tests pitch down
   public void testPitchDown() {
     initData();
-    assertEquals(middleNote.toString(), "C4");
-    assertEquals(highNote.toString(), "G9");
-    assertEquals(bNote.toString(), "B4");
-    assertEquals(eNote.toString(), "E4");
+    assertEquals(middleNote.toString(), "C4 (10,14) Channel: 0");
+    assertEquals(highNote.toString(), "G9 (3,14) Channel: 0");
+    assertEquals(bNote.toString(), "B4 (1,8) Channel: 0");
+    assertEquals(eNote.toString(), "E4 (9,21) Channel: 0");
     middleNote.pitchDown(1);
     highNote.pitchDown(3);
     bNote.pitchDown(1);
     eNote.pitchDown(4);
-    assertEquals(middleNote.toString(), "B3");
-    assertEquals(highNote.toString(), "E9");
-    assertEquals(bNote.toString(), "A#4");
-    assertEquals(eNote.toString(), "C4");
+    assertEquals(middleNote.toString(), "B3 (10,14) Channel: 0");
+    assertEquals(highNote.toString(), "E9 (3,14) Channel: 0");
+    assertEquals(bNote.toString(), "A#4 (1,8) Channel: 0");
+    assertEquals(eNote.toString(), "C4 (9,21) Channel: 0");
   }
 
   @Test
@@ -306,7 +306,11 @@ public abstract class NoteTest {
       INote note;
       for (int i = 0; i < 128; i++) {
         note = new MidiNote(i, 4, 4);
-        assertEquals(note.getString(), INote.Pitch.fromValue(i).toString() + ((i / 12) - 1));
+        assertEquals(note.getString(), INote.Pitch.fromValue(note.getValue()).toString() + (
+                (note.getValue() / 12) - 1) +
+                " (" + note.getStart() + "," + (note.getStart() + note.getDuration()) + ") " +
+                "Channel: "
+                + note.getChannel());
       }
       initData();
     }

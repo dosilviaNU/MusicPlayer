@@ -97,6 +97,7 @@ public class MidiController implements IController {
     if (notes.size() == 0) {
       viewer.fieldsFromClick(noteValues);
     }
+    viewer.giveFocus();
     viewer.populateNoteList(notes);
   }
 
@@ -106,9 +107,13 @@ public class MidiController implements IController {
   class AddNote implements Runnable {
     @Override
     public void run() {
-      INote add = viewer.getNoteFromFields();
+      try { INote add = viewer.getNoteFromFields();
       sheet.addNote(add);
-      viewer.updateNotes(sheet.getNotes(), sheet.getSpread(sheet.getNotes()));
+      viewer.updateNotes(sheet.getNotes(), sheet.getSpread(sheet.getNotes())); }
+      catch (Exception e) {
+        new ErrorWindow(e.getMessage(), "Invalid Note");
+      }
+
     }
   }
 

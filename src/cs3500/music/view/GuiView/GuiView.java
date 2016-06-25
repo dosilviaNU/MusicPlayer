@@ -164,6 +164,7 @@ public class GuiView extends JFrame implements IGuiView {
     requestFocus();
   }
 
+  @Override
   public void giveFocus() {
     this.requestFocus();
   }

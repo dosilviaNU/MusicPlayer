@@ -86,7 +86,8 @@ public interface ICompositeView {
 
   void display();
 
-  void startBeat();
+  //Todo does this do anything?
+  //void startBeat();
 
   void giveFocus();
 

@@ -135,6 +135,10 @@ public class NoteDisplay extends JComponent {
     return result.toString();
   }
 
+  /**
+   * Updates the next beat
+   * @param beat updates to the next beat
+   */
   public void nextBeat(int beat) {
     curBeat = beat;
     repaint();
