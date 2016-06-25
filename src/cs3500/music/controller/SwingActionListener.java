@@ -11,7 +11,7 @@ public class SwingActionListener implements ActionListener {
   private IController controller;
   private Map<String, Runnable> actionMap;
 
-  SwingActionListener(IController controller, Map<String, Runnable> actionMap) {
+  public SwingActionListener(IController controller, Map<String, Runnable> actionMap) {
     this.controller = controller;
     this.actionMap = actionMap;
   }
