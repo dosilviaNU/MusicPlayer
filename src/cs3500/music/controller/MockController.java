@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Collection;
+import java.util.Formatter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,11 +28,14 @@ import cs3500.music.view.CompositeView.ICompositeView;
 import cs3500.music.view.ErrorWindow.ErrorWindow;
 
 
+
 /**
- * Concrete Class implementing the IController Interface Created by Jake on 6/21/2016.
+ * Created by Jake on 6/23/2016.
  */
-public class MidiController implements IController {
-  private IComposition sheet;
+public class MockController implements IController {
+  Formatter debug;
+  
+  IComposition sheet;
   private ICompositeView viewer;
   private SwingActionListener actionListener;
   private SwingKeyboardListener keyListener;
@@ -47,7 +51,8 @@ public class MidiController implements IController {
    *
    * @param musicSheet Sheet of musive to be passed to composite view.
    */
-  public MidiController(IComposition musicSheet) {
+  public MockController(IComposition musicSheet, Appendable app) {
+    debug = new Formatter(app);
     this.viewer = new CompositeView(musicSheet);
     this.sheet = musicSheet;
 
@@ -70,10 +75,10 @@ public class MidiController implements IController {
    */
   private void buildActionMap() {
     actionMap = new HashMap<String, Runnable>();
-    actionMap.put("add", new AddNote());
-    actionMap.put("remove", new RemoveNote());
-    actionMap.put("edit", new EditNote());
-    actionMap.put("open", new OpenFile());
+    actionMap.put("add", new MockController.AddNote());
+    actionMap.put("remove", new MockController.RemoveNote());
+    actionMap.put("edit", new MockController.EditNote());
+    actionMap.put("open", new MockController.OpenFile());
   }
 
   /**
@@ -81,13 +86,13 @@ public class MidiController implements IController {
    */
   private void buildKeyMap() {
     keyMap = new HashMap<Integer, Runnable>();
-    keyMap.put(VK_LEFT, new ScrollLeft());
-    keyMap.put(VK_RIGHT, new ScrollRight());
-    keyMap.put(VK_P, new StartPlay());
-    keyMap.put(VK_O, new StopPlay());
-    keyMap.put(VK_I, new ResumePlay());
-    keyMap.put(VK_HOME, new ScrollHome());
-    keyMap.put(VK_END, new ScrollEnd());
+    keyMap.put(VK_LEFT, new MockController.ScrollLeft());
+    keyMap.put(VK_RIGHT, new MockController.ScrollRight());
+    keyMap.put(VK_P, new MockController.StartPlay());
+    keyMap.put(VK_O, new MockController.StopPlay());
+    keyMap.put(VK_I, new MockController.ResumePlay());
+    keyMap.put(VK_HOME, new MockController.ScrollHome());
+    keyMap.put(VK_END, new MockController.ScrollEnd());
   }
 
 
@@ -107,11 +112,10 @@ public class MidiController implements IController {
   class AddNote implements Runnable {
     @Override
     public void run() {
-      try {
-        INote add = viewer.getNoteFromFields();
+      try { INote add = viewer.getNoteFromFields();
         sheet.addNote(add);
-        viewer.updateNotes(sheet.getNotes(), sheet.getSpread(sheet.getNotes()));
-      } catch (Exception e) {
+        viewer.updateNotes(sheet.getNotes(), sheet.getSpread(sheet.getNotes())); }
+      catch (Exception e) {
         new ErrorWindow(e.getMessage(), "Invalid Note");
       }
 
@@ -124,17 +128,9 @@ public class MidiController implements IController {
   class RemoveNote implements Runnable {
     @Override
     public void run() {
-      try {
-        INote remove = viewer.getNoteFromFields();
-        if (sheet.removeNote(remove)) {
-          viewer.updateNotes(sheet.getNotes(), sheet.getSpread(sheet.getNotes()));
-        } else {
-          new ErrorWindow("Remove Failed: Note not found.", "Remove failed!");
-        }
-      }
-      catch(Exception e) {
-        new ErrorWindow("Invalid Field", "Remove failed!");
-      }
+      INote remove = viewer.getNoteFromFields();
+      sheet.removeNote(remove);
+      viewer.updateNotes(sheet.getNotes(), sheet.getSpread(sheet.getNotes()));
     }
   }
 
@@ -182,6 +178,7 @@ public class MidiController implements IController {
       sheet = comp;
       viewer.updateMidiComp(sheet);
       viewer.updateNotes(sheet.getNotes(), sheet.getSpread(sheet.getNotes()));
+      debug.format("Opened File");
     }
   }
 
@@ -231,9 +228,10 @@ public class MidiController implements IController {
   class StartPlay implements Runnable {
     @Override
     public void run() {
+      debug.format("Starting Threads");
       play = true;
-      Thread bar = (new Thread(new UpdateBar()));
-      Thread player = new Thread(new Play());
+      Thread bar = (new Thread(new MockController.UpdateBar()));
+      Thread player = new Thread(new MockController.Play());
       bar.start();
       player.start();
     }
@@ -243,11 +241,15 @@ public class MidiController implements IController {
    * Updates the position of the beat bar in the composite view. Synchronized with Play.
    */
   class UpdateBar implements Runnable {
+
+
     public void run() {
+      debug.format("Updating Bar");
       while (play) {
         viewer.updateBeat(viewer.getBeat());
         position = viewer.getBeat();
       }
+
     }
   }
 
@@ -257,6 +259,7 @@ public class MidiController implements IController {
    */
   class Play implements Runnable {
     public void run() {
+      debug.format("Playing");
       viewer.play();
     }
   }
@@ -267,6 +270,7 @@ public class MidiController implements IController {
   class StopPlay implements Runnable {
     @Override
     public void run() {
+      debug.format("Stopping");
       play = false;
       viewer.stop();
     }
@@ -278,10 +282,10 @@ public class MidiController implements IController {
   class ResumePlay implements Runnable {
     @Override
     public void run() {
-      System.out.println("In resume, position = " + position);
+      debug.format("In resume, position = " + position);
       play = true;
       viewer.resume(position);
-      new Thread(new UpdateBar()).start();
+      new Thread(new MockController.UpdateBar()).start();
     }
   }
 }
