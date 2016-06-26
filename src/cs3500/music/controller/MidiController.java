@@ -25,6 +25,7 @@ import cs3500.music.util.MusicReader;
 import cs3500.music.view.CompositeView.CompositeView;
 import cs3500.music.view.CompositeView.ICompositeView;
 import cs3500.music.view.ErrorWindow.ErrorWindow;
+import javafx.scene.paint.Stop;
 
 
 /**
@@ -33,11 +34,6 @@ import cs3500.music.view.ErrorWindow.ErrorWindow;
 public class MidiController implements IController {
   private IComposition sheet;
   private ICompositeView viewer;
-  private SwingActionListener actionListener;
-  private SwingKeyboardListener keyListener;
-  private SwingMouseListener mouseListener;
-  private Map<String, Runnable> actionMap;
-  private Map<Integer, Runnable> keyMap;
   private boolean play;
   private int position;
 
@@ -45,50 +41,14 @@ public class MidiController implements IController {
   /**
    * Class to represent an CompositeView controller.
    *
-   * @param musicSheet Sheet of musive to be passed to composite view.
+   * @param musicSheet Sheet of music to be passed to composite view.
    */
-  public MidiController(IComposition musicSheet) {
-    this.viewer = new CompositeView(musicSheet);
+  public MidiController(IComposition musicSheet, ICompositeView viewer) {
+    this.viewer = viewer;
+    viewer.updateMidiComp(musicSheet);
     this.sheet = musicSheet;
-
-    buildActionMap();
-    buildKeyMap();
-
-    actionListener = new SwingActionListener(this, actionMap);
-    keyListener = new SwingKeyboardListener(this, keyMap);
-    mouseListener = new SwingMouseListener(this);
-
-    viewer.addAListener(actionListener);
-    viewer.addKListener(keyListener);
-    viewer.addMListener(mouseListener);
     viewer.display();
   }
-
-  /**
-   * Build the action listener map of action commands -> Runnable.
-   */
-  private void buildActionMap() {
-    actionMap = new HashMap<String, Runnable>();
-    actionMap.put("add", new AddNote());
-    actionMap.put("remove", new RemoveNote());
-    actionMap.put("edit", new EditNote());
-    actionMap.put("open", new OpenFile());
-  }
-
-  /**
-   * Build the key listener map of key inputs -> Runnable.
-   */
-  private void buildKeyMap() {
-    keyMap = new HashMap<Integer, Runnable>();
-    keyMap.put(VK_LEFT, new ScrollLeft());
-    keyMap.put(VK_RIGHT, new ScrollRight());
-    keyMap.put(VK_P, new StartPlay());
-    keyMap.put(VK_O, new StopPlay());
-    keyMap.put(VK_I, new ResumePlay());
-    keyMap.put(VK_HOME, new ScrollHome());
-    keyMap.put(VK_END, new ScrollEnd());
-  }
-
 
   public void mouseRunnable(int x, int y) {
     int[] noteValues = viewer.getNoteFromClick(x, y);
@@ -98,6 +58,71 @@ public class MidiController implements IController {
     }
     viewer.giveFocus();
     viewer.populateNoteList(notes);
+  }
+
+  @Override
+  public Runnable addNote() {
+    return new AddNote();
+  }
+
+  @Override
+  public Runnable removeNote() {
+    return new RemoveNote();
+  }
+
+  @Override
+  public Runnable editNote() {
+    return new EditNote();
+  }
+
+  @Override
+  public Runnable openFile() {
+    return new OpenFile();
+  }
+
+  @Override
+  public Runnable scrollLeft() {
+    return new ScrollLeft();
+  }
+
+  @Override
+  public Runnable scrollRight() {
+    return new ScrollRight();
+  }
+
+  @Override
+  public Runnable scrollHome() {
+    return new ScrollHome();
+  }
+
+  @Override
+  public Runnable scrollEnd() {
+    return new ScrollEnd();
+  }
+
+  @Override
+  public Runnable startPlay() {
+    return new StartPlay();
+  }
+
+  @Override
+  public Runnable updateBar() {
+    return new UpdateBar();
+  }
+
+  @Override
+  public Runnable play() {
+    return new Play();
+  }
+
+  @Override
+  public Runnable stopPlay() {
+    return new StopPlay();
+  }
+
+  @Override
+  public Runnable resumePlay() {
+    return new ResumePlay();
   }
 
   /**
@@ -160,6 +185,8 @@ public class MidiController implements IController {
   class OpenFile implements Runnable {
     @Override
     public void run() {
+      StopPlay  stop = new StopPlay();
+      stop.run();
       File musicFile = new File(viewer.getFileFromField());
       //Parse and build given music text file.
       FileReader music = null;

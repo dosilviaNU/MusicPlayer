@@ -25,7 +25,7 @@ public class CompositeView implements ICompositeView {
     this.player = new MidiView(sheet);
     player.run();
     this.viewer = new GuiView(sheet);
-    playing = true;
+    playing = false;
 
   }
 

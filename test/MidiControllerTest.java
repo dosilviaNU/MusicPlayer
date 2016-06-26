@@ -16,9 +16,13 @@ import cs3500.music.util.MusicReader;
 import cs3500.music.view.GuiView.GuiView;
 import cs3500.music.view.midi.MidiView;
 
+import static java.awt.event.KeyEvent.VK_END;
+import static java.awt.event.KeyEvent.VK_HOME;
 import static java.awt.event.KeyEvent.VK_I;
+import static java.awt.event.KeyEvent.VK_LEFT;
 import static java.awt.event.KeyEvent.VK_O;
 import static java.awt.event.KeyEvent.VK_P;
+import static java.awt.event.KeyEvent.VK_RIGHT;
 import static org.junit.Assert.*;
 
 /**
@@ -68,7 +72,7 @@ public class MidiControllerTest {
   }
 
   @Test
-  //tests creation of file
+  //tests start stop and play commands
   public void keyBoardTests() throws InterruptedException {
     initData();
     assertEquals(mock.sheet.size(), 65);
@@ -83,6 +87,28 @@ public class MidiControllerTest {
     assertEquals(output.toString().contains("Stopping"), true);
     mock.listeners.keyPressed(new KeyEvent(new Choice(), VK_I, VK_I, VK_I, VK_I, 'i'));
     assertEquals(output.toString().contains("In resume, position = "), true);
+  }
+
+  @Test
+  //tests scrolling keyboard commands
+  public void keyBoardTests2() throws InterruptedException {
+    initData();
+    assertEquals(mock.sheet.size(), 65);
+    assertEquals(output.toString(), "Controller Constructed\n");
+    mock.listeners.keyPressed(new KeyEvent(new Choice(), VK_LEFT, VK_LEFT, VK_LEFT, VK_LEFT, 'p'));
+    Thread.sleep(200);
+    assertEquals(output.toString().contains("scroll left"), true);
+    mock.listeners.keyPressed(new KeyEvent(new Choice(), VK_RIGHT, VK_RIGHT, VK_RIGHT, VK_RIGHT,
+            'p'));
+    Thread.sleep(200);
+    assertEquals(output.toString().contains("scroll right"), true);
+    mock.listeners.keyPressed(new KeyEvent(new Choice(), VK_END, VK_END, VK_END, VK_END, 'p'));
+    Thread.sleep(200);
+    assertEquals(output.toString().contains("Goto end"), true);
+    mock.listeners.keyPressed(new KeyEvent(new Choice(), VK_HOME, VK_HOME, VK_HOME, VK_HOME,
+            'p'));
+    Thread.sleep(200);
+    assertEquals(output.toString().contains("Goto home"), true);
   }
 
   @Test
