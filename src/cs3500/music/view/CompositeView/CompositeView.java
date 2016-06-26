@@ -7,6 +7,7 @@ import java.util.Collection;
 
 import cs3500.music.model.IComposition;
 import cs3500.music.model.INote;
+import cs3500.music.util.EndPair;
 import cs3500.music.view.GuiView.GuiView;
 import cs3500.music.view.GuiView.IGuiView;
 import cs3500.music.view.midi.IMidiView;
@@ -148,5 +149,15 @@ public class CompositeView implements ICompositeView {
   @Override
   public void giveFocus() {
     viewer.giveFocus();
+  }
+
+  @Override
+  public void addEnding(EndPair end){
+    viewer.addEnding(end);
+  }
+
+  @Override
+  public void removeEnding(int end) throws IllegalArgumentException{
+    viewer.removeEnding(end);
   }
 }

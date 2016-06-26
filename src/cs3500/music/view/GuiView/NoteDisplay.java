@@ -2,6 +2,7 @@ package cs3500.music.view.GuiView;
 
 import cs3500.music.model.IMusicSheet;
 import cs3500.music.model.INote;
+import cs3500.music.util.EndPair;
 import javafx.animation.Animation;
 
 import javax.swing.*;
@@ -33,6 +34,10 @@ public class NoteDisplay extends JComponent {
   private Collection<INote> notes;
   private int curBeat;
 
+  private List<Integer> repeats;
+  private List<Integer> invertRepeats;
+  private List<EndPair> endings;
+
   /**
    * Default constructor for a NoteDisplay panel.
    */
@@ -48,6 +53,13 @@ public class NoteDisplay extends JComponent {
     this.windowHeight = (noteMod + 3) * topBorder;
     this.windowWidth = (spread[2] + 1) * leftBorder;
     this.curBeat = 0;
+    this.repeats = new ArrayList<Integer>();
+    this.invertRepeats = new ArrayList<Integer>();
+    this.endings = new ArrayList<EndPair>();
+    repeats.add(16);
+    invertRepeats.add(12);
+    endings.add(new EndPair(12,16));
+    endings.add(new EndPair(16,20));
     setPreferredSize(new Dimension(windowWidth, windowHeight));
     setVisible(true);
     setFocusable(true);
@@ -81,8 +93,24 @@ public class NoteDisplay extends JComponent {
       g2.drawString("" + i, (i + 1) * leftBorder, topBorder - 2);
     }
 
+    //Draw endings.
+    for(int i = 0;i < endings.size();i++){
+      g2.setColor(Color.BLUE);
+      g2.setStroke(new BasicStroke(2));
+      int first = (endings.get(i).getFirstBeat()+1)*leftBorder;
+      int last = (endings.get(i).getLastBeat()+1)*leftBorder;
+      int mid = (first+last)/2;
+      g2.drawLine(first,topBorder-2,first,
+      topBorder-8);
+      g2.drawLine(last,topBorder-2,last,
+              topBorder-8);
+      g2.drawLine(first, topBorder-8, last, topBorder-8);
+      g2.drawString(""+(i+1),mid,topBorder-9);
+    }
+
     //Draw note spread.
     for (int i = spread[1]; i >= spread[0]; i--) {
+      g2.setColor(Color.BLACK);
       String temp = valueToPitchString(i);
       int y = calcY(i) + 14;
       g2.drawString(temp, 10, y);
@@ -108,6 +136,27 @@ public class NoteDisplay extends JComponent {
     g2.setStroke(new BasicStroke(3));
     g2.setColor(Color.red);
     g2.drawLine(beatLine + 1, topBorder + 2, beatLine + 1, windowHeight - 3);
+
+    //Draw repeats.
+    for(Integer i:repeats){
+      g2.setColor(Color.BLUE);
+      int yPos = (topBorder+windowHeight)/2;
+      int repeatLine =(i*GuiView.BEAT_WIDTH)+leftBorder;
+      g2.drawLine(repeatLine-3,topBorder+2,repeatLine-3,windowHeight - 3 );
+      g.fillOval(repeatLine-12,yPos-20, 12, 12) ;
+      g.fillOval(repeatLine-12,yPos+20, 12, 12) ;
+    }
+
+    //Draw invert repeats.
+    for(Integer i:invertRepeats){
+
+      int yPos = (topBorder+windowHeight)/2;
+      int repeatLine =(i*GuiView.BEAT_WIDTH)+leftBorder;
+
+      g2.drawLine(repeatLine+2,topBorder+2,repeatLine+2,windowHeight - 3 );
+      g.fillOval(repeatLine,yPos-20, 12, 12) ;
+      g.fillOval(repeatLine,yPos+20, 12, 12) ;
+    }
   }
 
   /**
@@ -159,6 +208,41 @@ public class NoteDisplay extends JComponent {
     results[1]  = xCoordToValue(x);
 
     return results;
+  }
+
+  /**
+   * Adds repeat at given beat number.
+   */
+  public void addRepeat(int beatNum){
+    this.repeats.add(beatNum);
+    repaint();
+  }
+
+  /**
+   * Adds inverted repeat at given beat number.
+   */
+  public void addInvertRepeat(int beatNum){
+    this.invertRepeats.add(beatNum);
+    repaint();
+  }
+
+  /**
+   * Adds given ending to this display.
+   * @param end ending to be added.
+   */
+  public void addEnding(EndPair end){
+    this.endings.add(end);
+  }
+
+  /**
+   * removes given display.
+   * @param end ending number to be removed.
+   */
+  public void removeEnding(int end) throws IllegalArgumentException{
+    if(end > this.endings.size()+1){
+      throw new IllegalArgumentException("No such ending exists.");
+    }
+    this.endings.remove(end-1);
   }
 
   /**

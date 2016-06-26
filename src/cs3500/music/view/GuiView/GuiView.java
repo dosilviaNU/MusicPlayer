@@ -2,7 +2,7 @@ package cs3500.music.view.GuiView;
 
 import cs3500.music.model.IComposition;
 import cs3500.music.model.INote;
-
+import cs3500.music.util.EndPair;
 
 
 import javax.swing.*;
@@ -27,8 +27,8 @@ public class GuiView extends JFrame implements IGuiView {
   private static JScrollPane scrollPane;
   private static int[] stats;
 
-  public static final int GUI_WIDTH = 1200;
-  public static final int GUI_HEIGHT= 600;
+  public static final int GUI_WIDTH = 1600;
+  public static final int GUI_HEIGHT= 800;
   public static final int BEAT_WIDTH = 40;
   public static final int BEAT_HEIGHT = 20;
 
@@ -167,5 +167,25 @@ public class GuiView extends JFrame implements IGuiView {
   @Override
   public void giveFocus() {
     this.requestFocus();
+  }
+
+  @Override
+  public void addRepeat(int beatNum){
+    centerPanel.addRepeat(beatNum);
+  }
+
+  @Override
+  public void addInvertRepeat(int beatNum){
+    centerPanel.addInvertRepeat(beatNum);
+  }
+
+  @Override
+  public void addEnding(EndPair end){
+    centerPanel.addEnding(end);
+  }
+
+  @Override
+  public void removeEnding(int end){
+    centerPanel.removeEnding(end);
   }
 }

@@ -43,8 +43,9 @@ public class EditorMenu extends JComponent {
   public EditorMenu() {
 
     setVisible(true);
-    setPreferredSize(new Dimension(250, 500));
+    setPreferredSize(new Dimension(250, GuiView.GUI_HEIGHT));
     FlowLayout flow = new FlowLayout();
+    flow.setVgap(20);
     setLayout(flow);
     editListener = new EditorMenuListener();
     buttons = new ArrayList<JButton>();
@@ -96,6 +97,29 @@ public class EditorMenu extends JComponent {
     addRemoveEdit.add(removeNote);
     addRemoveEdit.add(editNote);
     editorMain.add(addRemoveEdit);
+
+    //Add/Remove Endings Button
+    JPanel addEnd = new JPanel();
+    addEnd.setLayout(new FlowLayout());
+
+    JLabel startLabel = new JLabel("Start: ");
+    JLabel endLabel = new JLabel("End: ");
+
+    JTextField startEnd = new JTextField(3);
+    JTextField endEnd = new JTextField(3);
+
+    JButton addEnding = new JButton("Add End");
+    addEnding.setActionCommand("addend");
+    buttons.add(addEnding);
+
+    addEnd.add(startEnd);
+    addEnd.add(startLabel);
+    addEnd.add(endEnd);
+    addEnd.add(endLabel);
+    addEnd.add(addEnding);
+    editorMain.add(addEnd);
+
+
 
     JLabel fieldBoxLabel = new JLabel("Enter Desired Integer Values: ");
     fieldBoxLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -168,27 +192,15 @@ public class EditorMenu extends JComponent {
     noteList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     editorMain.add(listScroll);
 
-    //Filler
-    JTextPane filler = new JTextPane();
-    filler.setVisible(false);
-    filler.setPreferredSize(new Dimension(50,50));
-    editorMain.add(filler);
     //Commands
     JTextPane commandInfo = new JTextPane();
     commandInfo.setText("Press P to Play Current Song from Start\nPress O to Stop the Song" +
             "\nPress I to Resume\n\nTo Add a Note Fill in Desired Values and Press Add" +
             "\nTo Remove a Note Select A Note from The List and Press Remove\n" +
             "To Edit a Note Select a Note from the List and Enter New Values And Press Edit");
-    flow.setVgap(20);
     editorMain.add(commandInfo);
 
-
-
-
     add(editorMain);
-
-
-
 
   }
 

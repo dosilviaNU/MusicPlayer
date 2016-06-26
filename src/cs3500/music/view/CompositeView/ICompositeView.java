@@ -7,6 +7,7 @@ import java.util.Collection;
 
 import cs3500.music.model.IComposition;
 import cs3500.music.model.INote;
+import cs3500.music.util.EndPair;
 import cs3500.music.view.midi.IMidiView;
 
 /**
@@ -151,5 +152,18 @@ public interface ICompositeView {
    * Gives focus to this frame.
    */
   void giveFocus();
+
+  /**
+   * Adds given ending.
+   * @param end Ending to be added.
+   */
+  void addEnding(EndPair end);
+
+  /**
+   * Removes given ending.
+   */
+  void removeEnding(int end) throws IllegalArgumentException;
+
+
 
 }

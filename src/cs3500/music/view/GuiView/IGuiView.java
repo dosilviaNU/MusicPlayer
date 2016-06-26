@@ -7,6 +7,7 @@ import java.io.File;
 import java.util.Collection;
 
 import cs3500.music.model.INote;
+import cs3500.music.util.EndPair;
 import cs3500.music.view.IMusicView;
 
 /**
@@ -124,4 +125,30 @@ public interface IGuiView extends IMusicView {
    * Gives focus back to the JFrame to await keyboard commands
    */
   void giveFocus();
+
+  /**
+   * Adds a repeat at given beat.
+   * @param beatNum
+   */
+  void addRepeat(int beatNum);
+
+  /**
+   * Adds inverted repeat at given beat.
+   * @param beatNum
+   */
+  void addInvertRepeat(int beatNum);
+
+  /**
+   * Adds and ending to the note display.
+   * @param end Ending to be added.
+   */
+  void addEnding(EndPair end);
+
+
+  /**
+   * Removes an ending from the display.
+   * @param end Ending number to be removed.
+   * @throws IllegalArgumentException if no such ending exists.
+   */
+  void removeEnding(int end) throws IllegalArgumentException;
 }
