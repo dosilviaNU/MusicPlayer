@@ -25,6 +25,7 @@ import cs3500.music.util.MusicReader;
 import cs3500.music.view.CompositeView.CompositeView;
 import cs3500.music.view.CompositeView.ICompositeView;
 import cs3500.music.view.ErrorWindow.ErrorWindow;
+import javafx.scene.paint.Stop;
 
 
 /**
@@ -184,6 +185,8 @@ public class MidiController implements IController {
   class OpenFile implements Runnable {
     @Override
     public void run() {
+      StopPlay  stop = new StopPlay();
+      stop.run();
       File musicFile = new File(viewer.getFileFromField());
       //Parse and build given music text file.
       FileReader music = null;
