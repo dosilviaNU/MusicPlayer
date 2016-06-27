@@ -145,7 +145,7 @@ public class NoteDisplay extends JComponent {
 
     //Draw invert repeats.
     for(Integer i:invertRepeats){
-
+      g2.setColor(Color.BLUE);
       int yPos = (topBorder+windowHeight)/2;
       int repeatLine =(i*GuiView.BEAT_WIDTH)+leftBorder;
 
