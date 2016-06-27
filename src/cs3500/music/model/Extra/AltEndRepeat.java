@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by Jake on 6/22/2016.
@@ -33,12 +34,16 @@ public class AltEndRepeat implements IRepeat {
 
   @Override
   public ArrayList<ArrayList<Integer>> buildJumps() {
+    ArrayList<ArrayList<Integer>> results = new ArrayList<ArrayList<Integer>>();
     if (ends.size() == 1) {
-      ArrayList<ArrayList<Integer>> results = new ArrayList<ArrayList<Integer>>();
       results.add(new ArrayList<Integer>(Arrays.asList(ends.get(0), start)));
+    } else {
+      for (int i = 0; i < ends.size() - 1; i++) {
+        results.add(new ArrayList<Integer>(Arrays.asList(ends.get(i + 1), start)));
+        results.add(new ArrayList<Integer>(Arrays.asList(ends.get(0), ends.get(i + 1))));
+      }
     }
-    else {}
-    return null;
+    return results;
   }
 
   @Override
@@ -49,8 +54,10 @@ public class AltEndRepeat implements IRepeat {
   @Override
   public int getEnding() {
     int max = 0;
-    for (Integer i: ends) {
-      if ( i > max) { max = i; }
+    for (Integer i : ends) {
+      if (i > max) {
+        max = i;
+      }
     }
     return max;
   }
@@ -65,4 +72,30 @@ public class AltEndRepeat implements IRepeat {
             (max >= that.getBeginning() && max <= that.getEnding());
   }
 
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o instanceof AltEndRepeat) {
+      AltEndRepeat r = (AltEndRepeat) o;
+      boolean result = true;
+      result = result && r.start == this.start;
+      result = result && r.ends.size() == r.ends.size();
+
+      if (result) {
+        for (int i = 0; i < r.ends.size(); i++) {
+          result = result && r.ends.get(i) == this.ends.get(i);
+        }
+      }
+      return false;
+    }
+    return false;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(this.start, this.ends);
+  }
 }
