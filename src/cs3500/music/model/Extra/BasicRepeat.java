@@ -14,6 +14,7 @@ public class BasicRepeat implements IRepeat {
   public BasicRepeat(int start, int end) {
     this.start = start;
     this.end = end;
+    System.out.println("BuildingBasic" + start + "," + end);
   }
 
   @Override
