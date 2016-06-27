@@ -73,6 +73,11 @@ public class MidiMock implements IMidiView<IComposition> {
 
   }
 
+  @Override
+  public boolean isPlaying() {
+    return false;
+  }
+
 
   private long getBeatMock(long time) {
     return (time / comp.getTempo()) - 1;

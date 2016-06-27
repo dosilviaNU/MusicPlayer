@@ -42,4 +42,9 @@ public interface IMidiView<T> extends IMusicView<T> {
    * Starts playing from given beat
    */
   public void resume(long beat);
+
+  /**
+   * Starts playing from given beat
+   */
+  public boolean isPlaying();
 }
