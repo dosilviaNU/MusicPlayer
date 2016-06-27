@@ -53,7 +53,6 @@ public class MidiController implements IController {
     viewer.updateMidiComp(musicSheet);
     this.sheet = new MidiCompRepeat(musicSheet);
     viewer.display();
-    sheet.addRepeat(new BasicRepeat(0, 10));
     jumps = sheet.getJumps();
   }
 
@@ -295,6 +294,7 @@ public class MidiController implements IController {
             viewer.updateBeat(position);
             viewer.resume(position);
             jumps.remove(0);
+            System.out.println(jumps);
           }
         }
         position = viewer.getBeat();
