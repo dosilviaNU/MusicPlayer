@@ -360,4 +360,16 @@ public class MockController implements IController {
       new Thread(new MockController.UpdateBar()).start();
     }
   }
+
+
+  @Override
+  public Runnable addRepeat() {
+    return null;
+  }
+
+  @Override
+  public Runnable removeEnd() {
+    return null;
+  }
+
 }

@@ -79,5 +79,8 @@ public interface IController {
    */
   Runnable resumePlay();
 
+  Runnable addRepeat();
+
+  Runnable removeEnd();
 
 }
