@@ -16,6 +16,7 @@ import static java.awt.event.KeyEvent.VK_O;
 import static java.awt.event.KeyEvent.VK_P;
 import static java.awt.event.KeyEvent.VK_RIGHT;
 
+import cs3500.music.model.Extra.BasicRepeat;
 import cs3500.music.model.Extra.ICompRepeat;
 import cs3500.music.model.Extra.MidiCompRepeat;
 import cs3500.music.model.IComposition;
@@ -52,6 +53,7 @@ public class MidiController implements IController {
     viewer.updateMidiComp(musicSheet);
     this.sheet = new MidiCompRepeat(musicSheet);
     viewer.display();
+    sheet.addRepeat(new BasicRepeat(0, 10));
     jumps = sheet.getJumps();
   }
 
@@ -131,10 +133,14 @@ public class MidiController implements IController {
   }
 
   @Override
-  public Runnable addRepeat(){return new AddRepeat();}
+  public Runnable addRepeat() {
+    return new AddRepeat();
+  }
 
   @Override
-  public Runnable removeEnd(){return new RemoveEnd();}
+  public Runnable removeEnd() {
+    return new RemoveEnd();
+  }
 
 
   /**
@@ -167,8 +173,7 @@ public class MidiController implements IController {
         } else {
           new ErrorWindow("Remove Failed: Note not found.", "Remove failed!");
         }
-      }
-      catch(Exception e) {
+      } catch (Exception e) {
         new ErrorWindow("Invalid Field", "Remove failed!");
       }
     }
@@ -197,7 +202,7 @@ public class MidiController implements IController {
   class OpenFile implements Runnable {
     @Override
     public void run() {
-      StopPlay  stop = new StopPlay();
+      StopPlay stop = new StopPlay();
       stop.run();
       File musicFile = new File(viewer.getFileFromField());
       //Parse and build given music text file.
@@ -284,10 +289,12 @@ public class MidiController implements IController {
   class UpdateBar implements Runnable {
     public void run() {
       while (play) {
-        position = viewer.getBeat();
         if (jumps.size() != 0) {
-          if (jumps.get(0).get(0) >= position) {
-            viewer.resume(jumps.get(0).get(1));
+          if (jumps.get(0).get(0) <= viewer.getBeat()) {
+            position = jumps.get(0).get(1);
+            viewer.updateBeat(position);
+            viewer.resume(position);
+            jumps.remove(0);
           }
         }
         position = viewer.getBeat();
@@ -302,6 +309,7 @@ public class MidiController implements IController {
    */
   class Play implements Runnable {
     public void run() {
+      jumps = sheet.getJumps();
       viewer.play();
     }
   }
@@ -312,6 +320,9 @@ public class MidiController implements IController {
   class StopPlay implements Runnable {
     @Override
     public void run() {
+      System.out.print(position);
+      position = viewer.getBeat();
+      System.out.print(position);
       play = false;
       viewer.stop();
     }
@@ -330,14 +341,16 @@ public class MidiController implements IController {
     }
   }
 
-  class AddRepeat implements Runnable{
+  class AddRepeat implements Runnable {
     @Override
-    public void run(){}
+    public void run() {
+    }
   }
 
-  class RemoveEnd implements Runnable{
+  class RemoveEnd implements Runnable {
     @Override
-    public void run(){}
+    public void run() {
+    }
   }
 
 
