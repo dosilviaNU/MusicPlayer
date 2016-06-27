@@ -19,7 +19,7 @@ public interface IRepeat {
   /**
    * @return returns starting point for the repeat (Lowest beat in repeat)
    */
-  public int getBegining();
+  public int getBeginning();
 
   /**
    * @return returns final beat for the repeat (Highest beat in repeat)

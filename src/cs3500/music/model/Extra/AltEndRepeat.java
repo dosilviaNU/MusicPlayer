@@ -42,7 +42,7 @@ public class AltEndRepeat implements IRepeat {
   }
 
   @Override
-  public int getBegining() {
+  public int getBeginning() {
     return start;
   }
 
@@ -58,11 +58,11 @@ public class AltEndRepeat implements IRepeat {
   @Override
   public boolean conflictWith(IRepeat that) {
     int max = this.getEnding();
-    return (that.getBegining() >= this.getBegining() && that.getBegining() <= max) ||
-            (that.getEnding() >= this.getBegining() && that.getEnding() <= max) ||
-            (this.getBegining() >= that.getBegining() &&
-                    this.getBegining() <= that.getEnding()) ||
-            (max >= that.getBegining() && max <= that.getEnding());
+    return (that.getBeginning() >= this.getBeginning() && that.getBeginning() <= max) ||
+            (that.getEnding() >= this.getBeginning() && that.getEnding() <= max) ||
+            (this.getBeginning() >= that.getBeginning() &&
+                    this.getBeginning() <= that.getEnding()) ||
+            (max >= that.getBeginning() && max <= that.getEnding());
   }
 
 }

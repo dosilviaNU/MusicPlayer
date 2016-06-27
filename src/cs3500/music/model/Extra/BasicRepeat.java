@@ -23,7 +23,7 @@ public class BasicRepeat implements IRepeat {
   }
 
   @Override
-  public int getBegining() {
+  public int getBeginning() {
     return start;
   }
 
@@ -34,10 +34,10 @@ public class BasicRepeat implements IRepeat {
 
   @Override
   public boolean conflictWith(IRepeat that) {
-    return (that.getBegining() >= this.getBegining() && that.getBegining() <= this.getEnding()) ||
-            (that.getEnding() >= this.getBegining() && that.getEnding() <= this.getEnding()) ||
-            (this.getBegining() >= that.getBegining() &&
-                    this.getBegining() <= that.getEnding()) ||
-            (this.getEnding() >= that.getBegining() && this.getEnding() <= that.getEnding());
+    return (that.getBeginning() >= this.getBeginning() && that.getBeginning() <= this.getEnding()) ||
+            (that.getEnding() >= this.getBeginning() && that.getEnding() <= this.getEnding()) ||
+            (this.getBeginning() >= that.getBeginning() &&
+                    this.getBeginning() <= that.getEnding()) ||
+            (this.getEnding() >= that.getBeginning() && this.getEnding() <= that.getEnding());
   }
 }
