@@ -135,4 +135,8 @@ public class MidiView implements IMidiView<IComposition>, Runnable {
     song.start();
     song.setTempoInMPQ(comp.getTempo());}
 
+  @Override
+  public boolean isPlaying() {
+    return song.isRunning();
+  }
 }
