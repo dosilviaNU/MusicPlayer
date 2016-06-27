@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static java.awt.event.KeyEvent.VK_END;
@@ -15,6 +16,8 @@ import static java.awt.event.KeyEvent.VK_O;
 import static java.awt.event.KeyEvent.VK_P;
 import static java.awt.event.KeyEvent.VK_RIGHT;
 
+import cs3500.music.model.Extra.ICompRepeat;
+import cs3500.music.model.Extra.MidiCompRepeat;
 import cs3500.music.model.IComposition;
 import cs3500.music.model.INote;
 import cs3500.music.model.MidiComposition;
@@ -32,10 +35,11 @@ import javafx.scene.paint.Stop;
  * Concrete Class implementing the IController Interface Created by Jake on 6/21/2016.
  */
 public class MidiController implements IController {
-  private IComposition sheet;
+  private ICompRepeat sheet;
   private ICompositeView viewer;
   private boolean play;
   private int position;
+  private List<List<Integer>> jumps;
 
 
   /**
@@ -46,8 +50,9 @@ public class MidiController implements IController {
   public MidiController(IComposition musicSheet, ICompositeView viewer) {
     this.viewer = viewer;
     viewer.updateMidiComp(musicSheet);
-    this.sheet = musicSheet;
+    this.sheet = new MidiCompRepeat(musicSheet);
     viewer.display();
+    jumps = sheet.getJumps();
   }
 
   public void mouseRunnable(int x, int y) {
@@ -205,7 +210,8 @@ public class MidiController implements IController {
         new ErrorWindow(err.getMessage(), "Cannot parse file!");
         viewer.giveFocus();
       }
-      sheet = comp;
+      sheet = new MidiCompRepeat(comp);
+      jumps = sheet.getJumps();
       viewer.updateMidiComp(sheet);
       viewer.updateNotes(sheet.getNotes(), sheet.getSpread(sheet.getNotes()));
     }
@@ -271,6 +277,12 @@ public class MidiController implements IController {
   class UpdateBar implements Runnable {
     public void run() {
       while (play) {
+        position = viewer.getBeat();
+        if (jumps.size() != 0) {
+          if (jumps.get(0).get(0) >= position) {
+            viewer.resume(jumps.get(0).get(1));
+          }
+        }
         position = viewer.getBeat();
         viewer.updateBeat(position);
       }
