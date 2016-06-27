@@ -26,7 +26,7 @@ public class AltEndRepeat implements IRepeat {
       }
     }
     this.start = start;
-    ends = new ArrayList<Integer>();
+    this.ends = new ArrayList<Integer>();
     ends.addAll(ends);
     Collections.sort(ends);
   }

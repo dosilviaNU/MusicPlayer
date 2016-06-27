@@ -224,6 +224,7 @@ public class MidiController implements IController {
       sheet = new MidiCompRepeat(comp);
       jumps = sheet.getJumps();
       viewer.updateMidiComp(sheet);
+      viewer.wipeRepeats();
       viewer.updateNotes(sheet.getNotes(), sheet.getSpread(sheet.getNotes()));
     }
   }
