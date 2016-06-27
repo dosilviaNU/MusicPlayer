@@ -14,6 +14,7 @@ public class AltEndRepeat implements IRepeat {
   private ArrayList<Integer> ends;
 
   public AltEndRepeat(int start, List<Integer> ends) {
+    System.out.println("BuildingBasic" + start + "," + ends.toString());
     if (start < 0) {
       throw new IllegalArgumentException("Start can't be less than 0!");
     }

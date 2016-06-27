@@ -37,23 +37,13 @@ public class MidiCompRepeat extends MidiComposition implements ICompRepeat<MidiN
     for (IRepeat r: repeats) {
       jumps.addAll(r.buildJumps());
     }
+    System.out.println("Jumps in CompRepeat" + jumps);
     return jumps;
   }
 
   @Override
   public void addRepeat(IRepeat repeat) {
-    boolean okToAdd = true;
-    /*for (IRepeat r: repeats) {
-      if (repeat.conflictWith(r)) {
-        okToAdd = false;
-      }
-    }*/
-    if (okToAdd) {
       repeats.add(repeat);
-    }
-    else {
-      throw new IllegalArgumentException("Overlapping Repeat Not Added");
-    }
   }
 
   @Override
