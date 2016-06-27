@@ -130,7 +130,7 @@ public class MidiView implements IMidiView<IComposition>, Runnable {
   @Override
   public void resume(long beat) {
     System.out.println("Going to beat: " + beat);
-    song.setTickPosition(beat);
+    song.setTickPosition(beat*comp.getTempo());
     song.setTempoInMPQ(comp.getTempo());
     song.start();
     song.setTempoInMPQ(comp.getTempo());}

@@ -228,6 +228,7 @@ public class NoteDisplay extends JComponent {
    */
   public void addEnding(EndPair end){
     this.endings.add(end);
+    repaint();
   }
 
   /**
@@ -235,10 +236,9 @@ public class NoteDisplay extends JComponent {
    * @param end ending number to be removed.
    */
   public void removeEnding(int end) throws IllegalArgumentException{
-    if(end > this.endings.size()+1){
-      throw new IllegalArgumentException("No such ending exists.");
-    }
+
     this.endings.remove(end-1);
+    repaint();
   }
 
   /**

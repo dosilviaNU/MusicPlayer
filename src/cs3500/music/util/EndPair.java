@@ -21,4 +21,12 @@ public class EndPair {
   public int getLastBeat(){
     return lastBeat;
   }
+
+  public boolean equals(Object o){
+    if(o instanceof EndPair){
+      EndPair that = (EndPair)o;
+      return that.firstBeat==this.firstBeat&&that.lastBeat==this.lastBeat;
+    }
+    else{return false;}
+  }
 }
