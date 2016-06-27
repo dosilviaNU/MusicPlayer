@@ -16,6 +16,17 @@ public interface ICompRepeat<N> extends IComposition<N> {
    * @return List
    */
   public List<List<Integer>> getJumps();
+
+  /**
+   * Adds a repeat to a composition
+   * @param repeat IRepeat to add
+   */
   public void addRepeat(IRepeat repeat);
+
+  /**
+   * Removes a repeat from a composition
+   * @param repeat repeat to remove
+   * @return true if remove successful
+   */
   public boolean removeRepeat(IRepeat repeat);
 }

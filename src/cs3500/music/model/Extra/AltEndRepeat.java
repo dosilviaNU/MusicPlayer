@@ -14,7 +14,7 @@ public class AltEndRepeat implements IRepeat {
   private ArrayList<Integer> ends;
 
   public AltEndRepeat(int start, List<Integer> ends) {
-    System.out.println("BuildingBasic" + start + "," + ends.toString());
+    System.out.println("BuildingAltEnd" + start + "," + ends.toString());
     if (start < 0) {
       throw new IllegalArgumentException("Start can't be less than 0!");
     }
@@ -27,8 +27,8 @@ public class AltEndRepeat implements IRepeat {
       }
     }
     this.start = start;
-    ends = new ArrayList<Integer>();
-    ends.addAll(ends);
+    this.ends = new ArrayList<Integer>();
+    this.ends.addAll(ends);
     Collections.sort(ends);
   }
 
@@ -36,14 +36,21 @@ public class AltEndRepeat implements IRepeat {
   @Override
   public ArrayList<ArrayList<Integer>> buildJumps() {
     ArrayList<ArrayList<Integer>> results = new ArrayList<ArrayList<Integer>>();
+    System.out.println(ends.size());
     if (ends.size() == 1) {
       results.add(new ArrayList<Integer>(Arrays.asList(ends.get(0), start)));
     } else {
-      for (int i = 0; i < ends.size() - 1; i++) {
-        results.add(new ArrayList<Integer>(Arrays.asList(ends.get(i + 1), start)));
-        results.add(new ArrayList<Integer>(Arrays.asList(ends.get(0), ends.get(i + 1))));
+      results.add(new ArrayList<Integer>(Arrays.asList(ends.get(1), start)));
+      for (int i = 1; i < ends.size() - 1; i++) {
+        results.add(new ArrayList<Integer>(Arrays.asList(ends.get(0), ends.get(i))));
+        //do not add the last jump to begining in the final ending
+        if (i+1 != ends.size()-1) {
+          results.add(new ArrayList<Integer>(Arrays.asList(ends.get(i + 1), start)));
+        }
       }
     }
+    System.out.println("buildjumps for altend");
+    System.out.println(results);
     return results;
   }
 
@@ -81,16 +88,8 @@ public class AltEndRepeat implements IRepeat {
     }
     if (o instanceof AltEndRepeat) {
       AltEndRepeat r = (AltEndRepeat) o;
-      boolean result = true;
-      result = result && r.start == this.start;
-      result = result && r.ends.size() == r.ends.size();
-
-      if (result) {
-        for (int i = 0; i < r.ends.size(); i++) {
-          result = result && r.ends.get(i) == this.ends.get(i);
-        }
-      }
-      return false;
+      return r.getBeginning() == this.getBeginning() && r.getEnding() == this.getEnding() && r
+              .ends.size() == this.ends.size();
     }
     return false;
   }
