@@ -125,11 +125,7 @@ public class MidiController implements IController {
     return new ResumePlay();
   }
 
-  @Override
-  public Runnable addRepeat(){return new AddRepeat();}
 
-  @Override
-  public Runnable removeEnd(){return new RemoveEnd();}
 
   /**
    * Runnable function object for adding a note to the composite view.
@@ -317,13 +313,4 @@ public class MidiController implements IController {
     }
   }
 
-  class AddRepeat implements Runnable{
-    @Override
-    public void run(){}
-  }
-
-  class RemoveEnd implements Runnable{
-    @Override
-    public void run(){}
-  }
 }
