@@ -30,7 +30,18 @@ public class MidiCompRepeat extends MidiComposition implements ICompRepeat {
 
   @Override
   public void addRepeat(IRepeat repeat) {
-
+    boolean okToAdd = true;
+    for (IRepeat r: repeats) {
+      if (repeat.conflictWith(r)) {
+        okToAdd = false;
+      }
+    }
+    if (okToAdd) {
+      repeats.add(repeat);
+    }
+    else {
+      throw new IllegalArgumentException("Overlapping Repeat Not Added");
+    }
   }
 
   @Override

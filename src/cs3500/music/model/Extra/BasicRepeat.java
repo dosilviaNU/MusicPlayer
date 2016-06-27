@@ -2,6 +2,7 @@ package cs3500.music.model.Extra;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Objects;
 
 /**
  * Created by Jake on 6/22/2016.
@@ -39,5 +40,20 @@ public class BasicRepeat implements IRepeat {
             (this.getBeginning() >= that.getBeginning() &&
                     this.getBeginning() <= that.getEnding()) ||
             (this.getEnding() >= that.getBeginning() && this.getEnding() <= that.getEnding());
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {return true;}
+    if (o instanceof BasicRepeat) {
+      BasicRepeat r = (BasicRepeat) o;
+      return r.start == this.start && r.end == this.end;
+    }
+    return false;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(this.start, this.end);
   }
 }
