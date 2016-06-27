@@ -235,9 +235,8 @@ public class NoteDisplay extends JComponent {
    * removes given display.
    * @param end ending number to be removed.
    */
-  public void removeEnding(int end) throws IllegalArgumentException{
-
-    this.endings.remove(end-1);
+  public void removeEnding(EndPair end) throws IllegalArgumentException{
+    endings.remove(end);
     repaint();
   }
 
@@ -282,6 +281,30 @@ public class NoteDisplay extends JComponent {
     this.windowHeight = (noteMod + 3) * topBorder;
     this.windowWidth = (spread[2] + 1) * leftBorder;
     setPreferredSize(new Dimension(windowWidth, windowHeight));
+  }
+
+  public void removeRepeat(int beat){
+    int index = -1;
+    for(int i = 0;i<repeats.size();i++){
+      if(repeats.get(i) == beat){
+        index = i;
+      }
+    }
+    if(index != -1) {
+      repeats.remove(index);
+    }
+  }
+
+  public void removeInvertRepeat(int beat){
+    int index = -1;
+    for(int i = 0;i<invertRepeats.size();i++){
+      if(invertRepeats.get(i) == beat){
+        index = i;
+      }
+    }
+    if(index != -1) {
+      invertRepeats.remove(index);
+    }
   }
 
 }

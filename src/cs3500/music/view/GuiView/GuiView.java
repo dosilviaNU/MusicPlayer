@@ -191,8 +191,18 @@ public class GuiView extends JFrame implements IGuiView {
   }
 
   @Override
-  public void removeEnding(int end){
+  public void removeEnding(EndPair end){
     centerPanel.removeEnding(end);
+  }
+
+  @Override
+  public void removeRepeat(int beat) {
+    centerPanel.removeRepeat(beat);
+  }
+
+  @Override
+  public void removeInvertRepeat(int beat) {
+    centerPanel.removeInvertRepeat(beat);
   }
 
   @Override
