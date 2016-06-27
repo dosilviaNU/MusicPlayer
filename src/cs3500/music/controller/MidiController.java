@@ -3,6 +3,7 @@ package cs3500.music.controller;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -16,12 +17,15 @@ import static java.awt.event.KeyEvent.VK_O;
 import static java.awt.event.KeyEvent.VK_P;
 import static java.awt.event.KeyEvent.VK_RIGHT;
 
+import cs3500.music.model.Extra.AltEndRepeat;
+import cs3500.music.model.Extra.BasicRepeat;
 import cs3500.music.model.Extra.ICompRepeat;
 import cs3500.music.model.Extra.MidiCompRepeat;
 import cs3500.music.model.IComposition;
 import cs3500.music.model.INote;
 import cs3500.music.model.MidiComposition;
 
+import cs3500.music.util.EndPair;
 import cs3500.music.util.MidiCompBuilder;
 import cs3500.music.util.MusicReader;
 
@@ -332,7 +336,24 @@ public class MidiController implements IController {
 
   class AddRepeat implements Runnable{
     @Override
-    public void run(){}
+    public void run(){
+      int[] tempRepeats = viewer.getRepeats();
+      if(tempRepeats.length == 2){
+        sheet.addRepeat(new BasicRepeat(tempRepeats[0], tempRepeats[1]));
+        viewer.addRepeat(tempRepeats[1]);
+        viewer.addInvertRepeat(tempRepeats[0]);
+      }
+      else{
+        ArrayList<Integer> tempEndings = new ArrayList<Integer>();
+        for(int i = 1;i<tempRepeats.length;i++){
+          tempEndings.add(tempRepeats[i]);
+          if(i < tempRepeats.length-1) {
+            viewer.addEnding(new EndPair(tempRepeats[i], tempRepeats[i + 1]));
+          }
+        }
+        sheet.addRepeat(new AltEndRepeat(tempRepeats[0],tempEndings));
+      }
+    }
   }
 
   class RemoveEnd implements Runnable{

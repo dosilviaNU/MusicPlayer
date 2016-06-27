@@ -154,4 +154,6 @@ public interface IGuiView extends IMusicView {
 
   int[] getRepeats();
 
+
+
 }

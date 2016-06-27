@@ -160,4 +160,18 @@ public class CompositeView implements ICompositeView {
   public void removeEnding(int end) throws IllegalArgumentException{
     viewer.removeEnding(end);
   }
+
+  public void addRepeat(int beat){
+    viewer.addRepeat(beat);
+  }
+
+  public void addInvertRepeat(int beat){
+    viewer.addInvertRepeat(beat);
+  }
+
+
+  @Override
+  public int[] getRepeats(){
+    return viewer.getRepeats();
+  }
 }

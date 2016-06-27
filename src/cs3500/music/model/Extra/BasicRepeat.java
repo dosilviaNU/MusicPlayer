@@ -11,7 +11,7 @@ public class BasicRepeat implements IRepeat {
   private int start;
   private int end;
 
-  BasicRepeat(int start, int end) {
+  public BasicRepeat(int start, int end) {
     this.start = start;
     this.end = end;
   }

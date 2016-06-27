@@ -164,6 +164,11 @@ public interface ICompositeView {
    */
   void removeEnding(int end) throws IllegalArgumentException;
 
+  int[] getRepeats();
+
+  void addRepeat(int beat);
+
+  void addInvertRepeat(int beat);
 
 
 }

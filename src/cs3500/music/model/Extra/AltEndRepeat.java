@@ -13,7 +13,7 @@ public class AltEndRepeat implements IRepeat {
   private int start;
   private ArrayList<Integer> ends;
 
-  AltEndRepeat(int start, List<Integer> ends) {
+  public AltEndRepeat(int start, List<Integer> ends) {
     if (start < 0) {
       throw new IllegalArgumentException("Start can't be less than 0!");
     }
