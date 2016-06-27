@@ -22,10 +22,10 @@ import java.util.Collection;
  * Displays an IMusicSheet using Java Swing components.
  */
 public class GuiView extends JFrame implements IGuiView {
-  private static NoteDisplay centerPanel;
-  private static EditorMenu eastPanel;
-  private static JScrollPane scrollPane;
-  private static int[] stats;
+  private NoteDisplay centerPanel;
+  private EditorMenu eastPanel;
+  private JScrollPane scrollPane;
+  private int[] stats;
 
   public static final int GUI_WIDTH = 1600;
   public static final int GUI_HEIGHT= 800;
@@ -136,7 +136,7 @@ public class GuiView extends JFrame implements IGuiView {
   @Override
   public void updateBeat(int beat){
     centerPanel.nextBeat(beat);
-    if(beat%22==0) {
+    if(beat%32==0) {
       scrollPane.getHorizontalScrollBar().setValue((beat) * BEAT_WIDTH);
     }
   }

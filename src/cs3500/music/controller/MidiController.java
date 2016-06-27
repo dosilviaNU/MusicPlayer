@@ -271,8 +271,8 @@ public class MidiController implements IController {
   class UpdateBar implements Runnable {
     public void run() {
       while (play) {
-        viewer.updateBeat(viewer.getBeat());
         position = viewer.getBeat();
+        viewer.updateBeat(position);
       }
     }
   }

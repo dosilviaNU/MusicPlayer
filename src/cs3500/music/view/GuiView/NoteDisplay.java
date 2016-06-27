@@ -177,7 +177,7 @@ public class NoteDisplay extends JComponent {
    * @param noteValue Value to convert to a string.
    * @return String representation of given note value.
    */
-  private static String valueToPitchString(int noteValue) {
+  private String valueToPitchString(int noteValue) {
     StringBuilder result = new StringBuilder();
     result.append(INote.Pitch.fromValue(noteValue % 12).toString());
     result.append((noteValue / 12)-1);
