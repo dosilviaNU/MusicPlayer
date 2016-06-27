@@ -167,6 +167,16 @@ public class MockController implements IController {
     return new ResumePlay();
   }
 
+  @Override
+  public Runnable addRepeat() {
+    return null;
+  }
+
+  @Override
+  public Runnable removeEnd() {
+    return null;
+  }
+
   /**
    * Runnable function object for adding a note to the composite view.
    */

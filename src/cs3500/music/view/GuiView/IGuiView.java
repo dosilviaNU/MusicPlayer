@@ -151,4 +151,7 @@ public interface IGuiView extends IMusicView {
    * @throws IllegalArgumentException if no such ending exists.
    */
   void removeEnding(int end) throws IllegalArgumentException;
+
+  int[] getRepeats();
+
 }

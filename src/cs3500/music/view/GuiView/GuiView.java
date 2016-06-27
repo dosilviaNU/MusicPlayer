@@ -24,11 +24,12 @@ import java.util.Collection;
 public class GuiView extends JFrame implements IGuiView {
   private NoteDisplay centerPanel;
   private EditorMenu eastPanel;
+  private RepeatMenu southPanel;
   private JScrollPane scrollPane;
   private int[] stats;
 
-  public static final int GUI_WIDTH = 1600;
-  public static final int GUI_HEIGHT= 800;
+  public static final int GUI_WIDTH = 1200;
+  public static final int GUI_HEIGHT= 600;
   public static final int BEAT_WIDTH = 40;
   public static final int BEAT_HEIGHT = 20;
 
@@ -58,6 +59,10 @@ public class GuiView extends JFrame implements IGuiView {
     //Set east panel tp editor menu.
     eastPanel = new EditorMenu();
     add(eastPanel, BorderLayout.EAST);
+
+    //Add repeat menu.
+    southPanel = new RepeatMenu();
+    add(southPanel, BorderLayout.SOUTH);
 
   }
 
@@ -112,6 +117,7 @@ public class GuiView extends JFrame implements IGuiView {
   @Override
   public void addAListener(ActionListener actionListener) {
     eastPanel.addActionListener(actionListener);
+    southPanel.addActionListener(actionListener);
   }
 
   public void redraw() {
@@ -136,7 +142,7 @@ public class GuiView extends JFrame implements IGuiView {
   @Override
   public void updateBeat(int beat){
     centerPanel.nextBeat(beat);
-    if(beat%32==0) {
+    if(beat%21==0) {
       scrollPane.getHorizontalScrollBar().setValue((beat) * BEAT_WIDTH);
     }
   }
@@ -187,5 +193,10 @@ public class GuiView extends JFrame implements IGuiView {
   @Override
   public void removeEnding(int end){
     centerPanel.removeEnding(end);
+  }
+
+  @Override
+  public int[] getRepeats() {
+    return southPanel.getRepeats();
   }
 }
