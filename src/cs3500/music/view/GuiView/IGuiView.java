@@ -150,7 +150,11 @@ public interface IGuiView extends IMusicView {
    * @param end Ending number to be removed.
    * @throws IllegalArgumentException if no such ending exists.
    */
-  void removeEnding(int end) throws IllegalArgumentException;
+  void removeEnding(EndPair end) throws IllegalArgumentException;
+
+  void removeRepeat(int beat);
+
+  void removeInvertRepeat(int beat);
 
   int[] getRepeats();
 

@@ -307,6 +307,7 @@ public class MidiController implements IController {
   class Play implements Runnable {
     public void run() {
       viewer.play();
+      jumps=sheet.getJumps();
     }
   }
 
@@ -340,6 +341,7 @@ public class MidiController implements IController {
       int[] tempRepeats = viewer.getRepeats();
       if(tempRepeats.length == 2){
         sheet.addRepeat(new BasicRepeat(tempRepeats[0], tempRepeats[1]));
+        viewer.updateMidiComp(sheet);
         viewer.addRepeat(tempRepeats[1]);
         viewer.addInvertRepeat(tempRepeats[0]);
       }
@@ -352,13 +354,35 @@ public class MidiController implements IController {
           }
         }
         sheet.addRepeat(new AltEndRepeat(tempRepeats[0],tempEndings));
+        viewer.updateMidiComp(sheet);
       }
+      viewer.giveFocus();
     }
   }
 
   class RemoveEnd implements Runnable{
     @Override
-    public void run(){}
+    public void run(){
+      int[] tempRepeats = viewer.getRepeats();
+      if(tempRepeats.length == 2){
+        sheet.removeRepeat(new BasicRepeat(tempRepeats[0], tempRepeats[1]));
+        viewer.updateMidiComp(sheet);
+        viewer.removeRepeat(tempRepeats[1]);
+        viewer.removeInvertRepeat(tempRepeats[0]);
+      }
+      else{
+        ArrayList<Integer> tempEndings = new ArrayList<Integer>();
+        for(int i = 1;i<tempRepeats.length;i++){
+          tempEndings.add(tempRepeats[i]);
+          if(i < tempRepeats.length-1) {
+            viewer.removeEnding(new EndPair(tempRepeats[i], tempRepeats[i + 1]));
+          }
+        }
+        sheet.removeRepeat(new AltEndRepeat(tempRepeats[0],tempEndings));
+        viewer.updateMidiComp(sheet);
+      }
+      viewer.giveFocus();
+    }
   }
 
 

@@ -162,13 +162,17 @@ public interface ICompositeView {
   /**
    * Removes given ending.
    */
-  void removeEnding(int end) throws IllegalArgumentException;
+  void removeEnding(EndPair end) throws IllegalArgumentException;
 
   int[] getRepeats();
 
   void addRepeat(int beat);
 
   void addInvertRepeat(int beat);
+
+  void removeRepeat(int beat);
+
+  void removeInvertRepeat(int beat);
 
 
 }
