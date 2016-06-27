@@ -135,10 +135,14 @@ public class MidiController implements IController {
   }
 
   @Override
-  public Runnable addRepeat(){return new AddRepeat();}
+  public Runnable addRepeat() {
+    return new AddRepeat();
+  }
 
   @Override
-  public Runnable removeEnd(){return new RemoveEnd();}
+  public Runnable removeEnd() {
+    return new RemoveEnd();
+  }
 
 
   /**
@@ -171,8 +175,7 @@ public class MidiController implements IController {
         } else {
           new ErrorWindow("Remove Failed: Note not found.", "Remove failed!");
         }
-      }
-      catch(Exception e) {
+      } catch (Exception e) {
         new ErrorWindow("Invalid Field", "Remove failed!");
       }
     }
@@ -201,7 +204,7 @@ public class MidiController implements IController {
   class OpenFile implements Runnable {
     @Override
     public void run() {
-      StopPlay  stop = new StopPlay();
+      StopPlay stop = new StopPlay();
       stop.run();
       File musicFile = new File(viewer.getFileFromField());
       //Parse and build given music text file.
@@ -293,8 +296,11 @@ public class MidiController implements IController {
         if (jumps.size() != 0) {
           if (jumps.get(0).get(0) <= position) {
             viewer.resume(jumps.get(0).get(1));
-            jumps.remove(0);
+            if (jumps.size() > 0) {
+              jumps.remove(0);
+            }
           }
+          viewer.updateBeat(position);
         }
         position = viewer.getBeat();
         viewer.updateBeat(position);
@@ -309,7 +315,7 @@ public class MidiController implements IController {
   class Play implements Runnable {
     public void run() {
       viewer.play();
-      jumps=sheet.getJumps();
+      jumps = sheet.getJumps();
     }
   }
 
@@ -337,50 +343,50 @@ public class MidiController implements IController {
     }
   }
 
-  class AddRepeat implements Runnable{
+  class AddRepeat implements Runnable {
     @Override
-    public void run(){
+    public void run() {
       int[] tempRepeats = viewer.getRepeats();
-      if(tempRepeats.length == 2){
+      System.out.println("Repeats length: " + tempRepeats.length);
+      if (tempRepeats.length == 2) {
         sheet.addRepeat(new BasicRepeat(tempRepeats[0], tempRepeats[1]));
         viewer.updateMidiComp(sheet);
         viewer.addRepeat(tempRepeats[1]);
         viewer.addInvertRepeat(tempRepeats[0]);
-      }
-      else{
+      } else {
         ArrayList<Integer> tempEndings = new ArrayList<Integer>();
-        for(int i = 1;i<tempRepeats.length;i++){
+        for (int i = 1; i < tempRepeats.length; i++) {
           tempEndings.add(tempRepeats[i]);
-          if(i < tempRepeats.length-1) {
+          if (i < tempRepeats.length - 1) {
             viewer.addEnding(new EndPair(tempRepeats[i], tempRepeats[i + 1]));
           }
         }
-        sheet.addRepeat(new AltEndRepeat(tempRepeats[0],tempEndings));
+        sheet.addRepeat(new AltEndRepeat(tempRepeats[0], tempEndings));
         viewer.updateMidiComp(sheet);
       }
       viewer.giveFocus();
     }
   }
 
-  class RemoveEnd implements Runnable{
+  class RemoveEnd implements Runnable {
     @Override
-    public void run(){
+    public void run() {
       int[] tempRepeats = viewer.getRepeats();
-      if(tempRepeats.length == 2){
+      if (tempRepeats.length == 2) {
         sheet.removeRepeat(new BasicRepeat(tempRepeats[0], tempRepeats[1]));
         viewer.updateMidiComp(sheet);
         viewer.removeRepeat(tempRepeats[1]);
         viewer.removeInvertRepeat(tempRepeats[0]);
-      }
-      else{
+      } else {
         ArrayList<Integer> tempEndings = new ArrayList<Integer>();
-        for(int i = 1;i<tempRepeats.length;i++){
+        for (int i = 1; i < tempRepeats.length; i++) {
           tempEndings.add(tempRepeats[i]);
-          if(i < tempRepeats.length-1) {
+          if (i < tempRepeats.length - 1) {
             viewer.removeEnding(new EndPair(tempRepeats[i], tempRepeats[i + 1]));
           }
         }
-        sheet.removeRepeat(new AltEndRepeat(tempRepeats[0],tempEndings));
+        System.out.println("Removal: " + sheet.removeRepeat(new AltEndRepeat(tempRepeats[0],
+                tempEndings)));
         viewer.updateMidiComp(sheet);
       }
       viewer.giveFocus();

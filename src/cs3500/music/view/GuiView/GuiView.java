@@ -27,6 +27,7 @@ public class GuiView extends JFrame implements IGuiView {
   private RepeatMenu southPanel;
   private JScrollPane scrollPane;
   private int[] stats;
+  private int lastBeat;
 
   public static final int GUI_WIDTH = 1200;
   public static final int GUI_HEIGHT= 600;
@@ -44,6 +45,7 @@ public class GuiView extends JFrame implements IGuiView {
     setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     setResizable(false);
     stats=sheet.getSpread(sheet.getNotes());
+    lastBeat = 0;
 
     setSize(new Dimension(GuiView.GUI_WIDTH, GUI_HEIGHT));
     setLayout(new BorderLayout());
@@ -55,6 +57,7 @@ public class GuiView extends JFrame implements IGuiView {
     scrollPane = new JScrollPane(centerPanel);
     scrollPane.setLayout(new ScrollPaneLayout());
     add(scrollPane, BorderLayout.CENTER);
+
 
     //Set east panel tp editor menu.
     eastPanel = new EditorMenu();
@@ -141,11 +144,12 @@ public class GuiView extends JFrame implements IGuiView {
 
   @Override
   public void updateBeat(int beat){
+
     centerPanel.nextBeat(beat);
-    Rectangle visible = scrollPane.getViewportBorderBounds();
-    if(beat%21==0) {
+    if(beat%21==0 || (Math.abs(lastBeat-beat) > 10)) {
       scrollPane.getHorizontalScrollBar().setValue((beat) * BEAT_WIDTH);
     }
+    lastBeat = beat;
   }
 
   @Override
