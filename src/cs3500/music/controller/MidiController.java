@@ -290,8 +290,9 @@ public class MidiController implements IController {
       while (play) {
         position = viewer.getBeat();
         if (jumps.size() != 0) {
-          if (jumps.get(0).get(0) >= position) {
+          if (jumps.get(0).get(0) <= position) {
             viewer.resume(jumps.get(0).get(1));
+            jumps.remove(0);
           }
         }
         position = viewer.getBeat();
