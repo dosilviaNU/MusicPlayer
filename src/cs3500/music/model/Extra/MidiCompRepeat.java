@@ -3,21 +3,25 @@ package cs3500.music.model.Extra;
 import java.util.ArrayList;
 import java.util.List;
 
+import cs3500.music.model.IComposition;
+import cs3500.music.model.IMusicSheet;
+import cs3500.music.model.INote;
 import cs3500.music.model.MidiComposition;
+import cs3500.music.model.MidiNote;
 import cs3500.music.util.MidiCompBuilder;
 
 /**
  * Created by Jake on 6/22/2016.
  */
-public class MidiCompRepeat extends MidiComposition implements ICompRepeat {
+public class MidiCompRepeat extends MidiComposition implements ICompRepeat<MidiNote> {
   ArrayList<IRepeat> repeats;
 
-  MidiCompRepeat() {
+  public MidiCompRepeat() {
     super();
     repeats = new ArrayList<IRepeat>();
   }
 
-  MidiCompRepeat(MidiComposition comp) {
+  public MidiCompRepeat(IComposition comp) {
     addNotes(comp.getNotes());
     this.setTempo(comp.getTempo());
     repeats = new ArrayList<IRepeat>();
