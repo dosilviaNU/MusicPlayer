@@ -25,6 +25,10 @@ public class MidiCompRepeat extends MidiComposition implements ICompRepeat<MidiN
     addNotes(comp.getNotes());
     this.setTempo(comp.getTempo());
     repeats = new ArrayList<IRepeat>();
+    if (comp instanceof MidiCompRepeat) {
+      MidiCompRepeat temp = (MidiCompRepeat) comp;
+      this.repeats = temp.repeats;
+    }
   }
 
   @Override
