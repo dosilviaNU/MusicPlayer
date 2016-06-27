@@ -17,9 +17,9 @@ import cs3500.music.view.midi.MidiView;
  * Created by David on 6/23/2016.
  */
 public class CompositeView implements ICompositeView {
-  IMidiView player;
-  IGuiView viewer;
-  boolean playing;
+  private IMidiView player;
+  private IGuiView viewer;
+  private boolean playing;
 
   public CompositeView(IComposition sheet){
     this.player = new MidiView(sheet);
