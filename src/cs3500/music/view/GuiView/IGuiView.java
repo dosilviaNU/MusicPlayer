@@ -156,6 +156,8 @@ public interface IGuiView extends IMusicView {
 
   void removeInvertRepeat(int beat);
 
+  void wipeRepeats();
+
   int[] getRepeats();
 
 

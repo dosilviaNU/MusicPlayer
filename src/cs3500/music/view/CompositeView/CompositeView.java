@@ -184,4 +184,6 @@ public class CompositeView implements ICompositeView {
   public int[] getRepeats(){
     return viewer.getRepeats();
   }
+
+  public void wipeRepeats(){viewer.wipeRepeats();}
 }

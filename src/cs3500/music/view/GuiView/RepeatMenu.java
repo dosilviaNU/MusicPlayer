@@ -65,7 +65,7 @@ public class RepeatMenu extends JComponent {
   }
 
   public int[] getRepeats(){
-    String startString = startNote.getText();
+    String startString = startNote.getText().trim();
     int startBeat = 0;
     if(!(startString.equals(""))){
       startBeat = Integer.valueOf(startString);
@@ -75,7 +75,9 @@ public class RepeatMenu extends JComponent {
     int[] allBeats = new int[1 + endBeats.length];
     allBeats[0] = startBeat;
     for(int i = 1;i<endBeats.length+1;i++){
-      allBeats[i] = Integer.valueOf(endBeats[i-1]);
+        String trimmed = endBeats[i-1].trim();
+        allBeats[i] = Integer.valueOf(trimmed);
+
     }
     return allBeats;
   }

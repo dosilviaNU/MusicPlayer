@@ -307,4 +307,10 @@ public class NoteDisplay extends JComponent {
     }
   }
 
+  public void wipeRepeats(){
+    this.invertRepeats = new ArrayList<>();
+    this.repeats = new ArrayList<>();
+    this.endings = new ArrayList<>();
+  }
+
 }

@@ -174,5 +174,7 @@ public interface ICompositeView {
 
   void removeInvertRepeat(int beat);
 
+  void wipeRepeats();
+
 
 }

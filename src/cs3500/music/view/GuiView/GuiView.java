@@ -209,4 +209,9 @@ public class GuiView extends JFrame implements IGuiView {
   public int[] getRepeats() {
     return southPanel.getRepeats();
   }
+
+  @Override
+  public void wipeRepeats(){
+    centerPanel.wipeRepeats();
+  }
 }
