@@ -25,7 +25,11 @@ public class MidiCompRepeat extends MidiComposition implements ICompRepeat {
 
   @Override
   public List<List<Integer>> getJumps() {
-    return null;
+    List<List<Integer>> jumps = new ArrayList<List<Integer>>();
+    for (IRepeat r: repeats) {
+      jumps.addAll(r.buildJumps());
+    }
+    return jumps;
   }
 
   @Override
@@ -46,6 +50,9 @@ public class MidiCompRepeat extends MidiComposition implements ICompRepeat {
 
   @Override
   public boolean removeRepeat(IRepeat repeat) {
+    if (repeats.remove(repeat)) {
+      return true;
+    }
     return false;
   }
 }
