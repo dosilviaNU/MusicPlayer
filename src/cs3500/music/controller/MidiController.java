@@ -290,8 +290,9 @@ public class MidiController implements IController {
       while (play) {
         position = viewer.getBeat();
         if (jumps.size() != 0) {
-          if (jumps.get(0).get(0) >= position) {
+          if (jumps.get(0).get(0) <= position) {
             viewer.resume(jumps.get(0).get(1));
+            jumps.remove(0);
           }
         }
         position = viewer.getBeat();
@@ -307,7 +308,7 @@ public class MidiController implements IController {
   class Play implements Runnable {
     public void run() {
       viewer.play();
-      jumps=sheet.getJumps();
+      jumps = sheet.getJumps();
     }
   }
 
@@ -339,6 +340,7 @@ public class MidiController implements IController {
     @Override
     public void run(){
       int[] tempRepeats = viewer.getRepeats();
+      System.out.println("Repeats length: " + tempRepeats.length);
       if(tempRepeats.length == 2){
         sheet.addRepeat(new BasicRepeat(tempRepeats[0], tempRepeats[1]));
         viewer.updateMidiComp(sheet);
@@ -378,7 +380,8 @@ public class MidiController implements IController {
             viewer.removeEnding(new EndPair(tempRepeats[i], tempRepeats[i + 1]));
           }
         }
-        sheet.removeRepeat(new AltEndRepeat(tempRepeats[0],tempEndings));
+        System.out.println("Removal: " + sheet.removeRepeat(new AltEndRepeat(tempRepeats[0],
+                tempEndings)));
         viewer.updateMidiComp(sheet);
       }
       viewer.giveFocus();
