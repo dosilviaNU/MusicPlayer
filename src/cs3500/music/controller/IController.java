@@ -78,4 +78,9 @@ public interface IController {
    * Resumes playing current IComposition
    */
   Runnable resumePlay();
+
+  Runnable addRepeat();
+
+  Runnable removeEnd();
+
 }

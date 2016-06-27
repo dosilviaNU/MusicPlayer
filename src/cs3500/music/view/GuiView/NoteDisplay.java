@@ -56,10 +56,6 @@ public class NoteDisplay extends JComponent {
     this.repeats = new ArrayList<Integer>();
     this.invertRepeats = new ArrayList<Integer>();
     this.endings = new ArrayList<EndPair>();
-    repeats.add(16);
-    invertRepeats.add(12);
-    endings.add(new EndPair(12,16));
-    endings.add(new EndPair(16,20));
     setPreferredSize(new Dimension(windowWidth, windowHeight));
     setVisible(true);
     setFocusable(true);

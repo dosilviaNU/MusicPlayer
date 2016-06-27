@@ -97,6 +97,8 @@ public class MusicEditor {
     actionMap.put("remove", midiController.removeNote());
     actionMap.put("edit", midiController.editNote());
     actionMap.put("open", midiController.openFile());
+    actionMap.put("addRepeat", midiController.addRepeat());
+    actionMap.put("removeRepeat", midiController.removeEnd());
 
 
     keyMap = new HashMap<Integer, Runnable>();
