@@ -13,7 +13,6 @@ import javax.swing.*;
 public class RepeatMenu extends JComponent {
   JTextField startNote;
   JTextField endNote;
-  JTextField removeEnd;
   JButton addButton;
   JButton removeButton;
   List<JButton> buttons;

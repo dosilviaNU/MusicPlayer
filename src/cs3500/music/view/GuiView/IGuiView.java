@@ -152,12 +152,27 @@ public interface IGuiView extends IMusicView {
    */
   void removeEnding(EndPair end) throws IllegalArgumentException;
 
+  /**
+   * Removes the repeat line at the given beat.
+   * @param beat
+   */
   void removeRepeat(int beat);
 
+  /**
+   * Removes the inverted repeat line at the given beat.
+   * @param beat
+   */
   void removeInvertRepeat(int beat);
 
+  /**
+   * Removes all repeats.
+   */
   void wipeRepeats();
 
+  /**
+   * Returns an integer array of a repeat passed in through the GUI.
+   * @return int[] where 0 is the start beat and subsequent indices are endings.
+   */
   int[] getRepeats();
 
 
