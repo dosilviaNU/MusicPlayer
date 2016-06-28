@@ -39,12 +39,15 @@ public class AltEndRepeat implements IRepeat {
     System.out.println(ends.size());
     if (ends.size() == 1) {
       results.add(new ArrayList<Integer>(Arrays.asList(ends.get(0), start)));
+    } else if (ends.size() == 2) {
+      results.add(new ArrayList<Integer>(Arrays.asList(ends.get(1), start)));
+      results.add(new ArrayList<Integer>(Arrays.asList(ends.get(0), ends.get(1))));
     } else {
       results.add(new ArrayList<Integer>(Arrays.asList(ends.get(1), start)));
       for (int i = 1; i < ends.size() - 1; i++) {
         results.add(new ArrayList<Integer>(Arrays.asList(ends.get(0), ends.get(i))));
         //do not add the last jump to begining in the final ending
-        if (i+1 != ends.size()-1) {
+        if (i + 1 != ends.size() - 1) {
           results.add(new ArrayList<Integer>(Arrays.asList(ends.get(i + 1), start)));
         }
       }
@@ -96,6 +99,6 @@ public class AltEndRepeat implements IRepeat {
 
   @Override
   public int hashCode() {
-    return Objects.hash(this.start, this.ends);
+    return Objects.hash(this.getBeginning(), this.getEnding());
   }
 }

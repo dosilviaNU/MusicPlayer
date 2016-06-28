@@ -12,6 +12,7 @@ public interface IRepeat {
   /**
    * Builds a list of jumps required to complete the repeat pattern this will be in the form
    * (Beat to start jump from, Beat to jump to)
+   * For instance, jumping from beat 20 to beat 0 would be (20, 0)
    * @return Arraylist of pairs of integers required to complete the repeat pattern
    */
   public ArrayList<ArrayList<Integer>> buildJumps();

@@ -16,11 +16,18 @@ import cs3500.music.util.MidiCompBuilder;
 public class MidiCompRepeat extends MidiComposition implements ICompRepeat<MidiNote> {
   ArrayList<IRepeat> repeats;
 
+  /**
+   * Produces an empty MidiCompRepeat
+   */
   public MidiCompRepeat() {
     super();
     repeats = new ArrayList<IRepeat>();
   }
 
+  /**
+   * Produces an MidiCompRepeat from an existing MidiComposition
+   * @param comp
+   */
   public MidiCompRepeat(IComposition comp) {
     addNotes(comp.getNotes());
     this.setTempo(comp.getTempo());

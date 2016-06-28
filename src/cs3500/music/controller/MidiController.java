@@ -44,6 +44,8 @@ public class MidiController implements IController {
   private boolean play;
   private int position;
   private List<List<Integer>> jumps;
+  private Thread bar;
+  private Thread player;
 
 
   /**
@@ -53,8 +55,8 @@ public class MidiController implements IController {
    */
   public MidiController(IComposition musicSheet, ICompositeView viewer) {
     this.viewer = viewer;
-    viewer.updateMidiComp(musicSheet);
     this.sheet = new MidiCompRepeat(musicSheet);
+    viewer.updateMidiComp(musicSheet);
     viewer.display();
     jumps = sheet.getJumps();
   }
@@ -278,11 +280,12 @@ public class MidiController implements IController {
   class StartPlay implements Runnable {
     @Override
     public void run() {
+      jumps = sheet.getJumps();
       play = true;
       Thread bar = (new Thread(new UpdateBar()));
       Thread player = new Thread(new Play());
-      bar.start();
       player.start();
+      bar.start();
     }
   }
 
@@ -292,18 +295,23 @@ public class MidiController implements IController {
   class UpdateBar implements Runnable {
     public void run() {
       while (play) {
-        position = viewer.getBeat();
-        if (jumps.size() != 0) {
-          if (jumps.get(0).get(0) <= position) {
-            viewer.resume(jumps.get(0).get(1));
-            if (jumps.size() > 0) {
-              jumps.remove(0);
+        try {
+          position = viewer.getBeat();
+          if (jumps.size() != 0) {
+            if (jumps.get(0).get(0) <= position) {
+              viewer.resume(jumps.get(0).get(1));
+              if (jumps.size() > 0) {
+                jumps.remove(0);
+              }
             }
+            viewer.updateBeat(position);
           }
+          position = viewer.getBeat();
           viewer.updateBeat(position);
         }
-        position = viewer.getBeat();
-        viewer.updateBeat(position);
+        catch (Exception e) {
+          new UpdateBar().run();
+          return;}
       }
     }
   }
@@ -315,7 +323,6 @@ public class MidiController implements IController {
   class Play implements Runnable {
     public void run() {
       viewer.play();
-      jumps = sheet.getJumps();
     }
   }
 
@@ -392,6 +399,4 @@ public class MidiController implements IController {
       viewer.giveFocus();
     }
   }
-
-
 }
