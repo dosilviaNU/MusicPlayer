@@ -364,6 +364,7 @@ public class MidiController implements IController {
         ArrayList<Integer> tempEndings = new ArrayList<Integer>();
         for (int i = 1; i < tempRepeats.length; i++) {
           tempEndings.add(tempRepeats[i]);
+          viewer.addInvertRepeat(tempRepeats[0]);
           if (i < tempRepeats.length - 1) {
             viewer.addEnding(new EndPair(tempRepeats[i], tempRepeats[i + 1]));
           }
@@ -388,6 +389,7 @@ public class MidiController implements IController {
         ArrayList<Integer> tempEndings = new ArrayList<Integer>();
         for (int i = 1; i < tempRepeats.length; i++) {
           tempEndings.add(tempRepeats[i]);
+          viewer.removeInvertRepeat(tempRepeats[0]);
           if (i < tempRepeats.length - 1) {
             viewer.removeEnding(new EndPair(tempRepeats[i], tempRepeats[i + 1]));
           }
