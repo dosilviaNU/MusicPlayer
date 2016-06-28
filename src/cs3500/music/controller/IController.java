@@ -79,8 +79,16 @@ public interface IController {
    */
   Runnable resumePlay();
 
+  /**
+   * Adds a repeat to the composition.
+   * @return Runnable that adds a repeat.
+   */
   Runnable addRepeat();
 
+  /**
+   * Removes an ending from the composition.
+   * @return Runnable that removes an ending.
+   */
   Runnable removeEnd();
 
 }
